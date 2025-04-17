@@ -1,0 +1,14 @@
+<div class="jui-switch">
+  <input
+    [id]="id"
+    type="checkbox"
+    [checked]="modelValue"
+    [disabled]="disabled"
+    (input)="onToggle($event)"
+    (keydown.enter)="onEnter($event)"
+  />
+  <label [for]="id" class="form-label">
+    <span *ngIf="text" class="text">{{ text }}</span>
+    <span class="form-toggle-indicator"></span>
+  </label>
+</div>

@@ -1,0 +1,62 @@
+.jui-switch {
+  display: inline-flex;
+  align-items: center;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .form-label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+  }
+
+  .text {
+    font-size: 1rem;
+  }
+
+  .form-toggle-indicator {
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 999px;
+    position: relative;
+    transition: background 0.3s ease;
+  }
+
+  .form-toggle-indicator::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+
+  input[type="checkbox"]:checked + .form-label .form-toggle-indicator {
+    background-color: #0d6efd;
+  }
+
+  input[type="checkbox"]:checked + .form-label .form-toggle-indicator::after {
+    transform: translateX(20px);
+  }
+
+  input[disabled] + .form-label {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    .form-toggle-indicator {
+      background-color: #999 !important;
+    }
+
+    .form-toggle-indicator::after {
+      background-color: #ccc;
+    }
+  }
+}
