@@ -1,0 +1,8 @@
+<div *ngIf="isLoading" class="jui-loading-spinner" [ngStyle]="style">
+  <span
+    class="loading-indicator"
+    role="img"
+    [attr.aria-label]="a11yMessages.loadingSpinnerLabel"
+    [attr.tabindex]="isFocusable ? 0 : -1"
+  ></span>
+</div>
