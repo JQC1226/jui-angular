@@ -1,0 +1,15 @@
+<button
+  class="jui-button"
+  (click)="onClickButton($event)"
+  type="button"
+  tabindex="0"
+>
+  <ng-container *ngIf="a11yMessages.buttonLabel; else fallback">
+    <span aria-hidden="true">{{ messages.buttonLabel }}</span>
+    <span class="a11y">{{ a11yMessages.buttonLabel }}</span>
+  </ng-container>
+
+  <ng-template #fallback>
+    <span>{{ messages.buttonLabel }}</span>
+  </ng-template>
+</button>
