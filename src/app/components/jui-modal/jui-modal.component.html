@@ -1,0 +1,20 @@
+<div
+  class="jui-modal-overlay"
+  *ngIf="modelValue"
+  #modal
+  (click)="onClickOutside($event)"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="jui-modal-content" [ngStyle]="{ width, height }">
+    <button
+      *ngIf="closeButton"
+      class="jui-modal-close"
+      [attr.aria-label]="a11yMessage.closeButtonAriaLabel"
+      (click)="close()"
+    >
+      &times;
+    </button>
+    <ng-content></ng-content>
+  </div>
+</div>
