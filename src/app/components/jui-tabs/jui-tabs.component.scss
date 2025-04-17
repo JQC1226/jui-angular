@@ -1,0 +1,29 @@
+.jui-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  list-style: none;
+}
+
+.tab-label {
+  display: inline-block;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  color: #333;
+
+  &:focus {
+    outline: 2px solid #007bff;
+  }
+}
+
+.tab-selected .tab-label {
+  background-color: #007bff;
+  color: white;
+}

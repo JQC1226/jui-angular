@@ -1,0 +1,32 @@
+<div>
+  <ul
+    #listParent
+    class="jui-tabs"
+    [attr.aria-labelledby]="a11yMessages?.tabsLabelledby"
+    role="tablist"
+  >
+    <li
+      *ngFor="let tab of tabListData; let i = index"
+      [class.tab-selected]="isSelected(tab.tabId)"
+      [class.no-outline]="isMouseClicked"
+    >
+      <a
+        #tabItem
+        class="tab-label"
+        [id]="'jui-tab-' + tab.tabId"
+        role="tab"
+        [attr.aria-controls]="'jui-tab-panel-' + tab.tabId"
+        [attr.aria-selected]="isSelected(tab.tabId)"
+        [attr.aria-label]="getAriaLabel(tab)"
+        [attr.tabindex]="getTabIndex(tab.tabId)"
+        (click)="onClickTabItem(tab.tabId, i)"
+        (blur)="onBlur()"
+        (focus)="onFocus(i)"
+        (keydown)="onKeydown($event, i, tab.tabId)"
+      >
+        {{ tab.tabLabel }}
+      </a>
+    </li>
+  </ul>
+  <ng-content></ng-content>
+</div>
