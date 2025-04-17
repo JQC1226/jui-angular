@@ -1,28 +1,25 @@
 <jui-modal
   [modelValue]="shouldShowWarningMessage"
   (modelValueChange)="shouldShowWarningMessage = $event"
-  [closeButton]="false"
   [height]="height"
   [width]="width"
   [persistent]="false"
-  [teleportTo]="teleportTo"
-  [appContentId]="appContentId"
-  [isAlert]="true"
+  [a11yMessage]="a11yMessages"
   [ariaLabelledby]="ariaLabelledby"
-  [classes]="modalClasses"
+  [closeButton]="false"
+  (backdropClick)="onBackdropClick()"
 >
   <div class="alert-content">
-    <ng-content select="[message-slot]"></ng-content>
-    <div *ngIf="!customMessage" class="countdown-timer">
+    <div class="countdown-timer">
       <span>
         Your session will time out due to inactivity in
-        {{ formattedTimer(timeLeft()) }}. Do you want to stay signed in?
+        {{ formattedTimer(timeLeft) }}. Do you want to stay signed in?
       </span>
     </div>
+
     <div class="button-group">
       <button
         class="button stop-timer-button"
-        type="button"
         [attr.aria-label]="a11yMessages.stopTimerButtonAriaLabel"
         (click)="onStopTimer()"
       >
@@ -30,7 +27,6 @@
       </button>
       <button
         class="button button-primary reset-timer-button"
-        type="button"
         [attr.aria-label]="a11yMessages.resetTimerButtonAriaLabel"
         (click)="onResetTimer()"
       >

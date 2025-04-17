@@ -23,8 +23,10 @@ import { CommonModule } from '@angular/common';
 export class JuiModalComponent implements AfterViewInit, OnDestroy {
   @Input() modelValue = false;
   @Output() modelValueChange = new EventEmitter<boolean>();
+  @Output() backdropClick = new EventEmitter<void>();
 
   @Input() closeButton = true;
+  @Input() ariaLabelledby = '';
   @Input() a11yMessage: { closeButtonAriaLabel?: string } = {
     closeButtonAriaLabel: 'Close modal',
   };
@@ -53,6 +55,7 @@ export class JuiModalComponent implements AfterViewInit, OnDestroy {
 
   onClickOutside(event: MouseEvent): void {
     if (!this.persistent && event.target === this.modalRef.nativeElement) {
+      this.backdropClick.emit();
       this.close();
     }
   }

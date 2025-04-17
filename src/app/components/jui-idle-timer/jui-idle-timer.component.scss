@@ -1,44 +1,47 @@
+:host {
+  display: block;
+}
+
 .alert-content {
-  padding: 1rem;
-  font-family: Arial, sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 1.5rem;
+  font-family: system-ui, sans-serif;
 }
 
 .countdown-timer {
-  margin-bottom: 1.25rem;
-  font-weight: bold;
   font-size: 1rem;
-  color: #d9534f;
+  margin-bottom: 2rem;
+  color: #333;
 }
 
 .button-group {
   display: flex;
-  gap: 0.75rem;
   justify-content: flex-end;
+  gap: 1rem;
 
   .button {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.25rem;
     border: none;
-    border-radius: 4px;
-    font-size: 0.9rem;
+    border-radius: 0.375rem;
+    font-size: 1rem;
     cursor: pointer;
-    background-color: #ccc;
-    color: #333;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s ease;
 
-    &:hover {
-      background-color: #bbb;
+    &.stop-timer-button {
+      background-color: #e0e0e0;
+      color: #333;
     }
-  }
 
-  .button-primary {
-    background-color: #007bff;
-    color: #fff;
+    &.button-primary {
+      background-color: #007aff;
+      color: white;
+    }
 
     &:hover {
-      background-color: #0056b3;
+      opacity: 0.9;
     }
   }
 }

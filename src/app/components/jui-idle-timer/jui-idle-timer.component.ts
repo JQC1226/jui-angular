@@ -3,28 +3,22 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnDestroy,
   OnInit,
-  signal,
+  OnDestroy,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { JuiModalComponent } from '../jui-modal/jui-modal.component';
 
 @Component({
-  selector: 'jui-idle-timer-modal',
-  imports: [JuiModalComponent],
+  selector: 'jui-idle-timer',
+  standalone: true,
   templateUrl: './jui-idle-timer.component.html',
+  imports: [JuiModalComponent],
   styleUrls: ['./jui-idle-timer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class JuiIdleTimerModalComponent implements OnInit, OnDestroy {
-  @Input() inactivityDurationInMinutes = 30;
-  @Input() countDownTimerInMinutes = 5;
-  @Input() activityEvents: string[] = ['click', 'keydown'];
-  @Input() height = '20rem';
-  @Input() width = '50rem';
-  @Input() teleportTo = 'body';
-  @Input() appContentId = 'app';
-  @Input() ariaLabelledby = '';
-  @Input() classes: string | string[] | { [key: string]: boolean } = '';
+export class JuiIdleTimerComponent implements OnInit, OnDestroy {
   @Input() a11yMessages = {
     stopTimerButtonAriaLabel: 'Stop Timer',
     resetTimerButtonAriaLabel: 'Reset Timer',
@@ -33,138 +27,156 @@ export class JuiIdleTimerModalComponent implements OnInit, OnDestroy {
     stopTimerButtonLabel: 'Stop Timer',
     resetTimerButtonLabel: 'Reset Timer',
   };
+  @Input() inactivityDurationInMinutes = 0.1; // 6 seconds for testing
+  @Input() countDownTimerInMinutes = 0.05; // 3 seconds for testing
+  @Input() activityEvents: string[] = []; // Disable for testing
+  @Input() height = '20rem';
+  @Input() width = '50rem';
+  @Input() eventThrottleInMilliseconds = 500;
+  @Input() teleportTo = 'body';
+  @Input() appContentId = 'app';
+  @Input() ariaLabelledby = '';
+  @Input() modalClasses: string | string[] | Record<string, boolean> = '';
 
   @Output() timerReset = new EventEmitter<void>();
   @Output() timerStopped = new EventEmitter<void>();
   @Output() timedOut = new EventEmitter<void>();
 
   shouldShowWarningMessage = false;
-  timeLeft = signal(0);
-  private endTime = 0;
-  private intervalId: any;
+  timeLeft!: number;
 
-  get modalClasses(): Record<string, boolean> | string[] | string {
-    if (Array.isArray(this.classes)) return [...this.classes, 'jui-idle-timer'];
-    if (typeof this.classes === 'string')
-      return `${this.classes} jui-idle-timer`;
-    return {
-      ...this.classes,
-      'jui-idle-timer': true,
-    };
-  }
+  private intervalId: any;
+  private readonly LOCAL_STORAGE_KEYS = {
+    RESET: 'jui-idle-timer-reset-timestamp',
+    TIMEOUT: 'jui-idle-timer-timeout-timestamp',
+    STOPPED: 'jui-idle-timer-stop-timestamp',
+  };
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.resetTimer();
-    this.addEventListeners();
+    this.timeLeft = this.inactivityDurationInMinutes * 60;
+    this.startTimer();
+    this.addActivityListeners();
     window.addEventListener('storage', this.onStorage);
+    localStorage.setItem(this.LOCAL_STORAGE_KEYS.RESET, `${Date.now()}`);
   }
 
   ngOnDestroy(): void {
     this.clearAll();
   }
 
-  onResetTimer(): void {
-    window.localStorage.setItem(
-      'jui-idle-timer-reset-timestamp',
-      `${Date.now()}`
-    );
-    this.timerReset.emit();
+  formattedTimer(secs: number): string {
+    const minutes = Math.floor(secs / 60)
+      .toString()
+      .padStart(2, '0');
+    const seconds = (secs % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+  }
+
+  startTimer(): void {
+    const start = Date.now();
+    this.intervalId = setInterval(() => {
+      const passed = Math.floor((Date.now() - start) / 1000);
+      this.timeLeft = this.inactivityDurationInMinutes * 60 - passed;
+      console.log('[IdleTimer] Time left:', this.timeLeft);
+      this.onChangeTimeLeft(this.timeLeft);
+      this.cdr.markForCheck();
+    }, 1000);
+  }
+
+  resetTimer(): void {
+    this.clearTimer();
+    this.startTimer();
+  }
+
+  clearTimer(): void {
+    clearInterval(this.intervalId);
     this.shouldShowWarningMessage = false;
+    this.timeLeft = this.inactivityDurationInMinutes * 60;
+    this.cdr.markForCheck();
+  }
+
+  clearAll(): void {
+    this.clearTimer();
+    this.removeActivityListeners();
+    window.removeEventListener('storage', this.onStorage);
+  }
+
+  onResetTimer(): void {
+    localStorage.setItem(this.LOCAL_STORAGE_KEYS.RESET, `${Date.now()}`);
+    this.timerReset.emit();
     this.resetTimer();
   }
 
   onStopTimer(): void {
-    window.localStorage.setItem(
-      'jui-idle-timer-stop-timestamp',
-      `${Date.now()}`
-    );
+    localStorage.setItem(this.LOCAL_STORAGE_KEYS.STOPPED, `${Date.now()}`);
     this.timerStopped.emit();
     this.clearAll();
   }
 
-  private resetTimer(): void {
-    this.clearTimer();
-    const totalTime = this.inactivityDurationInMinutes * 60;
-    this.endTime = Date.now() + totalTime * 1000;
-    this.intervalId = setInterval(() => {
-      const remaining = Math.floor((this.endTime - Date.now()) / 1000);
-      this.timeLeft.set(Math.max(0, remaining));
-      if (remaining <= this.countDownTimerInMinutes * 60) {
-        this.shouldShowWarningMessage = true;
-      }
-      if (remaining <= 0) this.onTimeout();
-    }, 1000);
-  }
-
-  private onTimeout(): void {
-    window.localStorage.setItem(
-      'jui-idle-timer-timeout-timestamp',
-      `${Date.now()}`
-    );
-    this.timedOut.emit();
-    this.clearAll();
-  }
-
-  private clearTimer(): void {
-    clearInterval(this.intervalId);
-    this.intervalId = null;
-  }
-
-  private clearAll(): void {
-    this.clearTimer();
+  onBackdropClick(): void {
+    console.log('[IdleTimer] Backdrop clicked');
+    this.onResetTimer();
     this.shouldShowWarningMessage = false;
-    window.removeEventListener('storage', this.onStorage);
-    this.removeEventListeners();
+    this.cdr.markForCheck();
   }
 
-  private addEventListeners(): void {
-    this.activityEvents.forEach((event) =>
-      window.addEventListener(event, this.throttledActivityReset, true)
-    );
+  onChangeTimeLeft(time: number): void {
+    if (
+      time <= this.countDownTimerInMinutes * 60 &&
+      !this.shouldShowWarningMessage
+    ) {
+      console.log('[IdleTimer] Showing modal...');
+      this.shouldShowWarningMessage = true;
+      this.cdr.markForCheck();
+    }
+    if (time <= 0) {
+      console.log('[IdleTimer] Timeout triggered.');
+      localStorage.setItem(this.LOCAL_STORAGE_KEYS.TIMEOUT, `${Date.now()}`);
+      this.timedOut.emit();
+      this.clearAll();
+    }
   }
-
-  private removeEventListeners(): void {
-    this.activityEvents.forEach((event) =>
-      window.removeEventListener(event, this.throttledActivityReset, true)
-    );
-  }
-
-  private throttledActivityReset = (() => {
-    let last = 0;
-    return () => {
-      const now = Date.now();
-      if (now - last > 500) {
-        if (this.timeLeft() > this.countDownTimerInMinutes * 60) {
-          this.onResetTimer();
-        }
-        last = now;
-      }
-    };
-  })();
 
   private onStorage = (event: StorageEvent): void => {
-    if (event.key === 'jui-idle-timer-reset-timestamp') {
+    if (event.key === this.LOCAL_STORAGE_KEYS.RESET) {
       this.resetTimer();
-    } else if (event.key === 'jui-idle-timer-stop-timestamp') {
-      this.timerStopped.emit();
-      this.clearAll();
-    } else if (event.key === 'jui-idle-timer-timeout-timestamp') {
+    } else if (event.key === this.LOCAL_STORAGE_KEYS.TIMEOUT) {
       this.timedOut.emit();
+      this.clearAll();
+    } else if (event.key === this.LOCAL_STORAGE_KEYS.STOPPED) {
+      this.timerStopped.emit();
       this.clearAll();
     }
   };
 
-  formattedTimer(seconds: number): string {
-    const min = Math.floor(seconds / 60)
-      .toString()
-      .padStart(2, '0');
-    const sec = Math.floor(seconds % 60)
-      .toString()
-      .padStart(2, '0');
-    return `${min}:${sec}`;
+  private addActivityListeners(): void {
+    this.activityEvents.forEach((event) =>
+      window.addEventListener(event, this.throttledReset, true)
+    );
   }
 
-  get customMessage(): boolean {
-    return false;
+  private removeActivityListeners(): void {
+    this.activityEvents.forEach((event) =>
+      window.removeEventListener(event, this.throttledReset, true)
+    );
+  }
+
+  private throttledReset = this.throttle(() => {
+    if (this.timeLeft > this.countDownTimerInMinutes * 60) {
+      this.onResetTimer();
+    }
+  }, this.eventThrottleInMilliseconds);
+
+  private throttle(func: () => void, limit: number): () => void {
+    let inThrottle: boolean;
+    return () => {
+      if (!inThrottle) {
+        func();
+        inThrottle = true;
+        setTimeout(() => (inThrottle = false), limit);
+      }
+    };
   }
 }
