@@ -1,0 +1,6 @@
+<div class="jui-radio-list">
+  <ul class="radio-group" role="radiogroup" [class.vertical]="vertical">
+    <ng-content></ng-content>
+  </ul>
+  <div *ngIf="showValidationError" class="validation-error-icon">!</div>
+</div>

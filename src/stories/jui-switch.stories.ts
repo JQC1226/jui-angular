@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { JuiSwitchComponent } from '../app/components/jui-switch/jui-switch.component';
+import { JuiSwitchComponent } from '../app/lib/components/jui-switch/jui-switch.component';
 
 export default {
   title: 'JUI/Switch',

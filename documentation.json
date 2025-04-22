@@ -4,7 +4,7 @@
         {
             "name": "A11yMessages",
             "id": "interface-A11yMessages-7812d7d7a9d6723fe2e92455fb35c3a68e3072b5ddbc18e8fb118c90f063a4e293b8f5fdedb66b9a91674b4dc415303c691d56607cd9e391e1e9a9a34fe9d389",
-            "file": "src/app/components/jui-tabs/jui-tabs.component.ts",
+            "file": "src/app/lib/components/jui-tabs/jui-tabs.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
@@ -29,7 +29,7 @@
         {
             "name": "TabItem",
             "id": "interface-TabItem-7812d7d7a9d6723fe2e92455fb35c3a68e3072b5ddbc18e8fb118c90f063a4e293b8f5fdedb66b9a91674b4dc415303c691d56607cd9e391e1e9a9a34fe9d389",
-            "file": "src/app/components/jui-tabs/jui-tabs.component.ts",
+            "file": "src/app/lib/components/jui-tabs/jui-tabs.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
@@ -135,7 +135,7 @@
         {
             "name": "JuiButtonComponent",
             "id": "component-JuiButtonComponent-878adbd0a9b368237ba156e907f194c708dd6000264cdcf993ec63443dd93926c951c900eee0ff26e5f32f1710da9987ba268580e060bcb7b3ad7d08280a6ece",
-            "file": "src/app/components/jui-button/jui-button.component.ts",
+            "file": "src/app/lib/components/jui-button/jui-button.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -240,8 +240,8 @@
         },
         {
             "name": "JuiIdleTimerComponent",
-            "id": "component-JuiIdleTimerComponent-3305f0e0c7ad28625e889994d399360179fc964eaf0cc7b3a695accf6f583190ea974470a209ab24172513e0cb00f7a84dfef61b3e41803556e329ea09bc72f9",
-            "file": "src/app/components/jui-idle-timer/jui-idle-timer.component.ts",
+            "id": "component-JuiIdleTimerComponent-354aedf092562e710c978cdabbed911af1d9bd28a092cfdfb481c08620f52147ae936b17e72f5959ae39cb4777ac2d40e1998cac2eb38c467cc0a496cab294b2",
+            "file": "src/app/lib/components/jui-idle-timer/jui-idle-timer.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -264,16 +264,16 @@
                     "defaultValue": "{\r\n    stopTimerButtonAriaLabel: 'Stop Timer',\r\n    resetTimerButtonAriaLabel: 'Reset Timer',\r\n  }",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 19,
+                    "line": 22,
                     "type": "{ stopTimerButtonAriaLabel: string; resetTimerButtonAriaLabel: string; }",
                     "decorators": []
                 },
                 {
                     "name": "activityEvents",
-                    "defaultValue": "['click', 'keydown']",
+                    "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
+                    "line": 32,
                     "type": "string[]",
                     "decorators": []
                 },
@@ -282,7 +282,7 @@
                     "defaultValue": "'app'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 34,
+                    "line": 37,
                     "type": "string",
                     "decorators": []
                 },
@@ -291,16 +291,16 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 35,
+                    "line": 38,
                     "type": "string",
                     "decorators": []
                 },
                 {
                     "name": "countDownTimerInMinutes",
-                    "defaultValue": "5",
+                    "defaultValue": "0.05",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 28,
+                    "line": 31,
                     "type": "number",
                     "decorators": []
                 },
@@ -309,7 +309,7 @@
                     "defaultValue": "500",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 32,
+                    "line": 35,
                     "type": "number",
                     "decorators": []
                 },
@@ -318,16 +318,16 @@
                     "defaultValue": "'20rem'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 30,
+                    "line": 33,
                     "type": "string",
                     "decorators": []
                 },
                 {
                     "name": "inactivityDurationInMinutes",
-                    "defaultValue": "30",
+                    "defaultValue": "0.1",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 27,
+                    "line": 30,
                     "type": "number",
                     "decorators": []
                 },
@@ -336,7 +336,7 @@
                     "defaultValue": "{\r\n    stopTimerButtonLabel: 'Stop Timer',\r\n    resetTimerButtonLabel: 'Reset Timer',\r\n  }",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 23,
+                    "line": 26,
                     "type": "{ stopTimerButtonLabel: string; resetTimerButtonLabel: string; }",
                     "decorators": []
                 },
@@ -345,7 +345,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 36,
+                    "line": 39,
                     "type": "string | string[] | Record<string | boolean>",
                     "decorators": []
                 },
@@ -354,7 +354,7 @@
                     "defaultValue": "'body'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 33,
+                    "line": 36,
                     "type": "string",
                     "decorators": []
                 },
@@ -363,7 +363,7 @@
                     "defaultValue": "'50rem'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 31,
+                    "line": 34,
                     "type": "string",
                     "decorators": []
                 }
@@ -374,7 +374,7 @@
                     "defaultValue": "new EventEmitter<void>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 40,
+                    "line": 43,
                     "type": "EventEmitter"
                 },
                 {
@@ -382,7 +382,7 @@
                     "defaultValue": "new EventEmitter<void>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 38,
+                    "line": 41,
                     "type": "EventEmitter"
                 },
                 {
@@ -390,7 +390,7 @@
                     "defaultValue": "new EventEmitter<void>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 39,
+                    "line": 42,
                     "type": "EventEmitter"
                 }
             ],
@@ -403,21 +403,21 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 45,
+                    "line": 48,
                     "modifierKind": [
                         123
                     ]
                 },
                 {
                     "name": "LOCAL_STORAGE_KEYS",
-                    "defaultValue": "{\r\n    RESET: 'vn-idle-timer-reset-timestamp',\r\n    TIMEOUT: 'vn-idle-timer-timeout-timestamp',\r\n    STOPPED: 'vn-idle-timer-stop-timestamp',\r\n  }",
+                    "defaultValue": "{\r\n    RESET: 'jui-idle-timer-reset-timestamp',\r\n    TIMEOUT: 'jui-idle-timer-timeout-timestamp',\r\n    STOPPED: 'jui-idle-timer-stop-timestamp',\r\n  }",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 46,
+                    "line": 49,
                     "modifierKind": [
                         123,
                         148
@@ -432,7 +432,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 124,
+                    "line": 142,
                     "modifierKind": [
                         123
                     ]
@@ -446,7 +446,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 42
+                    "line": 45
                 },
                 {
                     "name": "throttledReset",
@@ -457,7 +457,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 148,
+                    "line": 166,
                     "modifierKind": [
                         123
                     ]
@@ -470,7 +470,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 43
+                    "line": 46
                 }
             ],
             "methodsClass": [
@@ -480,7 +480,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 136,
+                    "line": 154,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -493,7 +493,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 92,
+                    "line": 100,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -503,7 +503,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 86,
+                    "line": 93,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -520,7 +520,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 64,
+                    "line": 69,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -541,7 +541,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 60,
+                    "line": 65,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -551,7 +551,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 52,
+                    "line": 57,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onBackdropClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 118,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -568,7 +578,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 110,
+                    "line": 125,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -589,7 +599,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 98,
+                    "line": 106,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -599,7 +609,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 104,
+                    "line": 112,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -609,7 +619,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 142,
+                    "line": 160,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -622,7 +632,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 81,
+                    "line": 88,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -632,7 +642,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 72,
+                    "line": 77,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -656,7 +666,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 154,
+                    "line": 172,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -689,31 +699,62 @@
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
-            "standalone": false,
-            "imports": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "JuiModalComponent",
+                    "type": "component"
+                }
+            ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  OnInit,\r\n  OnDestroy,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'jui-idle-timer',\r\n  templateUrl: './jui-idle-timer.component.html',\r\n  styleUrls: ['./jui-idle-timer.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiIdleTimerComponent implements OnInit, OnDestroy {\r\n  @Input() a11yMessages = {\r\n    stopTimerButtonAriaLabel: 'Stop Timer',\r\n    resetTimerButtonAriaLabel: 'Reset Timer',\r\n  };\r\n  @Input() messages = {\r\n    stopTimerButtonLabel: 'Stop Timer',\r\n    resetTimerButtonLabel: 'Reset Timer',\r\n  };\r\n  @Input() inactivityDurationInMinutes = 30;\r\n  @Input() countDownTimerInMinutes = 5;\r\n  @Input() activityEvents: string[] = ['click', 'keydown'];\r\n  @Input() height = '20rem';\r\n  @Input() width = '50rem';\r\n  @Input() eventThrottleInMilliseconds = 500;\r\n  @Input() teleportTo = 'body';\r\n  @Input() appContentId = 'app';\r\n  @Input() ariaLabelledby = '';\r\n  @Input() modalClasses: string | string[] | Record<string, boolean> = '';\r\n\r\n  @Output() timerReset = new EventEmitter<void>();\r\n  @Output() timerStopped = new EventEmitter<void>();\r\n  @Output() timedOut = new EventEmitter<void>();\r\n\r\n  shouldShowWarningMessage = false;\r\n  timeLeft!: number;\r\n\r\n  private intervalId: any;\r\n  private readonly LOCAL_STORAGE_KEYS = {\r\n    RESET: 'vn-idle-timer-reset-timestamp',\r\n    TIMEOUT: 'vn-idle-timer-timeout-timestamp',\r\n    STOPPED: 'vn-idle-timer-stop-timestamp',\r\n  };\r\n\r\n  ngOnInit(): void {\r\n    this.timeLeft = this.inactivityDurationInMinutes * 60;\r\n    this.startTimer();\r\n    this.addActivityListeners();\r\n    window.addEventListener('storage', this.onStorage);\r\n    localStorage.setItem(this.LOCAL_STORAGE_KEYS.RESET, `${Date.now()}`);\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.clearAll();\r\n  }\r\n\r\n  formattedTimer(secs: number): string {\r\n    const minutes = Math.floor(secs / 60)\r\n      .toString()\r\n      .padStart(2, '0');\r\n    const seconds = (secs % 60).toString().padStart(2, '0');\r\n    return `${minutes}:${seconds}`;\r\n  }\r\n\r\n  startTimer(): void {\r\n    const start = Date.now();\r\n    this.intervalId = setInterval(() => {\r\n      const passed = Math.floor((Date.now() - start) / 1000);\r\n      this.timeLeft = this.inactivityDurationInMinutes * 60 - passed;\r\n      this.onChangeTimeLeft(this.timeLeft);\r\n    }, 1000);\r\n  }\r\n\r\n  resetTimer(): void {\r\n    this.clearTimer();\r\n    this.startTimer();\r\n  }\r\n\r\n  clearTimer(): void {\r\n    clearInterval(this.intervalId);\r\n    this.shouldShowWarningMessage = false;\r\n    this.timeLeft = this.inactivityDurationInMinutes * 60;\r\n  }\r\n\r\n  clearAll(): void {\r\n    this.clearTimer();\r\n    this.removeActivityListeners();\r\n    window.removeEventListener('storage', this.onStorage);\r\n  }\r\n\r\n  onResetTimer(): void {\r\n    localStorage.setItem(this.LOCAL_STORAGE_KEYS.RESET, `${Date.now()}`);\r\n    this.timerReset.emit();\r\n    this.resetTimer();\r\n  }\r\n\r\n  onStopTimer(): void {\r\n    localStorage.setItem(this.LOCAL_STORAGE_KEYS.STOPPED, `${Date.now()}`);\r\n    this.timerStopped.emit();\r\n    this.clearAll();\r\n  }\r\n\r\n  onChangeTimeLeft(time: number): void {\r\n    if (\r\n      time <= this.countDownTimerInMinutes * 60 &&\r\n      !this.shouldShowWarningMessage\r\n    ) {\r\n      this.shouldShowWarningMessage = true;\r\n    }\r\n    if (time <= 0) {\r\n      localStorage.setItem(this.LOCAL_STORAGE_KEYS.TIMEOUT, `${Date.now()}`);\r\n      this.timedOut.emit();\r\n      this.clearAll();\r\n    }\r\n  }\r\n\r\n  private onStorage = (event: StorageEvent): void => {\r\n    if (event.key === this.LOCAL_STORAGE_KEYS.RESET) {\r\n      this.resetTimer();\r\n    } else if (event.key === this.LOCAL_STORAGE_KEYS.TIMEOUT) {\r\n      this.timedOut.emit();\r\n      this.clearAll();\r\n    } else if (event.key === this.LOCAL_STORAGE_KEYS.STOPPED) {\r\n      this.timerStopped.emit();\r\n      this.clearAll();\r\n    }\r\n  };\r\n\r\n  private addActivityListeners(): void {\r\n    this.activityEvents.forEach((event) =>\r\n      window.addEventListener(event, this.throttledReset, true)\r\n    );\r\n  }\r\n\r\n  private removeActivityListeners(): void {\r\n    this.activityEvents.forEach((event) =>\r\n      window.removeEventListener(event, this.throttledReset, true)\r\n    );\r\n  }\r\n\r\n  private throttledReset = this.throttle(() => {\r\n    if (this.timeLeft > this.countDownTimerInMinutes * 60) {\r\n      this.onResetTimer();\r\n    }\r\n  }, this.eventThrottleInMilliseconds);\r\n\r\n  private throttle(func: () => void, limit: number): () => void {\r\n    let inThrottle: boolean;\r\n    return () => {\r\n      if (!inThrottle) {\r\n        func();\r\n        inThrottle = true;\r\n        setTimeout(() => (inThrottle = false), limit);\r\n      }\r\n    };\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  OnInit,\r\n  OnDestroy,\r\n  ChangeDetectionStrategy,\r\n  ChangeDetectorRef,\r\n} from '@angular/core';\r\nimport { JuiModalComponent } from '../jui-modal/jui-modal.component';\r\n\r\n@Component({\r\n  selector: 'jui-idle-timer',\r\n  standalone: true,\r\n  templateUrl: './jui-idle-timer.component.html',\r\n  imports: [JuiModalComponent],\r\n  styleUrls: ['./jui-idle-timer.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiIdleTimerComponent implements OnInit, OnDestroy {\r\n  @Input() a11yMessages = {\r\n    stopTimerButtonAriaLabel: 'Stop Timer',\r\n    resetTimerButtonAriaLabel: 'Reset Timer',\r\n  };\r\n  @Input() messages = {\r\n    stopTimerButtonLabel: 'Stop Timer',\r\n    resetTimerButtonLabel: 'Reset Timer',\r\n  };\r\n  @Input() inactivityDurationInMinutes = 0.1; // 6 seconds for testing\r\n  @Input() countDownTimerInMinutes = 0.05; // 3 seconds for testing\r\n  @Input() activityEvents: string[] = []; // Disable for testing\r\n  @Input() height = '20rem';\r\n  @Input() width = '50rem';\r\n  @Input() eventThrottleInMilliseconds = 500;\r\n  @Input() teleportTo = 'body';\r\n  @Input() appContentId = 'app';\r\n  @Input() ariaLabelledby = '';\r\n  @Input() modalClasses: string | string[] | Record<string, boolean> = '';\r\n\r\n  @Output() timerReset = new EventEmitter<void>();\r\n  @Output() timerStopped = new EventEmitter<void>();\r\n  @Output() timedOut = new EventEmitter<void>();\r\n\r\n  shouldShowWarningMessage = false;\r\n  timeLeft!: number;\r\n\r\n  private intervalId: any;\r\n  private readonly LOCAL_STORAGE_KEYS = {\r\n    RESET: 'jui-idle-timer-reset-timestamp',\r\n    TIMEOUT: 'jui-idle-timer-timeout-timestamp',\r\n    STOPPED: 'jui-idle-timer-stop-timestamp',\r\n  };\r\n\r\n  constructor(private cdr: ChangeDetectorRef) {}\r\n\r\n  ngOnInit(): void {\r\n    this.timeLeft = this.inactivityDurationInMinutes * 60;\r\n    this.startTimer();\r\n    this.addActivityListeners();\r\n    window.addEventListener('storage', this.onStorage);\r\n    localStorage.setItem(this.LOCAL_STORAGE_KEYS.RESET, `${Date.now()}`);\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.clearAll();\r\n  }\r\n\r\n  formattedTimer(secs: number): string {\r\n    const minutes = Math.floor(secs / 60)\r\n      .toString()\r\n      .padStart(2, '0');\r\n    const seconds = (secs % 60).toString().padStart(2, '0');\r\n    return `${minutes}:${seconds}`;\r\n  }\r\n\r\n  startTimer(): void {\r\n    const start = Date.now();\r\n    this.intervalId = setInterval(() => {\r\n      const passed = Math.floor((Date.now() - start) / 1000);\r\n      this.timeLeft = this.inactivityDurationInMinutes * 60 - passed;\r\n      console.log('[IdleTimer] Time left:', this.timeLeft);\r\n      this.onChangeTimeLeft(this.timeLeft);\r\n      this.cdr.markForCheck();\r\n    }, 1000);\r\n  }\r\n\r\n  resetTimer(): void {\r\n    this.clearTimer();\r\n    this.startTimer();\r\n  }\r\n\r\n  clearTimer(): void {\r\n    clearInterval(this.intervalId);\r\n    this.shouldShowWarningMessage = false;\r\n    this.timeLeft = this.inactivityDurationInMinutes * 60;\r\n    this.cdr.markForCheck();\r\n  }\r\n\r\n  clearAll(): void {\r\n    this.clearTimer();\r\n    this.removeActivityListeners();\r\n    window.removeEventListener('storage', this.onStorage);\r\n  }\r\n\r\n  onResetTimer(): void {\r\n    localStorage.setItem(this.LOCAL_STORAGE_KEYS.RESET, `${Date.now()}`);\r\n    this.timerReset.emit();\r\n    this.resetTimer();\r\n  }\r\n\r\n  onStopTimer(): void {\r\n    localStorage.setItem(this.LOCAL_STORAGE_KEYS.STOPPED, `${Date.now()}`);\r\n    this.timerStopped.emit();\r\n    this.clearAll();\r\n  }\r\n\r\n  onBackdropClick(): void {\r\n    console.log('[IdleTimer] Backdrop clicked');\r\n    this.onResetTimer();\r\n    this.shouldShowWarningMessage = false;\r\n    this.cdr.markForCheck();\r\n  }\r\n\r\n  onChangeTimeLeft(time: number): void {\r\n    if (\r\n      time <= this.countDownTimerInMinutes * 60 &&\r\n      !this.shouldShowWarningMessage\r\n    ) {\r\n      console.log('[IdleTimer] Showing modal...');\r\n      this.shouldShowWarningMessage = true;\r\n      this.cdr.markForCheck();\r\n    }\r\n    if (time <= 0) {\r\n      console.log('[IdleTimer] Timeout triggered.');\r\n      localStorage.setItem(this.LOCAL_STORAGE_KEYS.TIMEOUT, `${Date.now()}`);\r\n      this.timedOut.emit();\r\n      this.clearAll();\r\n    }\r\n  }\r\n\r\n  private onStorage = (event: StorageEvent): void => {\r\n    if (event.key === this.LOCAL_STORAGE_KEYS.RESET) {\r\n      this.resetTimer();\r\n    } else if (event.key === this.LOCAL_STORAGE_KEYS.TIMEOUT) {\r\n      this.timedOut.emit();\r\n      this.clearAll();\r\n    } else if (event.key === this.LOCAL_STORAGE_KEYS.STOPPED) {\r\n      this.timerStopped.emit();\r\n      this.clearAll();\r\n    }\r\n  };\r\n\r\n  private addActivityListeners(): void {\r\n    this.activityEvents.forEach((event) =>\r\n      window.addEventListener(event, this.throttledReset, true)\r\n    );\r\n  }\r\n\r\n  private removeActivityListeners(): void {\r\n    this.activityEvents.forEach((event) =>\r\n      window.removeEventListener(event, this.throttledReset, true)\r\n    );\r\n  }\r\n\r\n  private throttledReset = this.throttle(() => {\r\n    if (this.timeLeft > this.countDownTimerInMinutes * 60) {\r\n      this.onResetTimer();\r\n    }\r\n  }, this.eventThrottleInMilliseconds);\r\n\r\n  private throttle(func: () => void, limit: number): () => void {\r\n    let inThrottle: boolean;\r\n    return () => {\r\n      if (!inThrottle) {\r\n        func();\r\n        inThrottle = true;\r\n        setTimeout(() => (inThrottle = false), limit);\r\n      }\r\n    };\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\r\n  display: block;\r\n}\r\n\r\n.alert-content {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-between;\r\n  height: 100%;\r\n  padding: 1rem;\r\n}\r\n\r\n.countdown-timer {\r\n  font-size: 1rem;\r\n  margin-bottom: 1.5rem;\r\n}\r\n\r\n.button-group {\r\n  display: flex;\r\n  justify-content: flex-end;\r\n  gap: 1rem;\r\n\r\n  .button {\r\n    padding: 0.5rem 1rem;\r\n    border-radius: 0.25rem;\r\n    border: none;\r\n    cursor: pointer;\r\n    font-size: 1rem;\r\n\r\n    &.button-primary {\r\n      background-color: #007aff;\r\n      color: white;\r\n    }\r\n\r\n    &.stop-timer-button {\r\n      background-color: #e0e0e0;\r\n      color: #000;\r\n    }\r\n  }\r\n}\r\n",
+                    "data": ":host {\r\n  display: block;\r\n}\r\n\r\n.alert-content {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-between;\r\n  height: 100%;\r\n  padding: 1.5rem;\r\n  font-family: system-ui, sans-serif;\r\n}\r\n\r\n.countdown-timer {\r\n  font-size: 1rem;\r\n  margin-bottom: 2rem;\r\n  color: #333;\r\n}\r\n\r\n.button-group {\r\n  display: flex;\r\n  justify-content: flex-end;\r\n  gap: 1rem;\r\n\r\n  .button {\r\n    padding: 0.5rem 1.25rem;\r\n    border: none;\r\n    border-radius: 0.375rem;\r\n    font-size: 1rem;\r\n    cursor: pointer;\r\n    transition: background-color 0.2s ease;\r\n\r\n    &.stop-timer-button {\r\n      background-color: #e0e0e0;\r\n      color: #333;\r\n    }\r\n\r\n    &.button-primary {\r\n      background-color: #007aff;\r\n      color: white;\r\n    }\r\n\r\n    &:hover {\r\n      opacity: 0.9;\r\n    }\r\n  }\r\n}\r\n",
                     "styleUrl": "./jui-idle-timer.component.scss"
                 }
             ],
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "cdr",
+                        "type": "ChangeDetectorRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 53,
+                "jsdoctags": [
+                    {
+                        "name": "cdr",
+                        "type": "ChangeDetectorRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
             "implements": [
                 "OnInit",
                 "OnDestroy"
             ],
-            "templateData": "<jui-modal\r\n  [modelValue]=\"shouldShowWarningMessage\"\r\n  (modelValueChange)=\"shouldShowWarningMessage = $event\"\r\n  [height]=\"height\"\r\n  [width]=\"width\"\r\n  [persistent]=\"true\"\r\n  [teleportTo]=\"teleportTo\"\r\n  [appContentId]=\"appContentId\"\r\n  [a11yMessage]=\"a11yMessages\"\r\n  [ariaLabelledby]=\"ariaLabelledby\"\r\n  [classes]=\"modalClasses\"\r\n  [isAlert]=\"true\"\r\n>\r\n  <div class=\"alert-content\">\r\n    <ng-content select=\"[message-slot]\"></ng-content>\r\n    <div *ngIf=\"!message - slot\" class=\"countdown-timer\">\r\n      <span>\r\n        Your session will time out due to inactivity in\r\n        {{ formattedTimer(timeLeft) }}. Do you want to stay signed in?\r\n      </span>\r\n    </div>\r\n\r\n    <div class=\"button-group\">\r\n      <button\r\n        class=\"button stop-timer-button\"\r\n        [attr.aria-label]=\"a11yMessages.stopTimerButtonAriaLabel\"\r\n        (click)=\"onStopTimer()\"\r\n      >\r\n        {{ messages.stopTimerButtonLabel }}\r\n      </button>\r\n      <button\r\n        class=\"button button-primary reset-timer-button\"\r\n        [attr.aria-label]=\"a11yMessages.resetTimerButtonAriaLabel\"\r\n        (click)=\"onResetTimer()\"\r\n      >\r\n        {{ messages.resetTimerButtonLabel }}\r\n      </button>\r\n    </div>\r\n  </div>\r\n</jui-modal>\r\n"
+            "templateData": "<jui-modal\r\n  [modelValue]=\"shouldShowWarningMessage\"\r\n  (modelValueChange)=\"shouldShowWarningMessage = $event\"\r\n  [height]=\"height\"\r\n  [width]=\"width\"\r\n  [persistent]=\"false\"\r\n  [a11yMessage]=\"a11yMessages\"\r\n  [ariaLabelledby]=\"ariaLabelledby\"\r\n  [closeButton]=\"false\"\r\n  (backdropClick)=\"onBackdropClick()\"\r\n>\r\n  <div class=\"alert-content\">\r\n    <div class=\"countdown-timer\">\r\n      <span>\r\n        Your session will time out due to inactivity in\r\n        {{ formattedTimer(timeLeft) }}. Do you want to stay signed in?\r\n      </span>\r\n    </div>\r\n\r\n    <div class=\"button-group\">\r\n      <button\r\n        class=\"button stop-timer-button\"\r\n        [attr.aria-label]=\"a11yMessages.stopTimerButtonAriaLabel\"\r\n        (click)=\"onStopTimer()\"\r\n      >\r\n        {{ messages.stopTimerButtonLabel }}\r\n      </button>\r\n      <button\r\n        class=\"button button-primary reset-timer-button\"\r\n        [attr.aria-label]=\"a11yMessages.resetTimerButtonAriaLabel\"\r\n        (click)=\"onResetTimer()\"\r\n      >\r\n        {{ messages.resetTimerButtonLabel }}\r\n      </button>\r\n    </div>\r\n  </div>\r\n</jui-modal>\r\n"
         },
         {
             "name": "JuiLoadingSpinnerComponent",
             "id": "component-JuiLoadingSpinnerComponent-c46c365f88d7c1f533008bf719dd30c840cb5268b9c8aab5e4ecbd4c4ecf23dc63c9b8a6629f7bd477c2c70b3fd56e24bbc4d9486fa2e5dd64114108c08382fd",
-            "file": "src/app/components/jui-loading-spinner/jui-loading-spinner.component.ts",
+            "file": "src/app/lib/components/jui-loading-spinner/jui-loading-spinner.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -810,8 +851,8 @@
         },
         {
             "name": "JuiModalComponent",
-            "id": "component-JuiModalComponent-2ced6dd53102a22533e48b7b3d1dd52b97ec125b3c437bd70cd77b2c95745bc9a9097498f6844925b13e41ea29fe8bc70e0460de2ff7599a2089401af10b7943",
-            "file": "src/app/components/jui-modal/jui-modal.component.ts",
+            "id": "component-JuiModalComponent-8270c9b1d590cb06f70b8a843fcabdb3ab7cb715d5f49d7b00c70cc7ad0acebd93274cc794cdf578afe71bf69bd00b9d92104204e205dbb0466d1c6f5365c862",
+            "file": "src/app/lib/components/jui-modal/jui-modal.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -834,8 +875,17 @@
                     "defaultValue": "{\r\n    closeButtonAriaLabel: 'Close modal',\r\n  }",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
+                    "line": 30,
                     "type": "literal type",
+                    "decorators": []
+                },
+                {
+                    "name": "ariaLabelledby",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -852,7 +902,7 @@
                     "defaultValue": "'400px'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 33,
+                    "line": 34,
                     "type": "string",
                     "decorators": []
                 },
@@ -870,7 +920,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 34,
+                    "line": 35,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -879,7 +929,7 @@
                     "defaultValue": "'600px'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 32,
+                    "line": 33,
                     "type": "string",
                     "decorators": []
                 }
@@ -911,7 +961,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 36,
+                    "line": 37,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -930,7 +980,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 51,
+                    "line": 52,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -947,7 +997,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 39,
+                    "line": 40,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "decorators": [
@@ -977,7 +1027,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 43,
+                    "line": 44,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -987,7 +1037,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 47,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1004,7 +1054,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 55,
+                    "line": 56,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1039,7 +1089,7 @@
                     ],
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 39
+                    "line": 40
                 }
             ],
             "standalone": true,
@@ -1052,7 +1102,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ElementRef,\r\n  ViewChild,\r\n  HostListener,\r\n  AfterViewInit,\r\n  OnDestroy,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'jui-modal',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './jui-modal.component.html',\r\n  styleUrls: ['./jui-modal.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiModalComponent implements AfterViewInit, OnDestroy {\r\n  @Input() modelValue = false;\r\n  @Output() modelValueChange = new EventEmitter<boolean>();\r\n  @Output() backdropClick = new EventEmitter<void>();\r\n\r\n  @Input() closeButton = true;\r\n  @Input() a11yMessage: { closeButtonAriaLabel?: string } = {\r\n    closeButtonAriaLabel: 'Close modal',\r\n  };\r\n  @Input() width = '600px';\r\n  @Input() height = '400px';\r\n  @Input() persistent = false;\r\n\r\n  @ViewChild('modal') modalRef!: ElementRef;\r\n\r\n  @HostListener('document:keydown.escape', ['$event'])\r\n  handleEscape(event: KeyboardEvent) {\r\n    if (!this.persistent) this.close();\r\n  }\r\n\r\n  ngAfterViewInit(): void {\r\n    document.body.style.overflow = this.modelValue ? 'hidden' : '';\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    document.body.style.overflow = '';\r\n  }\r\n\r\n  close(): void {\r\n    this.modelValueChange.emit(false);\r\n  }\r\n\r\n  onClickOutside(event: MouseEvent): void {\r\n    if (!this.persistent && event.target === this.modalRef.nativeElement) {\r\n      this.backdropClick.emit();\r\n      this.close();\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ElementRef,\r\n  ViewChild,\r\n  HostListener,\r\n  AfterViewInit,\r\n  OnDestroy,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'jui-modal',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './jui-modal.component.html',\r\n  styleUrls: ['./jui-modal.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiModalComponent implements AfterViewInit, OnDestroy {\r\n  @Input() modelValue = false;\r\n  @Output() modelValueChange = new EventEmitter<boolean>();\r\n  @Output() backdropClick = new EventEmitter<void>();\r\n\r\n  @Input() closeButton = true;\r\n  @Input() ariaLabelledby = '';\r\n  @Input() a11yMessage: { closeButtonAriaLabel?: string } = {\r\n    closeButtonAriaLabel: 'Close modal',\r\n  };\r\n  @Input() width = '600px';\r\n  @Input() height = '400px';\r\n  @Input() persistent = false;\r\n\r\n  @ViewChild('modal') modalRef!: ElementRef;\r\n\r\n  @HostListener('document:keydown.escape', ['$event'])\r\n  handleEscape(event: KeyboardEvent) {\r\n    if (!this.persistent) this.close();\r\n  }\r\n\r\n  ngAfterViewInit(): void {\r\n    document.body.style.overflow = this.modelValue ? 'hidden' : '';\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    document.body.style.overflow = '';\r\n  }\r\n\r\n  close(): void {\r\n    this.modelValueChange.emit(false);\r\n  }\r\n\r\n  onClickOutside(event: MouseEvent): void {\r\n    if (!this.persistent && event.target === this.modalRef.nativeElement) {\r\n      this.backdropClick.emit();\r\n      this.close();\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1069,9 +1119,415 @@
             "templateData": "<div\r\n  class=\"jui-modal-overlay\"\r\n  *ngIf=\"modelValue\"\r\n  #modal\r\n  (click)=\"onClickOutside($event)\"\r\n  role=\"dialog\"\r\n  aria-modal=\"true\"\r\n>\r\n  <div class=\"jui-modal-content\" [ngStyle]=\"{ width, height }\">\r\n    <button\r\n      *ngIf=\"closeButton\"\r\n      class=\"jui-modal-close\"\r\n      [attr.aria-label]=\"a11yMessage.closeButtonAriaLabel\"\r\n      (click)=\"close()\"\r\n    >\r\n      &times;\r\n    </button>\r\n    <ng-content></ng-content>\r\n  </div>\r\n</div>\r\n"
         },
         {
+            "name": "JuiSearchInputComponent",
+            "id": "component-JuiSearchInputComponent-81afcd21669dbd6223ea9eaeef5d6890ee5cacc4e03990562740235e93bb9b1e5a2efd1a0c9084f6e3b42e70fca37d1a055f8ea1a5f3c8d16c10253ec015019a",
+            "file": "src/app/lib/components/forms/jui-search-input/jui-search-input.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "jui-search-input",
+            "styleUrls": [
+                "./jui-search-input.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./jui-search-input.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "a11yMessages",
+                    "defaultValue": "{\r\n    searchInputAriaLabel: 'Filter History',\r\n    expandSearchButtonAriaLabel: 'Show Filter History',\r\n    searchButtonAriaLabel: 'Filter History',\r\n    closeButtonAriaLabel: 'Hide Filter History',\r\n    clearButtonAriaLabel: 'Clear',\r\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "{ searchInputAriaLabel: string; expandSearchButtonAriaLabel: string; searchButtonAriaLabel: string; closeButtonAriaLabel: string; clearButtonAriaLabel: string; }",
+                    "decorators": []
+                },
+                {
+                    "name": "ariaHideForFilterSearch",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 43,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "ariaRequired",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 45,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "clearButton",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 38,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "clearValueOnClose",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 39,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "collapsible",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 41,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "debounceInterval",
+                    "defaultValue": "300",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "enableClearButtonAriaLabel",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 44,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "initiallyExpanded",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "messages",
+                    "defaultValue": "{\r\n    searchInputPlaceholder: 'Filter History',\r\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "{ searchInputPlaceholder: string; }",
+                    "decorators": []
+                },
+                {
+                    "name": "searchText",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 42,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "clickSearchEvent",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 53,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "enterEvent",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 50,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "escapeEvent",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 51,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "focusEvent",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 52,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "hideInputEvent",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 49,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "input",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 47,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "modelValueChange",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 48,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "expandSearchButtonRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef<HTMLButtonElement>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 57,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'expandSearchButtonRef'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "searchInputRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef<HTMLInputElement>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 55,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'searchInputRef'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "searchInputText",
+                    "defaultValue": "new FormControl('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 60
+                },
+                {
+                    "name": "shouldShowSearchInput",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 59
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 76,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 65,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClickClearButton",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 124,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClickCloseButton",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 95,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClickExpandSearchButton",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 88,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClickSearchButton",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 120,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onEnterSearchInput",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 106,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onFocusSearchInput",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 129,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onLeaveSearchInput",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 110,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "setInitiallyExpanded",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 82,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ViewChild,\r\n  ElementRef,\r\n  OnInit,\r\n  AfterViewInit,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormControl, ReactiveFormsModule } from '@angular/forms';\r\nimport { debounceTime } from 'rxjs/operators';\r\n\r\n@Component({\r\n  selector: 'jui-search-input',\r\n  standalone: true,\r\n  imports: [CommonModule, ReactiveFormsModule],\r\n  templateUrl: './jui-search-input.component.html',\r\n  styleUrls: ['./jui-search-input.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiSearchInputComponent implements OnInit, AfterViewInit {\r\n  @Input() messages = {\r\n    searchInputPlaceholder: 'Filter History',\r\n  };\r\n\r\n  @Input() a11yMessages = {\r\n    searchInputAriaLabel: 'Filter History',\r\n    expandSearchButtonAriaLabel: 'Show Filter History',\r\n    searchButtonAriaLabel: 'Filter History',\r\n    closeButtonAriaLabel: 'Hide Filter History',\r\n    clearButtonAriaLabel: 'Clear',\r\n  };\r\n\r\n  @Input() debounceInterval = 300;\r\n  @Input() clearButton = false;\r\n  @Input() clearValueOnClose = true;\r\n  @Input() initiallyExpanded = false;\r\n  @Input() collapsible = true;\r\n  @Input() searchText = '';\r\n  @Input() ariaHideForFilterSearch = false;\r\n  @Input() enableClearButtonAriaLabel = true;\r\n  @Input() ariaRequired = false;\r\n\r\n  @Output() input = new EventEmitter<string>();\r\n  @Output() modelValueChange = new EventEmitter<string>();\r\n  @Output() hideInputEvent = new EventEmitter<void>();\r\n  @Output() enterEvent = new EventEmitter<string>();\r\n  @Output() escapeEvent = new EventEmitter<void>();\r\n  @Output() focusEvent = new EventEmitter<void>();\r\n  @Output() clickSearchEvent = new EventEmitter<string>();\r\n\r\n  @ViewChild('searchInputRef') searchInputRef!: ElementRef<HTMLInputElement>;\r\n  @ViewChild('expandSearchButtonRef')\r\n  expandSearchButtonRef!: ElementRef<HTMLButtonElement>;\r\n\r\n  shouldShowSearchInput = false;\r\n  searchInputText = new FormControl('');\r\n  get shouldShowClearButton(): boolean {\r\n    return this.clearButton && (this.searchInputText.value || '')?.length > 0;\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.setInitiallyExpanded();\r\n    this.searchInputText.setValue(this.searchText);\r\n    this.searchInputText.valueChanges\r\n      .pipe(debounceTime(this.debounceInterval))\r\n      .subscribe((text) => {\r\n        this.input.emit(text || '');\r\n        this.modelValueChange.emit(text || '');\r\n      });\r\n  }\r\n\r\n  ngAfterViewInit(): void {\r\n    if (this.initiallyExpanded && this.searchInputRef) {\r\n      this.searchInputRef.nativeElement.focus();\r\n    }\r\n  }\r\n\r\n  setInitiallyExpanded(): void {\r\n    this.shouldShowSearchInput = this.collapsible\r\n      ? this.initiallyExpanded\r\n      : true;\r\n  }\r\n\r\n  onClickExpandSearchButton(): void {\r\n    this.shouldShowSearchInput = true;\r\n    setTimeout(() => {\r\n      this.searchInputRef?.nativeElement.focus();\r\n    });\r\n  }\r\n\r\n  onClickCloseButton(): void {\r\n    if (this.clearValueOnClose) {\r\n      this.searchInputText.setValue('');\r\n    }\r\n    this.shouldShowSearchInput = false;\r\n    this.hideInputEvent.emit();\r\n    setTimeout(() => {\r\n      this.expandSearchButtonRef?.nativeElement.focus();\r\n    });\r\n  }\r\n\r\n  onEnterSearchInput(event: KeyboardEvent): void {\r\n    this.enterEvent.emit((event.target as HTMLInputElement).value);\r\n  }\r\n\r\n  onLeaveSearchInput(): void {\r\n    this.escapeEvent.emit();\r\n    if (!this.collapsible) return;\r\n    this.shouldShowSearchInput = false;\r\n    this.hideInputEvent.emit();\r\n    setTimeout(() => {\r\n      this.expandSearchButtonRef?.nativeElement.focus();\r\n    });\r\n  }\r\n\r\n  onClickSearchButton(): void {\r\n    this.clickSearchEvent.emit(this.searchInputText.value || '');\r\n  }\r\n\r\n  onClickClearButton(): void {\r\n    this.searchInputText.setValue('');\r\n    this.searchInputRef?.nativeElement.focus();\r\n  }\r\n\r\n  onFocusSearchInput(): void {\r\n    this.focusEvent.emit();\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".jui-search-input {\r\n  display: flex;\r\n  align-items: center;\r\n\r\n  .search-button-wrapper,\r\n  .search-input-wrapper {\r\n    display: flex;\r\n    align-items: center;\r\n  }\r\n\r\n  .expand-search-button,\r\n  .search-button,\r\n  .clear-button,\r\n  .close-button {\r\n    background: none;\r\n    border: none;\r\n    cursor: pointer;\r\n    font-size: 16px;\r\n    margin: 0 4px;\r\n  }\r\n\r\n  .search-button-active {\r\n    color: blue;\r\n  }\r\n\r\n  .search-button-inactive {\r\n    color: gray;\r\n  }\r\n\r\n  .text-filter-input {\r\n    padding: 6px 10px;\r\n    font-size: 14px;\r\n    border: 1px solid #ccc;\r\n    border-radius: 4px;\r\n    min-width: 180px;\r\n  }\r\n\r\n  .clear-button.right-position {\r\n    margin-left: auto;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./jui-search-input.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit",
+                "AfterViewInit"
+            ],
+            "accessors": {
+                "shouldShowClearButton": {
+                    "name": "shouldShowClearButton",
+                    "getSignature": {
+                        "name": "shouldShowClearButton",
+                        "type": "boolean",
+                        "returnType": "boolean",
+                        "line": 61
+                    }
+                }
+            },
+            "templateData": "<div class=\"jui-search-input\">\r\n  <div *ngIf=\"!shouldShowSearchInput\" class=\"search-button-wrapper\">\r\n    <button\r\n      #expandSearchButtonRef\r\n      class=\"expand-search-button sf-symbol\"\r\n      [attr.aria-label]=\"a11yMessages.expandSearchButtonAriaLabel\"\r\n      (click)=\"onClickExpandSearchButton()\"\r\n    ></button>\r\n  </div>\r\n\r\n  <div *ngIf=\"shouldShowSearchInput\" class=\"search-input-wrapper\">\r\n    <input\r\n      id=\"search-input\"\r\n      #searchInputRef\r\n      type=\"search\"\r\n      [formControl]=\"searchInputText\"\r\n      [attr.aria-label]=\"a11yMessages.searchInputAriaLabel\"\r\n      [attr.aria-required]=\"ariaRequired\"\r\n      [placeholder]=\"messages.searchInputPlaceholder\"\r\n      class=\"text-filter-input\"\r\n      autocapitalize=\"off\"\r\n      autocomplete=\"off\"\r\n      autocorrect=\"off\"\r\n      spellcheck=\"false\"\r\n      (focus)=\"onFocusSearchInput()\"\r\n      (keydown.enter)=\"onEnterSearchInput($event)\"\r\n      (keyup.esc)=\"onLeaveSearchInput()\"\r\n    />\r\n\r\n    <button\r\n      tabindex=\"-1\"\r\n      class=\"search-button sf-symbol\"\r\n      [class.search-button-active]=\"searchInputText.value?.length\"\r\n      [class.search-button-inactive]=\"!searchInputText.value?.length\"\r\n      [attr.aria-label]=\"a11yMessages.searchButtonAriaLabel\"\r\n      [attr.aria-hidden]=\"ariaHideForFilterSearch\"\r\n      (click)=\"onClickSearchButton()\"\r\n    ></button>\r\n\r\n    <button\r\n      *ngIf=\"shouldShowClearButton\"\r\n      tabindex=\"-1\"\r\n      class=\"clear-button sf-symbol\"\r\n      [class.right-position]=\"!collapsible\"\r\n      [attr.aria-label]=\"a11yMessages.clearButtonAriaLabel\"\r\n      (click)=\"onClickClearButton()\"\r\n    ></button>\r\n\r\n    <button\r\n      *ngIf=\"collapsible\"\r\n      class=\"close-button sf-symbol\"\r\n      type=\"reset\"\r\n      [attr.aria-label]=\"a11yMessages.closeButtonAriaLabel\"\r\n      (click)=\"onClickCloseButton()\"\r\n    ></button>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
             "name": "JuiSwitchComponent",
             "id": "component-JuiSwitchComponent-b0d8e8124ef1de3cc050d089008e052d3ac430366034644a8ed4388c88fef780ddaffff65f7584218a773d8a131ee19ba18a11b58c56f8678653697436f16ea0",
-            "file": "src/app/components/jui-switch/jui-switch.component.ts",
+            "file": "src/app/lib/components/jui-switch/jui-switch.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1188,7 +1644,7 @@
         {
             "name": "JuiTabsComponent",
             "id": "component-JuiTabsComponent-7812d7d7a9d6723fe2e92455fb35c3a68e3072b5ddbc18e8fb118c90f063a4e293b8f5fdedb66b9a91674b4dc415303c691d56607cd9e391e1e9a9a34fe9d389",
-            "file": "src/app/components/jui-tabs/jui-tabs.component.ts",
+            "file": "src/app/lib/components/jui-tabs/jui-tabs.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -1665,7 +2121,7 @@
         {
             "name": "JuiTooltipComponent",
             "id": "component-JuiTooltipComponent-be2d36bf83d4d8e9b86b79e78a38050fd733995d643f993629cd7de6bd15fef52abfcb2368f76f467fa018e95c6fae4854e500b492f0286e1db7b2a232c857e8",
-            "file": "src/app/components/jui-tooltip/jui-tooltip.component.ts",
+            "file": "src/app/lib/components/jui-tooltip/jui-tooltip.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
@@ -1951,7 +2407,16 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/jui-button/jui-button.component.ts",
+                "filePath": "src/app/lib/components/forms/jui-search-input/jui-search-input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "JuiSearchInputComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/33",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/jui-button/jui-button.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "JuiButtonComponent",
@@ -1960,16 +2425,16 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/jui-idle-timer/jui-idle-timer.component.ts",
+                "filePath": "src/app/lib/components/jui-idle-timer/jui-idle-timer.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "JuiIdleTimerComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/35",
+                "coverageCount": "0/37",
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/jui-loading-spinner/jui-loading-spinner.component.ts",
+                "filePath": "src/app/lib/components/jui-loading-spinner/jui-loading-spinner.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "JuiLoadingSpinnerComponent",
@@ -1978,16 +2443,16 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/jui-modal/jui-modal.component.ts",
+                "filePath": "src/app/lib/components/jui-modal/jui-modal.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "JuiModalComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/16",
+                "coverageCount": "0/17",
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/jui-switch/jui-switch.component.ts",
+                "filePath": "src/app/lib/components/jui-switch/jui-switch.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "JuiSwitchComponent",
@@ -1996,7 +2461,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/jui-tabs/jui-tabs.component.ts",
+                "filePath": "src/app/lib/components/jui-tabs/jui-tabs.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "JuiTabsComponent",
@@ -2005,7 +2470,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/jui-tabs/jui-tabs.component.ts",
+                "filePath": "src/app/lib/components/jui-tabs/jui-tabs.component.ts",
                 "type": "interface",
                 "linktype": "interface",
                 "name": "A11yMessages",
@@ -2014,7 +2479,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/jui-tabs/jui-tabs.component.ts",
+                "filePath": "src/app/lib/components/jui-tabs/jui-tabs.component.ts",
                 "type": "interface",
                 "linktype": "interface",
                 "name": "TabItem",
@@ -2023,7 +2488,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/jui-tooltip/jui-tooltip.component.ts",
+                "filePath": "src/app/lib/components/jui-tooltip/jui-tooltip.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "JuiTooltipComponent",

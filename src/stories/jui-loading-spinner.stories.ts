@@ -1,6 +1,6 @@
 // jui-loading-spinner.stories.ts
 import { Meta, StoryObj } from '@storybook/angular';
-import { JuiLoadingSpinnerComponent } from '../app/components/jui-loading-spinner/jui-loading-spinner.component';
+import { JuiLoadingSpinnerComponent } from '../app/lib/components/jui-loading-spinner/jui-loading-spinner.component';
 
 const meta: Meta<JuiLoadingSpinnerComponent> = {
   title: 'JUI/Loading Spinner',

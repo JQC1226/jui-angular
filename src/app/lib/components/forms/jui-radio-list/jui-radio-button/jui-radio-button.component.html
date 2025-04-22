@@ -1,0 +1,15 @@
+<li class="jui-radio-button">
+  <label>
+    <input
+      type="radio"
+      [value]="value"
+      [checked]="checked"
+      [disabled]="disabled"
+      (click)="onClick()"
+      (keyup.enter)="onEnter()"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+    />
+    <ng-content></ng-content>
+  </label>
+</li>

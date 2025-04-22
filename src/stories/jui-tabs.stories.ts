@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { Component } from '@angular/core';
-import { JuiTabsComponent } from '../app/components/jui-tabs/jui-tabs.component';
+import { JuiTabsComponent } from '../app/lib/components/jui-tabs/jui-tabs.component';
 
 @Component({
   standalone: true,

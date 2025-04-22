@@ -1,0 +1,57 @@
+<div class="jui-search-input">
+  <div *ngIf="!shouldShowSearchInput" class="search-button-wrapper">
+    <button
+      #expandSearchButtonRef
+      class="expand-search-button sf-symbol"
+      [attr.aria-label]="a11yMessages.expandSearchButtonAriaLabel"
+      (click)="onClickExpandSearchButton()"
+    ></button>
+  </div>
+
+  <div *ngIf="shouldShowSearchInput" class="search-input-wrapper">
+    <input
+      id="search-input"
+      #searchInputRef
+      type="search"
+      [formControl]="searchInputText"
+      [attr.aria-label]="a11yMessages.searchInputAriaLabel"
+      [attr.aria-required]="ariaRequired"
+      [placeholder]="messages.searchInputPlaceholder"
+      class="text-filter-input"
+      autocapitalize="off"
+      autocomplete="off"
+      autocorrect="off"
+      spellcheck="false"
+      (focus)="onFocusSearchInput()"
+      (keydown.enter)="onEnterSearchInput($event)"
+      (keyup.esc)="onLeaveSearchInput()"
+    />
+
+    <button
+      tabindex="-1"
+      class="search-button sf-symbol"
+      [class.search-button-active]="searchInputText.value?.length"
+      [class.search-button-inactive]="!searchInputText.value?.length"
+      [attr.aria-label]="a11yMessages.searchButtonAriaLabel"
+      [attr.aria-hidden]="ariaHideForFilterSearch"
+      (click)="onClickSearchButton()"
+    ></button>
+
+    <button
+      *ngIf="shouldShowClearButton"
+      tabindex="-1"
+      class="clear-button sf-symbol"
+      [class.right-position]="!collapsible"
+      [attr.aria-label]="a11yMessages.clearButtonAriaLabel"
+      (click)="onClickClearButton()"
+    ></button>
+
+    <button
+      *ngIf="collapsible"
+      class="close-button sf-symbol"
+      type="reset"
+      [attr.aria-label]="a11yMessages.closeButtonAriaLabel"
+      (click)="onClickCloseButton()"
+    ></button>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { JuiTooltipComponent } from '../app/components/jui-tooltip/jui-tooltip.component';
+import { JuiTooltipComponent } from '../app/lib/components/jui-tooltip/jui-tooltip.component';
 
 const meta: Meta<JuiTooltipComponent> = {
   title: 'JUI/Tooltip',

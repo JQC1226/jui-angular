@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { JuiButtonComponent } from '../app/components/jui-button/jui-button.component';
+import { JuiButtonComponent } from '../app/lib/components/jui-button/jui-button.component';
 
 const meta: Meta<JuiButtonComponent> = {
   title: 'JUI/Button',

@@ -1,0 +1,41 @@
+.jui-search-input {
+  display: flex;
+  align-items: center;
+
+  .search-button-wrapper,
+  .search-input-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .expand-search-button,
+  .search-button,
+  .clear-button,
+  .close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 4px;
+  }
+
+  .search-button-active {
+    color: blue;
+  }
+
+  .search-button-inactive {
+    color: gray;
+  }
+
+  .text-filter-input {
+    padding: 6px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 180px;
+  }
+
+  .clear-button.right-position {
+    margin-left: auto;
+  }
+}

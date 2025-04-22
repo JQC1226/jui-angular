@@ -1,9 +1,8 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 
-import { JuiModalComponent } from '../app/components/jui-modal/jui-modal.component';
-import { JuiIdleTimerComponent } from '../app/components/jui-idle-timer/jui-idle-timer.component';
-
+import { JuiModalComponent } from '../app/lib/components/jui-modal/jui-modal.component';
+import { JuiIdleTimerComponent } from '../app/lib/components/jui-idle-timer/jui-idle-timer.component';
 
 const meta: Meta<JuiIdleTimerComponent> = {
   title: 'JUI/Idle Timer',

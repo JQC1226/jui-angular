@@ -1,6 +1,6 @@
 // jui-modal.stories.ts
 import { Meta, StoryObj } from '@storybook/angular';
-import { JuiModalComponent } from '../app/components/jui-modal/jui-modal.component';
+import { JuiModalComponent } from '../app/lib/components/jui-modal/jui-modal.component';
 
 const meta: Meta<JuiModalComponent> = {
   title: 'JUI/Modal',
