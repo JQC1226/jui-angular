@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { JuiSearchInputComponent } from '../../app/lib/components/forms/jui-search-input/jui-search-input.component';
 
-
 const meta: Meta<JuiSearchInputComponent> = {
   title: 'Forms/JuiSearchInput',
   component: JuiSearchInputComponent,
@@ -9,7 +8,7 @@ const meta: Meta<JuiSearchInputComponent> = {
   decorators: [
     (_, context) => ({
       template: `
-        <div class="vn-example">
+        <div class="jui-example">
           <h3 class="first-example-title">Expanded Mode</h3>
           <jui-search-input
             [a11yMessages]="a11yMessages"

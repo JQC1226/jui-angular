@@ -1,0 +1,42 @@
+.jui-comment-input {
+  .form-label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .field-tooltip-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .comment-input-wrapper {
+      position: relative;
+    }
+
+    .comment-textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 0.75rem;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+
+    .chars-remaining {
+      font-size: 12px;
+      color: #666;
+      margin-top: 4px;
+      text-align: right;
+    }
+
+    .error-icon {
+      color: red;
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      font-size: 18px;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<div class="jui-comment-input form">
+  <label
+    *ngIf="label"
+    [attr.for]="id"
+    [ngClass]="labelClassName"
+    class="form-label"
+  >
+    {{ label }}
+  </label>
+
+  <div class="field-tooltip-wrapper flex-column-aligner">
+    <div class="comment-input-wrapper">
+      <textarea
+        #textareaRef
+        [id]="id"
+        [formControl]="commentControl"
+        [placeholder]="placeholder"
+        [readonly]="readonly"
+        [style]="maxHeightStyle"
+        [attr.aria-required]="ariaRequired ?? true"
+        [attr.aria-label]="a11yMessages.ariaLabel || label"
+        [attr.aria-invalid]="commentControl.invalid"
+        (input)="onInput($event)"
+        (blur)="onBlur()"
+        (focus)="onFocus()"
+        (keydown.enter)="onEnter($event)"
+        [ngClass]="
+          inputClassName
+            ? 'comment-textarea ' + inputClassName
+            : 'comment-textarea'
+        "
+      ></textarea>
+
+      <div
+        *ngIf="showRemainingLabel"
+        [id]="charRemainingId"
+        class="chars-remaining pull-right muted"
+      >
+        {{ remainingText }}
+      </div>
+    </div>
+
+    <div
+      *ngIf="commentControl.invalid && commentControl.touched"
+      class="error-icon"
+      aria-hidden="true"
+    >
+      ⚠️
+    </div>
+  </div>
+</div>
