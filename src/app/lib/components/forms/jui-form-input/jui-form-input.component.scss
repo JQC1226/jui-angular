@@ -1,0 +1,117 @@
+.jui-form-input {
+  display: flex;
+  flex-direction: column;
+
+  .form-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .field-tooltip-wrapper {
+    position: relative;
+  }
+
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .form-input {
+      flex: 1;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      transition: border 0.2s;
+
+      &:focus {
+        border-color: #007bff;
+      }
+
+      &:disabled {
+        background-color: #f5f5f5;
+        cursor: not-allowed;
+      }
+    }
+
+    .clear-button {
+      margin-left: -36px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+
+      .clear-button-icon {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .clear-button-icon::before,
+      .clear-button-icon::after {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #000; // black color
+      }
+
+      .clear-button-icon::before {
+        transform: rotate(45deg);
+      }
+
+      .clear-button-icon::after {
+        transform: rotate(-45deg);
+      }
+    }
+
+    .verify-section {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 0.5rem;
+
+      .spinner-20 {
+        font-size: 16px;
+      }
+
+      .valid-icon {
+        color: green;
+        font-size: 18px;
+      }
+
+      .validation-button {
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        .input-icon {
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          border: 1px solid #007bff;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  .error-icon {
+    margin-top: 4px;
+    color: red;
+    font-size: 16px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+}

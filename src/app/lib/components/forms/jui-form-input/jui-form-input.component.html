@@ -1,0 +1,87 @@
+<div class="jui-form-input form input-field-container">
+  <label
+    *ngIf="label"
+    [attr.for]="id"
+    [ngClass]="labelClassName"
+    class="form-label"
+  >
+    {{ label }}
+  </label>
+
+  <div class="field-tooltip-wrapper">
+    <div class="input-wrapper form-input-wrapper">
+      <input
+        #inputRef
+        [id]="id"
+        [attr.name]="name"
+        [attr.type]="type"
+        [attr.aria-required]="ariaRequired ?? true"
+        [attr.aria-label]="a11yMessages.inputTextAriaLabel || label"
+        [attr.placeholder]="placeholder"
+        [disabled]="disabled"
+        [attr.maxlength]="maxlength"
+        [formControl]="inputControl"
+        autocomplete="off"
+        spellcheck="false"
+        class="form-input"
+        [ngClass]="inputClassName"
+        [attr.aria-invalid]="inputControl.invalid"
+        (input)="onInput($event)"
+        (blur)="onBlur()"
+        (focus)="onFocus()"
+        (keydown.enter)="onEnter($event)"
+      />
+
+      <button
+        *ngIf="shouldShowClearButton"
+        class="lg clear-button"
+        type="button"
+        tabindex="-1"
+        [attr.aria-label]="a11yMessages.clearButtonAriaLabel"
+        (click)="onClickClearButton()"
+      >
+        <span class="clear-button-icon"></span>
+      </button>
+
+      <div *ngIf="enableVerifyButton" class="verify-section">
+        <JuiLoadingSpinnerComponent
+          *ngIf="verifyInProgress"
+          class="spinner-20"
+        ></JuiLoadingSpinnerComponent>
+
+        <span
+          *ngIf="!verifyInProgress && verifySuccess"
+          class="valid-icon icon-checkcircle sf-symbol"
+          role="img"
+          [attr.aria-label]="a11yMessages.verifiedIconAriaLabel"
+        >
+          ✔️
+        </span>
+
+        <button
+          *ngIf="!verifyInProgress && !verifySuccess"
+          class="system-body validation-button"
+          [attr.aria-label]="a11yMessages.verifyButtonAriaLabel"
+          tabindex="-1"
+          type="button"
+          (click)="onClickVerifyButton()"
+        >
+          <span class="input-icon emphasized rotate-right sf-symbol">❌</span>
+        </button>
+
+        <span
+          class="visually-hidden"
+          aria-live="polite"
+          [attr.aria-label]="liveMessage"
+        ></span>
+      </div>
+    </div>
+
+    <div
+      *ngIf="validate && inputControl.invalid && inputControl.touched"
+      class="error-icon"
+    >
+      ⚠️
+    </div>
+  </div>
+</div>
