@@ -69,10 +69,6 @@ export class JuiTabsComponent implements AfterViewInit {
   focusTab(index: number): void {
     const el = this.tabItems.get(index);
     el?.nativeElement?.focus();
-    console.log(
-      'Focus target:',
-      this.tabItems.map((t) => t.nativeElement)
-    );
   }
 
   onClickTabItem(tabId: string, index: number): void {

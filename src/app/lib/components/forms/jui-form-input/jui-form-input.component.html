@@ -44,10 +44,10 @@
       </button>
 
       <div *ngIf="enableVerifyButton" class="verify-section">
-        <JuiLoadingSpinnerComponent
+        <jui-loading-spinner
           *ngIf="verifyInProgress"
-          class="spinner-20"
-        ></JuiLoadingSpinnerComponent>
+          [isLoading]="verifyInProgress"
+        ></jui-loading-spinner>
 
         <span
           *ngIf="!verifyInProgress && verifySuccess"

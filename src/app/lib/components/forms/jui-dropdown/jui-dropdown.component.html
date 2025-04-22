@@ -1,0 +1,46 @@
+<div class="jui-dropdown form input-field-container">
+  <label *ngIf="label" [for]="id" class="form-label" [ngClass]="labelClassName">
+    {{ label }}
+  </label>
+
+  <div [ngClass]="inputClassName" class="field-tooltip-wrapper">
+    <div class="form-input-wrapper" [class.disabled-all]="disabled">
+      <span *ngIf="title" class="dropdown-title">
+        <span class="title" aria-hidden="true">{{ title }}</span>
+      </span>
+
+      <select
+        #selectRef
+        [id]="id"
+        class="dropdown form-input"
+        [class.hide-select]="title"
+        [formControl]="control"
+        [attr.aria-required]="ariaRequired ?? true"
+        [attr.aria-label]="a11yMessages.ariaLabel || label"
+        [attr.aria-invalid]="invalid"
+        [disabled]="disabled"
+        (change)="onSelect($event)"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+        (click)="onClick()"
+        (keydown.enter)="onEnter($event)"
+      >
+        <option
+          *ngFor="let opt of options; let i = index"
+          [value]="opt[kvpType.key]"
+          [disabled]="opt.disabled"
+          [attr.lang]="opt.lang"
+          
+        >
+          {{ opt[kvpType.value] }}
+        </option>
+      </select>
+
+      <span class="dropdown-arrow-icon" aria-hidden="true">▼</span>
+    </div>
+
+    <div *ngIf="validate && invalid" class="error-icon" aria-hidden="true">
+      ⚠️
+    </div>
+  </div>
+</div>

@@ -1,11 +1,9 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { action } from '@storybook/addon-actions';
 import { JuiFormInputComponent } from '../../app/lib/components/forms/jui-form-input/jui-form-input.component';
 
 export default {
-  title: 'JUI/FormInput',
+  title: 'FORMS/FormInput',
   component: JuiFormInputComponent,
   decorators: [
     moduleMetadata({
@@ -30,8 +28,8 @@ export const Default: StoryObj<JuiFormInputComponent> = {
     clearButton: true,
     maxlength: 32,
     enableVerifyButton: true,
-    verifyInProgress: false,
-    verifySuccess: false,
+    verifyInProgress: true,
+    verifySuccess: true,
     a11yMessages: {
       inputTextAriaLabel: 'Username input',
       clearButtonAriaLabel: 'Clear username',

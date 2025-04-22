@@ -1,0 +1,49 @@
+<div class="jui-input-dropdown">
+  <div *ngIf="isEditMode" class="input-field-wrapper" #inputField>
+    <jui-form-input
+      [id]="id"
+      [modelValue]="modelValue"
+      [ariaRequired]="ariaRequired.inputText"
+      [a11yMessages]="{ inputTextAriaLabel: a11yMessages.inputTextAriaLabel }"
+      [disabled]="disabled"
+      [label]="label"
+      [labelClassName]="labelClassName"
+      [inputClassName]="inputClassName"
+      [type]="inputType"
+      [placeholder]="placeholder"
+      [validate]="validate"
+      [maxlength]="maxlength"
+      (modelValueChange)="onFieldInput($event)"
+      (enter)="onFormInputFieldSubmit()"
+    ></jui-form-input>
+    <div class="submit-button">
+      <button
+        class="submit-button"
+        [attr.aria-label]="a11yMessages.submitButtonAriaLabel"
+        tabindex="-1"
+        (click)="onFormInputFieldSubmit()"
+      >
+        <span class="sf-symbol md" aria-hidden="true">→</span>
+      </button>
+    </div>
+  </div>
+
+  <jui-dropdown
+    *ngIf="!isEditMode"
+    #dropdown
+    [id]="id"
+    [modelValue]="modelValue"
+    [ariaRequired]="ariaRequired.dropdown"
+    [a11yMessages]="{ ariaLabel: a11yMessages.dropdownAriaLabel }"
+    [disabled]="disabled"
+    [label]="label"
+    [labelClassName]="labelClassName"
+    [inputClassName]="inputClassName"
+    [options]="optionsList"
+    [kvpType]="kvpType"
+    [validate]="validate"
+    (modelValueChange)="onFieldInput($event)"
+    (selectedOption)="onDropdownOptionSelection($event)"
+    (clickEvent)="onDropdownEnter()"
+  ></jui-dropdown>
+</div>

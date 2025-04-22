@@ -79,7 +79,6 @@ export class JuiIdleTimerComponent implements OnInit, OnDestroy {
     this.intervalId = setInterval(() => {
       const passed = Math.floor((Date.now() - start) / 1000);
       this.timeLeft = this.inactivityDurationInMinutes * 60 - passed;
-      console.log('[IdleTimer] Time left:', this.timeLeft);
       this.onChangeTimeLeft(this.timeLeft);
       this.cdr.markForCheck();
     }, 1000);
@@ -116,7 +115,6 @@ export class JuiIdleTimerComponent implements OnInit, OnDestroy {
   }
 
   onBackdropClick(): void {
-    console.log('[IdleTimer] Backdrop clicked');
     this.onResetTimer();
     this.shouldShowWarningMessage = false;
     this.cdr.markForCheck();
@@ -127,12 +125,10 @@ export class JuiIdleTimerComponent implements OnInit, OnDestroy {
       time <= this.countDownTimerInMinutes * 60 &&
       !this.shouldShowWarningMessage
     ) {
-      console.log('[IdleTimer] Showing modal...');
       this.shouldShowWarningMessage = true;
       this.cdr.markForCheck();
     }
     if (time <= 0) {
-      console.log('[IdleTimer] Timeout triggered.');
       localStorage.setItem(this.LOCAL_STORAGE_KEYS.TIMEOUT, `${Date.now()}`);
       this.timedOut.emit();
       this.clearAll();

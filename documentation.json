@@ -3,12 +3,12 @@
     "interfaces": [
         {
             "name": "A11yMessages",
-            "id": "interface-A11yMessages-7812d7d7a9d6723fe2e92455fb35c3a68e3072b5ddbc18e8fb118c90f063a4e293b8f5fdedb66b9a91674b4dc415303c691d56607cd9e391e1e9a9a34fe9d389",
+            "id": "interface-A11yMessages-8677a28f77c80ca45306cbf60cb4ae2b93277e454bc70744529fe14cdbff25aa5f4b3b02361dd3ca6e86712e132c78b83fe6bfdf6d8b0623b90ecea63b276710",
             "file": "src/app/lib/components/jui-tabs/jui-tabs.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  ViewChildren,\r\n  ElementRef,\r\n  QueryList,\r\n  AfterViewInit,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\ninterface A11yMessages {\r\n  tabsLabelledby?: string;\r\n}\r\n\r\ninterface TabItem {\r\n  tabId: string;\r\n  tabLabel: string;\r\n  a11yMessages?: { tabLabel?: string };\r\n}\r\n\r\n@Component({\r\n  selector: 'jui-tabs',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './jui-tabs.component.html',\r\n  styleUrls: ['./jui-tabs.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiTabsComponent implements AfterViewInit {\r\n  @Input() modelValue = '';\r\n  @Input() a11yMessages?: A11yMessages;\r\n  @Input() tabListData: TabItem[] = [];\r\n\r\n  @Output() modelValueChange = new EventEmitter<string>();\r\n\r\n  @ViewChildren('tabItem', { read: ElementRef })\r\n  tabItems!: QueryList<ElementRef>;\r\n\r\n  isMouseClicked = false;\r\n  currentFocusIndex = -1;\r\n\r\n  ngAfterViewInit() {\r\n    // Optional: Focus first selected tab if needed\r\n  }\r\n\r\n  isSelected(tabId: string): boolean {\r\n    return this.modelValue === tabId;\r\n  }\r\n\r\n  getTabIndex(tabId: string): number {\r\n    return this.modelValue === tabId ? 0 : -1;\r\n  }\r\n\r\n  onFocus(index: number): void {\r\n    this.currentFocusIndex = index;\r\n  }\r\n\r\n  onBlur(): void {\r\n    this.isMouseClicked = false;\r\n  }\r\n\r\n  onSelectTab(tabId: string): void {\r\n    this.modelValueChange.emit(tabId);\r\n  }\r\n\r\n  focusTab(index: number): void {\r\n    const el = this.tabItems.get(index);\r\n    el?.nativeElement?.focus();\r\n    console.log(\r\n      'Focus target:',\r\n      this.tabItems.map((t) => t.nativeElement)\r\n    );\r\n  }\r\n\r\n  onClickTabItem(tabId: string, index: number): void {\r\n    if (this.currentFocusIndex !== -1) {\r\n      this.tabItems.get(this.currentFocusIndex)?.nativeElement.blur();\r\n    }\r\n    this.isMouseClicked = true;\r\n    this.tabItems.get(index)?.nativeElement.focus();\r\n    this.onSelectTab(tabId);\r\n  }\r\n\r\n  onKeydown(event: KeyboardEvent, index: number, tabId: string): void {\r\n    switch (event.key) {\r\n      case 'ArrowRight':\r\n      case 'ArrowDown':\r\n        event.preventDefault();\r\n        this.focusTab((index + 1) % this.tabItems.length);\r\n        break;\r\n      case 'ArrowLeft':\r\n      case 'ArrowUp':\r\n        event.preventDefault();\r\n        this.focusTab(\r\n          (index - 1 + this.tabItems.length) % this.tabItems.length\r\n        );\r\n        break;\r\n      case 'Enter':\r\n      case ' ':\r\n        event.preventDefault();\r\n        this.onSelectTab(tabId);\r\n        break;\r\n    }\r\n  }\r\n\r\n  moveDown(index: number): void {\r\n    const next = (index + 1) % this.tabItems.length;\r\n    this.tabItems.get(next)?.nativeElement.focus();\r\n  }\r\n\r\n  moveUp(index: number): void {\r\n    const prev = (index - 1 + this.tabItems.length) % this.tabItems.length;\r\n    this.tabItems.get(prev)?.nativeElement.focus();\r\n  }\r\n\r\n  getAriaLabel(tab: TabItem): string {\r\n    return tab.a11yMessages?.tabLabel || tab.tabLabel;\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  ViewChildren,\r\n  ElementRef,\r\n  QueryList,\r\n  AfterViewInit,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\ninterface A11yMessages {\r\n  tabsLabelledby?: string;\r\n}\r\n\r\ninterface TabItem {\r\n  tabId: string;\r\n  tabLabel: string;\r\n  a11yMessages?: { tabLabel?: string };\r\n}\r\n\r\n@Component({\r\n  selector: 'jui-tabs',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './jui-tabs.component.html',\r\n  styleUrls: ['./jui-tabs.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiTabsComponent implements AfterViewInit {\r\n  @Input() modelValue = '';\r\n  @Input() a11yMessages?: A11yMessages;\r\n  @Input() tabListData: TabItem[] = [];\r\n\r\n  @Output() modelValueChange = new EventEmitter<string>();\r\n\r\n  @ViewChildren('tabItem', { read: ElementRef })\r\n  tabItems!: QueryList<ElementRef>;\r\n\r\n  isMouseClicked = false;\r\n  currentFocusIndex = -1;\r\n\r\n  ngAfterViewInit() {\r\n    // Optional: Focus first selected tab if needed\r\n  }\r\n\r\n  isSelected(tabId: string): boolean {\r\n    return this.modelValue === tabId;\r\n  }\r\n\r\n  getTabIndex(tabId: string): number {\r\n    return this.modelValue === tabId ? 0 : -1;\r\n  }\r\n\r\n  onFocus(index: number): void {\r\n    this.currentFocusIndex = index;\r\n  }\r\n\r\n  onBlur(): void {\r\n    this.isMouseClicked = false;\r\n  }\r\n\r\n  onSelectTab(tabId: string): void {\r\n    this.modelValueChange.emit(tabId);\r\n  }\r\n\r\n  focusTab(index: number): void {\r\n    const el = this.tabItems.get(index);\r\n    el?.nativeElement?.focus();\r\n  }\r\n\r\n  onClickTabItem(tabId: string, index: number): void {\r\n    if (this.currentFocusIndex !== -1) {\r\n      this.tabItems.get(this.currentFocusIndex)?.nativeElement.blur();\r\n    }\r\n    this.isMouseClicked = true;\r\n    this.tabItems.get(index)?.nativeElement.focus();\r\n    this.onSelectTab(tabId);\r\n  }\r\n\r\n  onKeydown(event: KeyboardEvent, index: number, tabId: string): void {\r\n    switch (event.key) {\r\n      case 'ArrowRight':\r\n      case 'ArrowDown':\r\n        event.preventDefault();\r\n        this.focusTab((index + 1) % this.tabItems.length);\r\n        break;\r\n      case 'ArrowLeft':\r\n      case 'ArrowUp':\r\n        event.preventDefault();\r\n        this.focusTab(\r\n          (index - 1 + this.tabItems.length) % this.tabItems.length\r\n        );\r\n        break;\r\n      case 'Enter':\r\n      case ' ':\r\n        event.preventDefault();\r\n        this.onSelectTab(tabId);\r\n        break;\r\n    }\r\n  }\r\n\r\n  moveDown(index: number): void {\r\n    const next = (index + 1) % this.tabItems.length;\r\n    this.tabItems.get(next)?.nativeElement.focus();\r\n  }\r\n\r\n  moveUp(index: number): void {\r\n    const prev = (index - 1 + this.tabItems.length) % this.tabItems.length;\r\n    this.tabItems.get(prev)?.nativeElement.focus();\r\n  }\r\n\r\n  getAriaLabel(tab: TabItem): string {\r\n    return tab.a11yMessages?.tabLabel || tab.tabLabel;\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "tabsLabelledby",
@@ -28,12 +28,12 @@
         },
         {
             "name": "TabItem",
-            "id": "interface-TabItem-7812d7d7a9d6723fe2e92455fb35c3a68e3072b5ddbc18e8fb118c90f063a4e293b8f5fdedb66b9a91674b4dc415303c691d56607cd9e391e1e9a9a34fe9d389",
+            "id": "interface-TabItem-8677a28f77c80ca45306cbf60cb4ae2b93277e454bc70744529fe14cdbff25aa5f4b3b02361dd3ca6e86712e132c78b83fe6bfdf6d8b0623b90ecea63b276710",
             "file": "src/app/lib/components/jui-tabs/jui-tabs.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  ViewChildren,\r\n  ElementRef,\r\n  QueryList,\r\n  AfterViewInit,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\ninterface A11yMessages {\r\n  tabsLabelledby?: string;\r\n}\r\n\r\ninterface TabItem {\r\n  tabId: string;\r\n  tabLabel: string;\r\n  a11yMessages?: { tabLabel?: string };\r\n}\r\n\r\n@Component({\r\n  selector: 'jui-tabs',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './jui-tabs.component.html',\r\n  styleUrls: ['./jui-tabs.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiTabsComponent implements AfterViewInit {\r\n  @Input() modelValue = '';\r\n  @Input() a11yMessages?: A11yMessages;\r\n  @Input() tabListData: TabItem[] = [];\r\n\r\n  @Output() modelValueChange = new EventEmitter<string>();\r\n\r\n  @ViewChildren('tabItem', { read: ElementRef })\r\n  tabItems!: QueryList<ElementRef>;\r\n\r\n  isMouseClicked = false;\r\n  currentFocusIndex = -1;\r\n\r\n  ngAfterViewInit() {\r\n    // Optional: Focus first selected tab if needed\r\n  }\r\n\r\n  isSelected(tabId: string): boolean {\r\n    return this.modelValue === tabId;\r\n  }\r\n\r\n  getTabIndex(tabId: string): number {\r\n    return this.modelValue === tabId ? 0 : -1;\r\n  }\r\n\r\n  onFocus(index: number): void {\r\n    this.currentFocusIndex = index;\r\n  }\r\n\r\n  onBlur(): void {\r\n    this.isMouseClicked = false;\r\n  }\r\n\r\n  onSelectTab(tabId: string): void {\r\n    this.modelValueChange.emit(tabId);\r\n  }\r\n\r\n  focusTab(index: number): void {\r\n    const el = this.tabItems.get(index);\r\n    el?.nativeElement?.focus();\r\n    console.log(\r\n      'Focus target:',\r\n      this.tabItems.map((t) => t.nativeElement)\r\n    );\r\n  }\r\n\r\n  onClickTabItem(tabId: string, index: number): void {\r\n    if (this.currentFocusIndex !== -1) {\r\n      this.tabItems.get(this.currentFocusIndex)?.nativeElement.blur();\r\n    }\r\n    this.isMouseClicked = true;\r\n    this.tabItems.get(index)?.nativeElement.focus();\r\n    this.onSelectTab(tabId);\r\n  }\r\n\r\n  onKeydown(event: KeyboardEvent, index: number, tabId: string): void {\r\n    switch (event.key) {\r\n      case 'ArrowRight':\r\n      case 'ArrowDown':\r\n        event.preventDefault();\r\n        this.focusTab((index + 1) % this.tabItems.length);\r\n        break;\r\n      case 'ArrowLeft':\r\n      case 'ArrowUp':\r\n        event.preventDefault();\r\n        this.focusTab(\r\n          (index - 1 + this.tabItems.length) % this.tabItems.length\r\n        );\r\n        break;\r\n      case 'Enter':\r\n      case ' ':\r\n        event.preventDefault();\r\n        this.onSelectTab(tabId);\r\n        break;\r\n    }\r\n  }\r\n\r\n  moveDown(index: number): void {\r\n    const next = (index + 1) % this.tabItems.length;\r\n    this.tabItems.get(next)?.nativeElement.focus();\r\n  }\r\n\r\n  moveUp(index: number): void {\r\n    const prev = (index - 1 + this.tabItems.length) % this.tabItems.length;\r\n    this.tabItems.get(prev)?.nativeElement.focus();\r\n  }\r\n\r\n  getAriaLabel(tab: TabItem): string {\r\n    return tab.a11yMessages?.tabLabel || tab.tabLabel;\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  ViewChildren,\r\n  ElementRef,\r\n  QueryList,\r\n  AfterViewInit,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\ninterface A11yMessages {\r\n  tabsLabelledby?: string;\r\n}\r\n\r\ninterface TabItem {\r\n  tabId: string;\r\n  tabLabel: string;\r\n  a11yMessages?: { tabLabel?: string };\r\n}\r\n\r\n@Component({\r\n  selector: 'jui-tabs',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './jui-tabs.component.html',\r\n  styleUrls: ['./jui-tabs.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiTabsComponent implements AfterViewInit {\r\n  @Input() modelValue = '';\r\n  @Input() a11yMessages?: A11yMessages;\r\n  @Input() tabListData: TabItem[] = [];\r\n\r\n  @Output() modelValueChange = new EventEmitter<string>();\r\n\r\n  @ViewChildren('tabItem', { read: ElementRef })\r\n  tabItems!: QueryList<ElementRef>;\r\n\r\n  isMouseClicked = false;\r\n  currentFocusIndex = -1;\r\n\r\n  ngAfterViewInit() {\r\n    // Optional: Focus first selected tab if needed\r\n  }\r\n\r\n  isSelected(tabId: string): boolean {\r\n    return this.modelValue === tabId;\r\n  }\r\n\r\n  getTabIndex(tabId: string): number {\r\n    return this.modelValue === tabId ? 0 : -1;\r\n  }\r\n\r\n  onFocus(index: number): void {\r\n    this.currentFocusIndex = index;\r\n  }\r\n\r\n  onBlur(): void {\r\n    this.isMouseClicked = false;\r\n  }\r\n\r\n  onSelectTab(tabId: string): void {\r\n    this.modelValueChange.emit(tabId);\r\n  }\r\n\r\n  focusTab(index: number): void {\r\n    const el = this.tabItems.get(index);\r\n    el?.nativeElement?.focus();\r\n  }\r\n\r\n  onClickTabItem(tabId: string, index: number): void {\r\n    if (this.currentFocusIndex !== -1) {\r\n      this.tabItems.get(this.currentFocusIndex)?.nativeElement.blur();\r\n    }\r\n    this.isMouseClicked = true;\r\n    this.tabItems.get(index)?.nativeElement.focus();\r\n    this.onSelectTab(tabId);\r\n  }\r\n\r\n  onKeydown(event: KeyboardEvent, index: number, tabId: string): void {\r\n    switch (event.key) {\r\n      case 'ArrowRight':\r\n      case 'ArrowDown':\r\n        event.preventDefault();\r\n        this.focusTab((index + 1) % this.tabItems.length);\r\n        break;\r\n      case 'ArrowLeft':\r\n      case 'ArrowUp':\r\n        event.preventDefault();\r\n        this.focusTab(\r\n          (index - 1 + this.tabItems.length) % this.tabItems.length\r\n        );\r\n        break;\r\n      case 'Enter':\r\n      case ' ':\r\n        event.preventDefault();\r\n        this.onSelectTab(tabId);\r\n        break;\r\n    }\r\n  }\r\n\r\n  moveDown(index: number): void {\r\n    const next = (index + 1) % this.tabItems.length;\r\n    this.tabItems.get(next)?.nativeElement.focus();\r\n  }\r\n\r\n  moveUp(index: number): void {\r\n    const prev = (index - 1 + this.tabItems.length) % this.tabItems.length;\r\n    this.tabItems.get(prev)?.nativeElement.focus();\r\n  }\r\n\r\n  getAriaLabel(tab: TabItem): string {\r\n    return tab.a11yMessages?.tabLabel || tab.tabLabel;\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "a11yMessages",
@@ -131,6 +131,368 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->\r\n<!-- * * * * * * * to get started with your project! * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n\r\n<style>\r\n  :host {\r\n    --bright-blue: oklch(51.01% 0.274 263.83);\r\n    --electric-violet: oklch(53.18% 0.28 296.97);\r\n    --french-violet: oklch(47.66% 0.246 305.88);\r\n    --vivid-pink: oklch(69.02% 0.277 332.77);\r\n    --hot-red: oklch(61.42% 0.238 15.34);\r\n    --orange-red: oklch(63.32% 0.24 31.68);\r\n\r\n    --gray-900: oklch(19.37% 0.006 300.98);\r\n    --gray-700: oklch(36.98% 0.014 302.71);\r\n    --gray-400: oklch(70.9% 0.015 304.04);\r\n\r\n    --red-to-pink-to-purple-vertical-gradient: linear-gradient(\r\n      180deg,\r\n      var(--orange-red) 0%,\r\n      var(--vivid-pink) 50%,\r\n      var(--electric-violet) 100%\r\n    );\r\n\r\n    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(\r\n      90deg,\r\n      var(--orange-red) 0%,\r\n      var(--vivid-pink) 50%,\r\n      var(--electric-violet) 100%\r\n    );\r\n\r\n    --pill-accent: var(--bright-blue);\r\n\r\n    font-family: \"Inter\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto,\r\n      Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\",\r\n      \"Segoe UI Symbol\";\r\n    box-sizing: border-box;\r\n    -webkit-font-smoothing: antialiased;\r\n    -moz-osx-font-smoothing: grayscale;\r\n  }\r\n\r\n  h1 {\r\n    font-size: 3.125rem;\r\n    color: var(--gray-900);\r\n    font-weight: 500;\r\n    line-height: 100%;\r\n    letter-spacing: -0.125rem;\r\n    margin: 0;\r\n    font-family: \"Inter Tight\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto,\r\n      Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\",\r\n      \"Segoe UI Symbol\";\r\n  }\r\n\r\n  p {\r\n    margin: 0;\r\n    color: var(--gray-700);\r\n  }\r\n\r\n  main {\r\n    width: 100%;\r\n    min-height: 100%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    padding: 1rem;\r\n    box-sizing: inherit;\r\n    position: relative;\r\n  }\r\n\r\n  .angular-logo {\r\n    max-width: 9.2rem;\r\n  }\r\n\r\n  .content {\r\n    display: flex;\r\n    justify-content: space-around;\r\n    width: 100%;\r\n    max-width: 700px;\r\n    margin-bottom: 3rem;\r\n  }\r\n\r\n  .content h1 {\r\n    margin-top: 1.75rem;\r\n  }\r\n\r\n  .content p {\r\n    margin-top: 1.5rem;\r\n  }\r\n\r\n  .divider {\r\n    width: 1px;\r\n    background: var(--red-to-pink-to-purple-vertical-gradient);\r\n    margin-inline: 0.5rem;\r\n  }\r\n\r\n  .pill-group {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: start;\r\n    flex-wrap: wrap;\r\n    gap: 1.25rem;\r\n  }\r\n\r\n  .pill {\r\n    display: flex;\r\n    align-items: center;\r\n    --pill-accent: var(--bright-blue);\r\n    background: color-mix(in srgb, var(--pill-accent) 5%, transparent);\r\n    color: var(--pill-accent);\r\n    padding-inline: 0.75rem;\r\n    padding-block: 0.375rem;\r\n    border-radius: 2.75rem;\r\n    border: 0;\r\n    transition: background 0.3s ease;\r\n    font-family: var(--inter-font);\r\n    font-size: 0.875rem;\r\n    font-style: normal;\r\n    font-weight: 500;\r\n    line-height: 1.4rem;\r\n    letter-spacing: -0.00875rem;\r\n    text-decoration: none;\r\n  }\r\n\r\n  .pill:hover {\r\n    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);\r\n  }\r\n\r\n  .pill-group .pill:nth-child(6n + 1) {\r\n    --pill-accent: var(--bright-blue);\r\n  }\r\n  .pill-group .pill:nth-child(6n + 2) {\r\n    --pill-accent: var(--french-violet);\r\n  }\r\n  .pill-group .pill:nth-child(6n + 3),\r\n  .pill-group .pill:nth-child(6n + 4),\r\n  .pill-group .pill:nth-child(6n + 5) {\r\n    --pill-accent: var(--hot-red);\r\n  }\r\n\r\n  .pill-group svg {\r\n    margin-inline-start: 0.25rem;\r\n  }\r\n\r\n  .social-links {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 0.73rem;\r\n    margin-top: 1.5rem;\r\n  }\r\n\r\n  .social-links path {\r\n    transition: fill 0.3s ease;\r\n    fill: var(--gray-400);\r\n  }\r\n\r\n  .social-links a:hover svg path {\r\n    fill: var(--gray-900);\r\n  }\r\n\r\n  @media screen and (max-width: 650px) {\r\n    .content {\r\n      flex-direction: column;\r\n      width: max-content;\r\n    }\r\n\r\n    .divider {\r\n      height: 1px;\r\n      width: 100%;\r\n      background: var(--red-to-pink-to-purple-horizontal-gradient);\r\n      margin-block: 1.5rem;\r\n    }\r\n  }\r\n</style>\r\n\r\n<main class=\"main\">\r\n  <div class=\"content\">\r\n    <div class=\"left-side\">\r\n      <svg\r\n        xmlns=\"http://www.w3.org/2000/svg\"\r\n        viewBox=\"0 0 982 239\"\r\n        fill=\"none\"\r\n        class=\"angular-logo\"\r\n      >\r\n        <g clip-path=\"url(#a)\">\r\n          <path\r\n            fill=\"url(#b)\"\r\n            d=\"M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z\"\r\n          />\r\n          <path\r\n            fill=\"url(#c)\"\r\n            d=\"M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z\"\r\n          />\r\n        </g>\r\n        <defs>\r\n          <radialGradient\r\n            id=\"c\"\r\n            cx=\"0\"\r\n            cy=\"0\"\r\n            r=\"1\"\r\n            gradientTransform=\"rotate(118.122 171.182 60.81) scale(205.794)\"\r\n            gradientUnits=\"userSpaceOnUse\"\r\n          >\r\n            <stop stop-color=\"#FF41F8\" />\r\n            <stop offset=\".707\" stop-color=\"#FF41F8\" stop-opacity=\".5\" />\r\n            <stop offset=\"1\" stop-color=\"#FF41F8\" stop-opacity=\"0\" />\r\n          </radialGradient>\r\n          <linearGradient\r\n            id=\"b\"\r\n            x1=\"0\"\r\n            x2=\"982\"\r\n            y1=\"192\"\r\n            y2=\"192\"\r\n            gradientUnits=\"userSpaceOnUse\"\r\n          >\r\n            <stop stop-color=\"#F0060B\" />\r\n            <stop offset=\"0\" stop-color=\"#F0070C\" />\r\n            <stop offset=\".526\" stop-color=\"#CC26D5\" />\r\n            <stop offset=\"1\" stop-color=\"#7702FF\" />\r\n          </linearGradient>\r\n          <clipPath id=\"a\"><path fill=\"#fff\" d=\"M0 0h982v239H0z\" /></clipPath>\r\n        </defs>\r\n      </svg>\r\n      <h1>Hello, {{ title }}</h1>\r\n      <p>Congratulations! Your app is running. 🎉</p>\r\n    </div>\r\n    <div class=\"divider\" role=\"separator\" aria-label=\"Divider\"></div>\r\n    <div class=\"right-side\">\r\n      <div class=\"pill-group\">\r\n        @for (item of [\r\n          { title: 'Explore the Docs', link: 'https://angular.dev' },\r\n          { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials' },\r\n          { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },\r\n          { title: 'Angular Language Service', link: 'https://angular.dev/tools/language-service' },\r\n          { title: 'Angular DevTools', link: 'https://angular.dev/tools/devtools' },\r\n        ]; track item.title) {\r\n          <a\r\n            class=\"pill\"\r\n            [href]=\"item.link\"\r\n            target=\"_blank\"\r\n            rel=\"noopener\"\r\n          >\r\n            <span>{{ item.title }}</span>\r\n            <svg\r\n              xmlns=\"http://www.w3.org/2000/svg\"\r\n              height=\"14\"\r\n              viewBox=\"0 -960 960 960\"\r\n              width=\"14\"\r\n              fill=\"currentColor\"\r\n            >\r\n              <path\r\n                d=\"M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z\"\r\n              />\r\n            </svg>\r\n          </a>\r\n        }\r\n      </div>\r\n      <div class=\"social-links\">\r\n        <a\r\n          href=\"https://github.com/angular/angular\"\r\n          aria-label=\"Github\"\r\n          target=\"_blank\"\r\n          rel=\"noopener\"\r\n        >\r\n          <svg\r\n            width=\"25\"\r\n            height=\"24\"\r\n            viewBox=\"0 0 25 24\"\r\n            fill=\"none\"\r\n            xmlns=\"http://www.w3.org/2000/svg\"\r\n            alt=\"Github\"\r\n          >\r\n            <path\r\n              d=\"M12.3047 0C5.50634 0 0 5.50942 0 12.3047C0 17.7423 3.52529 22.3535 8.41332 23.9787C9.02856 24.0946 9.25414 23.7142 9.25414 23.3871C9.25414 23.0949 9.24389 22.3207 9.23876 21.2953C5.81601 22.0377 5.09414 19.6444 5.09414 19.6444C4.53427 18.2243 3.72524 17.8449 3.72524 17.8449C2.61064 17.082 3.81137 17.0973 3.81137 17.0973C5.04697 17.1835 5.69604 18.3647 5.69604 18.3647C6.79321 20.2463 8.57636 19.7029 9.27978 19.3881C9.39052 18.5924 9.70736 18.0499 10.0591 17.7423C7.32641 17.4347 4.45429 16.3765 4.45429 11.6618C4.45429 10.3185 4.9311 9.22133 5.72065 8.36C5.58222 8.04931 5.16694 6.79833 5.82831 5.10337C5.82831 5.10337 6.85883 4.77319 9.2121 6.36459C10.1965 6.09082 11.2424 5.95546 12.2883 5.94931C13.3342 5.95546 14.3801 6.09082 15.3644 6.36459C17.7023 4.77319 18.7328 5.10337 18.7328 5.10337C19.3942 6.79833 18.9789 8.04931 18.8559 8.36C19.6403 9.22133 20.1171 10.3185 20.1171 11.6618C20.1171 16.3888 17.2409 17.4296 14.5031 17.7321C14.9338 18.1012 15.3337 18.8559 15.3337 20.0084C15.3337 21.6552 15.3183 22.978 15.3183 23.3779C15.3183 23.7009 15.5336 24.0854 16.1642 23.9623C21.0871 22.3484 24.6094 17.7341 24.6094 12.3047C24.6094 5.50942 19.0999 0 12.3047 0Z\"\r\n            />\r\n          </svg>\r\n        </a>\r\n        <a\r\n          href=\"https://twitter.com/angular\"\r\n          aria-label=\"Twitter\"\r\n          target=\"_blank\"\r\n          rel=\"noopener\"\r\n        >\r\n          <svg\r\n            width=\"24\"\r\n            height=\"24\"\r\n            viewBox=\"0 0 24 24\"\r\n            fill=\"none\"\r\n            xmlns=\"http://www.w3.org/2000/svg\"\r\n            alt=\"Twitter\"\r\n          >\r\n            <path\r\n              d=\"M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z\"\r\n            />\r\n          </svg>\r\n        </a>\r\n        <a\r\n          href=\"https://www.youtube.com/channel/UCbn1OgGei-DV7aSRo_HaAiw\"\r\n          aria-label=\"Youtube\"\r\n          target=\"_blank\"\r\n          rel=\"noopener\"\r\n        >\r\n          <svg\r\n            width=\"29\"\r\n            height=\"20\"\r\n            viewBox=\"0 0 29 20\"\r\n            fill=\"none\"\r\n            xmlns=\"http://www.w3.org/2000/svg\"\r\n            alt=\"Youtube\"\r\n          >\r\n            <path\r\n              fill-rule=\"evenodd\"\r\n              clip-rule=\"evenodd\"\r\n              d=\"M27.4896 1.52422C27.9301 1.96749 28.2463 2.51866 28.4068 3.12258C29.0004 5.35161 29.0004 10 29.0004 10C29.0004 10 29.0004 14.6484 28.4068 16.8774C28.2463 17.4813 27.9301 18.0325 27.4896 18.4758C27.0492 18.9191 26.5 19.2389 25.8972 19.4032C23.6778 20 14.8068 20 14.8068 20C14.8068 20 5.93586 20 3.71651 19.4032C3.11363 19.2389 2.56449 18.9191 2.12405 18.4758C1.68361 18.0325 1.36732 17.4813 1.20683 16.8774C0.613281 14.6484 0.613281 10 0.613281 10C0.613281 10 0.613281 5.35161 1.20683 3.12258C1.36732 2.51866 1.68361 1.96749 2.12405 1.52422C2.56449 1.08095 3.11363 0.76113 3.71651 0.596774C5.93586 0 14.8068 0 14.8068 0C14.8068 0 23.6778 0 25.8972 0.596774C26.5 0.76113 27.0492 1.08095 27.4896 1.52422ZM19.3229 10L11.9036 5.77905V14.221L19.3229 10Z\"\r\n            />\r\n          </svg>\r\n        </a>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</main>\r\n\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->\r\n<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->\r\n\r\n\r\n<router-outlet />\r\n"
+        },
+        {
+            "name": "JuiActionDropdownComponent",
+            "id": "component-JuiActionDropdownComponent-0e2af96e9d728f97ef3fa1e7076d9cb881073704cb1ece89b608c7c5ee0ea90b76e7fbaa6aeeab5bb3d41eaf3dd7052e99608770182e07c6eb8e9414cc8d6af8",
+            "file": "src/app/lib/components/forms/jui-action-dropdown/jui-action-dropdown.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "jui-action-dropdown",
+            "styleUrls": [
+                "./jui-action-dropdown.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./jui-action-dropdown.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "a11yMessages",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "literal type",
+                    "decorators": []
+                },
+                {
+                    "name": "allOptions",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 39,
+                    "type": "any[]",
+                    "decorators": []
+                },
+                {
+                    "name": "autoFocusOnSelect",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "customClass",
+                    "defaultValue": "'action-bg'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "defaultSelect",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "dropdownDisabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "focusOnSelect",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "focusSignal",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "id",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "inputClasses",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "optionKeys",
+                    "defaultValue": "{\r\n    group: 'group',\r\n    options: 'options',\r\n    optionName: 'optionName',\r\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "{ group: string; options: string; optionName: string; }",
+                    "decorators": []
+                },
+                {
+                    "name": "tabindex",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "blurEvent",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 46,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "selectedOptionEvent",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 45,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "hiddenRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef<HTMLSpanElement>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 49,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'focusHiddenInput'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "selectedIndex",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 51
+                },
+                {
+                    "name": "selectRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef<HTMLSelectElement>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 48,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'selectElement'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "focus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 84,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 57,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 53,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 116,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "resetSelection",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 102,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "resetVoFocus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 91,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "selectAction",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 109,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setTabindex",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 77,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ElementRef,\r\n  ViewChild,\r\n  OnInit,\r\n  AfterViewInit,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormsModule } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'jui-action-dropdown',\r\n  standalone: true,\r\n  imports: [CommonModule, FormsModule],\r\n  templateUrl: './jui-action-dropdown.component.html',\r\n  styleUrls: ['./jui-action-dropdown.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiActionDropdownComponent implements OnInit, AfterViewInit {\r\n  @Input() id = '';\r\n  @Input() title = '';\r\n  @Input() tabindex = 0;\r\n  @Input() dropdownDisabled = false;\r\n  @Input() defaultSelect = '';\r\n  @Input() focusSignal = false;\r\n  @Input() customClass = 'action-bg';\r\n  @Input() inputClasses = '';\r\n  @Input() focusOnSelect = true;\r\n  @Input() autoFocusOnSelect = false;\r\n  @Input() optionKeys = {\r\n    group: 'group',\r\n    options: 'options',\r\n    optionName: 'optionName',\r\n  };\r\n  @Input() allOptions: any[] = [];\r\n  @Input() a11yMessages: {\r\n    dropdownDescribedby?: string;\r\n    dropdownLabel?: string;\r\n  } = {};\r\n\r\n  @Output() selectedOptionEvent = new EventEmitter<any>();\r\n  @Output() blurEvent = new EventEmitter<void>();\r\n\r\n  @ViewChild('selectElement') selectRef!: ElementRef<HTMLSelectElement>;\r\n  @ViewChild('focusHiddenInput') hiddenRef!: ElementRef<HTMLSpanElement>;\r\n\r\n  selectedIndex = '';\r\n\r\n  ngOnInit(): void {\r\n    this.selectedIndex = this.defaultSelect;\r\n  }\r\n\r\n  ngAfterViewInit(): void {\r\n    this.setTabindex();\r\n    if (this.focusSignal) {\r\n      this.focus();\r\n    }\r\n  }\r\n\r\n  get ariaLabel(): string {\r\n    return this.a11yMessages?.dropdownLabel || this.title;\r\n  }\r\n\r\n  get iconClasses(): Record<string, boolean> {\r\n    return {\r\n      'action-button': true,\r\n      'sf-symbol': true,\r\n      [this.customClass]: true,\r\n      disabled: this.dropdownDisabled,\r\n    };\r\n  }\r\n\r\n  setTabindex(): void {\r\n    this.selectRef?.nativeElement?.setAttribute(\r\n      'tabIndex',\r\n      String(this.tabindex)\r\n    );\r\n  }\r\n\r\n  focus(): void {\r\n    if (this.selectRef?.nativeElement) {\r\n      this.selectRef.nativeElement.setAttribute('tabIndex', '0');\r\n      this.selectRef.nativeElement.focus();\r\n    }\r\n  }\r\n\r\n  resetVoFocus(): void {\r\n    if (this.autoFocusOnSelect && this.hiddenRef?.nativeElement) {\r\n      setTimeout(() => {\r\n        this.hiddenRef.nativeElement.focus();\r\n        setTimeout(() => this.focus(), 350);\r\n      }, 200);\r\n    } else {\r\n      this.focus();\r\n    }\r\n  }\r\n\r\n  resetSelection(): void {\r\n    this.selectedIndex = this.defaultSelect;\r\n    if (this.focusOnSelect) {\r\n      this.resetVoFocus();\r\n    }\r\n  }\r\n\r\n  selectAction(event: Event): void {\r\n    if (this.dropdownDisabled) return;\r\n    const value = (event.target as HTMLSelectElement).value;\r\n    const selected = JSON.parse(value);\r\n    this.selectedOptionEvent.emit(selected);\r\n  }\r\n\r\n  onBlur(): void {\r\n    if (!this.dropdownDisabled) {\r\n      this.blurEvent.emit();\r\n    }\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".jui-action-dropdown {\r\n  display: inline-block;\r\n  position: relative;\r\n\r\n  select.md {\r\n    font-size: 14px;\r\n    padding: 0.5rem 1rem;\r\n    border-radius: 4px;\r\n  }\r\n\r\n  .sf-symbol {\r\n    font-family: \"SF Pro Symbols\";\r\n  }\r\n\r\n  .action-header {\r\n    display: flex;\r\n    align-items: center;\r\n\r\n    .title.lg {\r\n      font-size: 16px;\r\n      font-weight: bold;\r\n    }\r\n\r\n    .dropdown-arrow-icon {\r\n      margin-left: 0.5rem;\r\n    }\r\n  }\r\n\r\n  .disabled-all {\r\n    opacity: 0.5;\r\n    pointer-events: none;\r\n  }\r\n\r\n  .a11y.vo-input {\r\n    position: absolute;\r\n    left: -9999px;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./jui-action-dropdown.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit",
+                "AfterViewInit"
+            ],
+            "accessors": {
+                "ariaLabel": {
+                    "name": "ariaLabel",
+                    "getSignature": {
+                        "name": "ariaLabel",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 64
+                    }
+                },
+                "iconClasses": {
+                    "name": "iconClasses",
+                    "getSignature": {
+                        "name": "iconClasses",
+                        "type": "",
+                        "returnType": "Record<string, boolean>",
+                        "line": 68
+                    }
+                }
+            },
+            "templateData": "<div\r\n  [class.disabled-all]=\"dropdownDisabled\"\r\n  [class.action-button-with-title]=\"title\"\r\n  class=\"jui-action-dropdown\"\r\n>\r\n  <ng-content></ng-content>\r\n\r\n  <ng-container *ngIf=\"!title\">\r\n    <span aria-hidden=\"true\" [ngClass]=\"iconClasses\">􀍠</span>\r\n  </ng-container>\r\n\r\n  <ng-container *ngIf=\"title\">\r\n    <span class=\"action-header\">\r\n      <span class=\"title lg\" aria-hidden=\"true\">{{ title }}</span>\r\n      <span class=\"sf-symbol dropdown-arrow-icon\" aria-hidden=\"true\"></span>\r\n    </span>\r\n  </ng-container>\r\n\r\n  <select\r\n    #selectElement\r\n    [id]=\"id\"\r\n    [title]=\"title\"\r\n    [attr.aria-label]=\"ariaLabel\"\r\n    [attr.aria-describedby]=\"a11yMessages.dropdownDescribedby\"\r\n    aria-roledescription=\"Menu\"\r\n    [disabled]=\"dropdownDisabled\"\r\n    [ngClass]=\"inputClasses\"\r\n    [(ngModel)]=\"selectedIndex\"\r\n    (input)=\"selectAction($event)\"\r\n    (blur)=\"onBlur()\"\r\n    (change)=\"resetSelection()\"\r\n    (keydown.space.enter)=\"(true)\"\r\n    (click)=\"(true)\"\r\n    class=\"md\"\r\n  >\r\n    <ng-container *ngFor=\"let group of allOptions; index as i\">\r\n      <ng-container *ngIf=\"group[optionKeys.group]; else flatOptions\">\r\n        <optgroup\r\n          [label]=\"group[optionKeys.group]\"\r\n          class=\"muted\"\r\n          [attr.key]=\"group[optionKeys.group] + i\"\r\n        >\r\n          <option\r\n            *ngFor=\"let option of group[optionKeys.options]; index as j\"\r\n            [value]=\"option | json\"\r\n            [disabled]=\"option.disabled\"\r\n            class=\"copy\"\r\n            [attr.key]=\"option[optionKeys.optionName] + j\"\r\n          >\r\n            {{ option[optionKeys.optionName] }}\r\n          </option>\r\n        </optgroup>\r\n      </ng-container>\r\n      <ng-template #flatOptions>\r\n        <option\r\n          *ngFor=\"let option of group[optionKeys.options]; index as j\"\r\n          [value]=\"option | json\"\r\n          [disabled]=\"option.disabled\"\r\n          [attr.key]=\"option[optionKeys.optionName] + j\"\r\n        >\r\n          {{ option[optionKeys.optionName] }}\r\n        </option>\r\n      </ng-template>\r\n    </ng-container>\r\n  </select>\r\n\r\n  <span\r\n    *ngIf=\"autoFocusOnSelect\"\r\n    #focusHiddenInput\r\n    class=\"a11y vo-input\"\r\n    aria-hidden=\"true\"\r\n    tabindex=\"-1\"\r\n  ></span>\r\n</div>\r\n"
         },
         {
             "name": "JuiButtonComponent",
@@ -239,8 +601,1200 @@
             "templateData": "<button\r\n  class=\"jui-button\"\r\n  (click)=\"onClickButton($event)\"\r\n  type=\"button\"\r\n  tabindex=\"0\"\r\n>\r\n  <ng-container *ngIf=\"a11yMessages.buttonLabel; else fallback\">\r\n    <span aria-hidden=\"true\">{{ messages.buttonLabel }}</span>\r\n    <span class=\"a11y\">{{ a11yMessages.buttonLabel }}</span>\r\n  </ng-container>\r\n\r\n  <ng-template #fallback>\r\n    <span>{{ messages.buttonLabel }}</span>\r\n  </ng-template>\r\n</button>\r\n"
         },
         {
+            "name": "JuiCommentInputComponent",
+            "id": "component-JuiCommentInputComponent-c2450a3d816a0c7316a950b7ffbc8eaa43f5643b2242d7140dbea0df43a0862269fab1ea97f23f737225a05ea22dc4b68f5e51b3da8220f73f1f311f91dce2e6",
+            "file": "src/app/lib/components/forms/jui-comment-input/jui-comment-input.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "jui-comment-input",
+            "styleUrls": [
+                "./jui-comment-input.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./jui-comment-input.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "a11yMessages",
+                    "defaultValue": "{ ariaLabel: '' }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "literal type",
+                    "decorators": []
+                },
+                {
+                    "name": "ariaRequired",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "boolean | null",
+                    "decorators": []
+                },
+                {
+                    "name": "id",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "inputClassName",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "string[]",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "labelClassName",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "string[]",
+                    "decorators": []
+                },
+                {
+                    "name": "maxHeight",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "maxLength",
+                    "defaultValue": "-1",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "readonly",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "showCharsRemaining",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "blur",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 36,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "enter",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 38,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "focus",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "input",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 35,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "charRemainingId",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 43
+                },
+                {
+                    "name": "commentControl",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormControl",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 42
+                },
+                {
+                    "name": "countDownFrom",
+                    "defaultValue": "20",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 44
+                },
+                {
+                    "name": "textareaRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 40,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'textareaRef'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "generateId",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 98,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 46,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 84,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onEnter",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 92,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onFocus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 88,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onInput",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 78,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  OnInit,\r\n  ViewChild,\r\n  ElementRef,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'jui-comment-input',\r\n  standalone: true,\r\n  imports: [CommonModule, ReactiveFormsModule],\r\n  templateUrl: './jui-comment-input.component.html',\r\n  styleUrls: ['./jui-comment-input.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiCommentInputComponent implements OnInit {\r\n  @Input() id = '';\r\n  @Input() label = '';\r\n  @Input() placeholder = '';\r\n  @Input() maxLength = -1;\r\n  @Input() maxHeight = 0;\r\n  @Input() readonly = false;\r\n  @Input() showCharsRemaining = true;\r\n  @Input() ariaRequired: boolean | null = null;\r\n  @Input() a11yMessages: { ariaLabel?: string } = { ariaLabel: '' };\r\n  @Input() labelClassName: string[] = [];\r\n  @Input() inputClassName: string[] = [];\r\n\r\n  @Output() input = new EventEmitter<string>();\r\n  @Output() blur = new EventEmitter<void>();\r\n  @Output() focus = new EventEmitter<void>();\r\n  @Output() enter = new EventEmitter<void>();\r\n\r\n  @ViewChild('textareaRef') textareaRef!: ElementRef;\r\n\r\n  commentControl!: FormControl;\r\n  charRemainingId = '';\r\n  countDownFrom = 20;\r\n\r\n  ngOnInit(): void {\r\n    const validators = [];\r\n    if (this.ariaRequired || this.ariaRequired === null) {\r\n      validators.push(Validators.required);\r\n    }\r\n    if (this.maxLength > 0) {\r\n      validators.push(Validators.maxLength(this.maxLength));\r\n    }\r\n\r\n    this.commentControl = new FormControl('', validators);\r\n    this.charRemainingId = this.generateId();\r\n  }\r\n\r\n  get charsRemaining(): number {\r\n    return this.maxLength - (this.commentControl.value?.length || 0);\r\n  }\r\n\r\n  get showRemainingLabel(): boolean {\r\n    return this.showCharsRemaining && this.maxLength > 0;\r\n  }\r\n\r\n  get remainingText(): string {\r\n    const remaining = this.charsRemaining;\r\n    return remaining <= this.countDownFrom\r\n      ? `${remaining}s Characters Remaining`\r\n      : `${this.maxLength}s characters limit`;\r\n  }\r\n\r\n  get maxHeightStyle(): Record<string, string> {\r\n    return this.maxHeight ? { maxHeight: `${this.maxHeight}px` } : {};\r\n  }\r\n\r\n  onInput(event: Event): void {\r\n    const value = (event.target as HTMLTextAreaElement).value;\r\n    this.commentControl.setValue(value);\r\n    this.input.emit(value);\r\n  }\r\n\r\n  onBlur(): void {\r\n    this.blur.emit();\r\n  }\r\n\r\n  onFocus(): void {\r\n    this.focus.emit();\r\n  }\r\n\r\n  onEnter(event: KeyboardEvent): void {\r\n    if (event.key === 'Enter') {\r\n      this.enter.emit();\r\n    }\r\n  }\r\n\r\n  private generateId(): string {\r\n    return `char-remaining-id-${Math.floor(Math.random() * 1000000)}`;\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".jui-comment-input {\r\n  .form-label {\r\n    font-weight: bold;\r\n    margin-bottom: 0.5rem;\r\n    display: block;\r\n  }\r\n\r\n  .field-tooltip-wrapper {\r\n    position: relative;\r\n    display: flex;\r\n    flex-direction: column;\r\n\r\n    .comment-input-wrapper {\r\n      position: relative;\r\n    }\r\n\r\n    .comment-textarea {\r\n      width: 100%;\r\n      min-height: 100px;\r\n      padding: 0.75rem;\r\n      font-size: 14px;\r\n      border-radius: 4px;\r\n      border: 1px solid #ccc;\r\n      resize: vertical;\r\n    }\r\n\r\n    .chars-remaining {\r\n      font-size: 12px;\r\n      color: #666;\r\n      margin-top: 4px;\r\n      text-align: right;\r\n    }\r\n\r\n    .error-icon {\r\n      color: red;\r\n      position: absolute;\r\n      right: 8px;\r\n      top: 8px;\r\n      font-size: 18px;\r\n    }\r\n  }\r\n}\r\n",
+                    "styleUrl": "./jui-comment-input.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "accessors": {
+                "charsRemaining": {
+                    "name": "charsRemaining",
+                    "getSignature": {
+                        "name": "charsRemaining",
+                        "type": "number",
+                        "returnType": "number",
+                        "line": 59
+                    }
+                },
+                "showRemainingLabel": {
+                    "name": "showRemainingLabel",
+                    "getSignature": {
+                        "name": "showRemainingLabel",
+                        "type": "boolean",
+                        "returnType": "boolean",
+                        "line": 63
+                    }
+                },
+                "remainingText": {
+                    "name": "remainingText",
+                    "getSignature": {
+                        "name": "remainingText",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 67
+                    }
+                },
+                "maxHeightStyle": {
+                    "name": "maxHeightStyle",
+                    "getSignature": {
+                        "name": "maxHeightStyle",
+                        "type": "",
+                        "returnType": "Record<string, string>",
+                        "line": 74
+                    }
+                }
+            },
+            "templateData": "<div class=\"jui-comment-input form\">\r\n  <label\r\n    *ngIf=\"label\"\r\n    [attr.for]=\"id\"\r\n    [ngClass]=\"labelClassName\"\r\n    class=\"form-label\"\r\n  >\r\n    {{ label }}\r\n  </label>\r\n\r\n  <div class=\"field-tooltip-wrapper flex-column-aligner\">\r\n    <div class=\"comment-input-wrapper\">\r\n      <textarea\r\n        #textareaRef\r\n        [id]=\"id\"\r\n        [formControl]=\"commentControl\"\r\n        [placeholder]=\"placeholder\"\r\n        [readonly]=\"readonly\"\r\n        [style]=\"maxHeightStyle\"\r\n        [attr.aria-required]=\"ariaRequired ?? true\"\r\n        [attr.aria-label]=\"a11yMessages.ariaLabel || label\"\r\n        [attr.aria-invalid]=\"commentControl.invalid\"\r\n        (input)=\"onInput($event)\"\r\n        (blur)=\"onBlur()\"\r\n        (focus)=\"onFocus()\"\r\n        (keydown.enter)=\"onEnter($event)\"\r\n        [ngClass]=\"\r\n          inputClassName\r\n            ? 'comment-textarea ' + inputClassName\r\n            : 'comment-textarea'\r\n        \"\r\n      ></textarea>\r\n\r\n      <div\r\n        *ngIf=\"showRemainingLabel\"\r\n        [id]=\"charRemainingId\"\r\n        class=\"chars-remaining pull-right muted\"\r\n      >\r\n        {{ remainingText }}\r\n      </div>\r\n    </div>\r\n\r\n    <div\r\n      *ngIf=\"commentControl.invalid && commentControl.touched\"\r\n      class=\"error-icon\"\r\n      aria-hidden=\"true\"\r\n    >\r\n      ⚠️\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "JuiDropdownComponent",
+            "id": "component-JuiDropdownComponent-522496aa79faf91c49420ea31b3121a9e0de8187b4f80fecf49bb5de669285ad23f340abc16ea2513806b3d9f6437cf31120d84bf5edc34fd7c109170a8ba27f",
+            "file": "src/app/lib/components/forms/jui-dropdown/jui-dropdown.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "jui-dropdown",
+            "styleUrls": [
+                "./jui-dropdown.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./jui-dropdown.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "a11yMessages",
+                    "defaultValue": "{ ariaLabel: '' }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 35,
+                    "type": "literal type",
+                    "decorators": []
+                },
+                {
+                    "name": "ariaRequired",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "id",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "inputClassName",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "string[]",
+                    "decorators": []
+                },
+                {
+                    "name": "kvpType",
+                    "defaultValue": "{ key: 'id', value: 'desc' }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "{ key: string; value: string; }",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "labelClassName",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "string[]",
+                    "decorators": []
+                },
+                {
+                    "name": "modelValue",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "options",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "any[]",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "validate",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "blurEvent",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 39,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "clickEvent",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 41,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "focusEvent",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "modelValueChange",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "selectedOption",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 38,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "control",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormControl",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 45
+                },
+                {
+                    "name": "selectRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef<HTMLSelectElement>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 43,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'selectRef'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 47,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 85,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 94,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onEnter",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 98,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onFocus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 90,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onKeyDown",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 70,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'keydown', ['$event']"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onSelect",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 59,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "keydown",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "argsDecorator": [
+                        "$event"
+                    ],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 70
+                }
+            ],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  OnInit,\r\n  ChangeDetectionStrategy,\r\n  ViewChild,\r\n  ElementRef,\r\n  HostListener,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'jui-dropdown',\r\n  standalone: true,\r\n  imports: [CommonModule, ReactiveFormsModule],\r\n  templateUrl: './jui-dropdown.component.html',\r\n  styleUrls: ['./jui-dropdown.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiDropdownComponent implements OnInit {\r\n  @Input() id = '';\r\n  @Input() modelValue = '';\r\n  @Input() label = '';\r\n  @Input() title = '';\r\n  @Input() options: any[] = [];\r\n  @Input() kvpType = { key: 'id', value: 'desc' };\r\n  @Input() disabled = false;\r\n  @Input() labelClassName: string[] = [];\r\n  @Input() inputClassName: string[] = [];\r\n  @Input() validate = false;\r\n  @Input() ariaRequired?: boolean;\r\n  @Input() a11yMessages: { ariaLabel?: string } = { ariaLabel: '' };\r\n\r\n  @Output() modelValueChange = new EventEmitter<string>();\r\n  @Output() selectedOption = new EventEmitter<any>();\r\n  @Output() blurEvent = new EventEmitter<void>();\r\n  @Output() focusEvent = new EventEmitter<void>();\r\n  @Output() clickEvent = new EventEmitter<void>();\r\n\r\n  @ViewChild('selectRef') selectRef!: ElementRef<HTMLSelectElement>;\r\n\r\n  control!: FormControl;\r\n\r\n  ngOnInit(): void {\r\n    const validators = [];\r\n    if (this.ariaRequired || this.ariaRequired === null) {\r\n      validators.push(Validators.required);\r\n    }\r\n    this.control = new FormControl(this.modelValue, validators);\r\n  }\r\n\r\n  get invalid(): boolean {\r\n    return this.control.invalid && this.control.touched;\r\n  }\r\n\r\n  onSelect(event: Event): void {\r\n    const value = (event.target as HTMLSelectElement).value;\r\n    this.control.setValue(value);\r\n    this.modelValueChange.emit(value);\r\n    const selected = this.options.find(\r\n      (opt) => opt[this.kvpType.key] === value\r\n    );\r\n    this.selectedOption.emit(selected);\r\n  }\r\n\r\n  @HostListener('keydown', ['$event'])\r\n  onKeyDown(event: KeyboardEvent): void {\r\n    const char = event.key.toLowerCase();\r\n    if (char.length === 1 && /^[a-z0-9]$/i.test(char)) {\r\n      const index = this.options.findIndex((option) =>\r\n        option[this.kvpType.value].toLowerCase().startsWith(char)\r\n      );\r\n      if (index !== -1) {\r\n        const matchedOption = this.options[index];\r\n        this.control.setValue(matchedOption[this.kvpType.key]);\r\n        this.modelValueChange.emit(matchedOption[this.kvpType.key]);\r\n        this.selectedOption.emit(matchedOption);\r\n      }\r\n    }\r\n  }\r\n\r\n  onBlur(): void {\r\n    this.control.markAsTouched();\r\n    this.blurEvent.emit();\r\n  }\r\n\r\n  onFocus(): void {\r\n    this.focusEvent.emit();\r\n  }\r\n\r\n  onClick(): void {\r\n    this.clickEvent.emit();\r\n  }\r\n\r\n  onEnter(event: KeyboardEvent): void {\r\n    if (event.key === 'Enter') {\r\n      this.blurEvent.emit();\r\n    }\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".jui-dropdown {\r\n  display: flex;\r\n  flex-direction: column;\r\n\r\n  .form-label {\r\n    font-weight: 600;\r\n    margin-bottom: 0.5rem;\r\n  }\r\n\r\n  .field-tooltip-wrapper {\r\n    position: relative;\r\n  }\r\n\r\n  .form-input-wrapper {\r\n    display: flex;\r\n    align-items: center;\r\n    position: relative;\r\n    padding-right: 1.5rem;\r\n\r\n    &.disabled-all {\r\n      opacity: 0.6;\r\n      pointer-events: none;\r\n    }\r\n\r\n    .dropdown {\r\n      width: 100%;\r\n      padding: 10px;\r\n      font-size: 14px;\r\n      border: 1px solid #ccc;\r\n      border-radius: 4px;\r\n      appearance: none;\r\n      background-color: white;\r\n\r\n      &.hide-select {\r\n        padding-left: 80px;\r\n      }\r\n\r\n      &:focus {\r\n        border-color: #007bff;\r\n        outline: none;\r\n      }\r\n    }\r\n\r\n    .dropdown-arrow-icon {\r\n      position: absolute;\r\n      right: 10px;\r\n      pointer-events: none;\r\n      font-size: 12px;\r\n      color: #888;\r\n    }\r\n  }\r\n\r\n  .error-icon {\r\n    margin-top: 4px;\r\n    color: red;\r\n    font-size: 16px;\r\n  }\r\n\r\n  .dropdown-title {\r\n    position: absolute;\r\n    left: 12px;\r\n    top: 50%;\r\n    transform: translateY(-50%);\r\n    color: #999;\r\n    font-size: 12px;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./jui-dropdown.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "accessors": {
+                "invalid": {
+                    "name": "invalid",
+                    "getSignature": {
+                        "name": "invalid",
+                        "type": "boolean",
+                        "returnType": "boolean",
+                        "line": 55
+                    }
+                }
+            },
+            "templateData": "<div class=\"jui-dropdown form input-field-container\">\r\n  <label *ngIf=\"label\" [for]=\"id\" class=\"form-label\" [ngClass]=\"labelClassName\">\r\n    {{ label }}\r\n  </label>\r\n\r\n  <div [ngClass]=\"inputClassName\" class=\"field-tooltip-wrapper\">\r\n    <div class=\"form-input-wrapper\" [class.disabled-all]=\"disabled\">\r\n      <span *ngIf=\"title\" class=\"dropdown-title\">\r\n        <span class=\"title\" aria-hidden=\"true\">{{ title }}</span>\r\n      </span>\r\n\r\n      <select\r\n        #selectRef\r\n        [id]=\"id\"\r\n        class=\"dropdown form-input\"\r\n        [class.hide-select]=\"title\"\r\n        [formControl]=\"control\"\r\n        [attr.aria-required]=\"ariaRequired ?? true\"\r\n        [attr.aria-label]=\"a11yMessages.ariaLabel || label\"\r\n        [attr.aria-invalid]=\"invalid\"\r\n        [disabled]=\"disabled\"\r\n        (change)=\"onSelect($event)\"\r\n        (focus)=\"onFocus()\"\r\n        (blur)=\"onBlur()\"\r\n        (click)=\"onClick()\"\r\n        (keydown.enter)=\"onEnter($event)\"\r\n      >\r\n        <option\r\n          *ngFor=\"let opt of options; let i = index\"\r\n          [value]=\"opt[kvpType.key]\"\r\n          [disabled]=\"opt.disabled\"\r\n          [attr.lang]=\"opt.lang\"\r\n        >\r\n          {{ opt[kvpType.value] }}\r\n        </option>\r\n      </select>\r\n\r\n      <span class=\"dropdown-arrow-icon\" aria-hidden=\"true\">▼</span>\r\n    </div>\r\n\r\n    <div *ngIf=\"validate && invalid\" class=\"error-icon\" aria-hidden=\"true\">\r\n      ⚠️\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "JuiFormInputComponent",
+            "id": "component-JuiFormInputComponent-8490cbc8828ac8204ff129b8906c685ef8a8650d3b26d021f4a46dcb73c039d54447c53f4d47f893f3aebbcc502667f74be9f0459e15fb260c8a2605d0cca130",
+            "file": "src/app/lib/components/forms/jui-form-input/jui-form-input.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "jui-form-input",
+            "styleUrls": [
+                "./jui-form-input.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./jui-form-input.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "a11yMessages",
+                    "defaultValue": "{\r\n    inputTextAriaLabel: '',\r\n    verifiedIconAriaLabel: '',\r\n    verifyButtonAriaLabel: '',\r\n    clearButtonAriaLabel: '',\r\n    verifiedLiveMessage: '',\r\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 41,
+                    "type": "literal type",
+                    "decorators": []
+                },
+                {
+                    "name": "ariaRequired",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "clearButton",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 35,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "enableVerifyButton",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "id",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "inputClassName",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "string[]",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "labelClassName",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "string[]",
+                    "decorators": []
+                },
+                {
+                    "name": "liveMessageDelay",
+                    "defaultValue": "1000",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "maxlength",
+                    "defaultValue": "512",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "string | number",
+                    "decorators": []
+                },
+                {
+                    "name": "modelValue",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "name",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'text'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "validate",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 36,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "verifyInProgress",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 38,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "verifySuccess",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 39,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "blurEvent",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 56,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "focusEvent",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 57,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "modelValueChange",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 55,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "verifyEvent",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 58,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "inputControl",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormControl",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 62
+                },
+                {
+                    "name": "inputRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef<HTMLInputElement>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 60,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'inputRef'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 64,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 94,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClickClearButton",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 108,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClickVerifyButton",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 116,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onEnter",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 102,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onFocus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 98,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onInput",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 88,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "JuiLoadingSpinnerComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  OnInit,\r\n  ViewChild,\r\n  ElementRef,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\r\nimport { JuiLoadingSpinnerComponent } from '../../jui-loading-spinner/jui-loading-spinner.component';\r\n\r\n@Component({\r\n  selector: 'jui-form-input',\r\n  standalone: true,\r\n  imports: [CommonModule, ReactiveFormsModule, JuiLoadingSpinnerComponent],\r\n  templateUrl: './jui-form-input.component.html',\r\n  styleUrls: ['./jui-form-input.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiFormInputComponent implements OnInit {\r\n  @Input() id = '';\r\n  @Input() modelValue = '';\r\n  @Input() ariaRequired?: boolean;\r\n  @Input() name = '';\r\n  @Input() type = 'text';\r\n  @Input() placeholder = '';\r\n  @Input() maxlength: string | number = 512;\r\n  @Input() clearButton = false;\r\n  @Input() label = '';\r\n  @Input() labelClassName: string[] = [];\r\n  @Input() inputClassName: string[] = [];\r\n  @Input() disabled = false;\r\n  @Input() validate = false;\r\n  @Input() enableVerifyButton = false;\r\n  @Input() verifyInProgress = false;\r\n  @Input() verifySuccess = false;\r\n  @Input() liveMessageDelay = 1000;\r\n  @Input() a11yMessages: {\r\n    inputTextAriaLabel?: string;\r\n    verifiedIconAriaLabel?: string;\r\n    verifyButtonAriaLabel?: string;\r\n    clearButtonAriaLabel?: string;\r\n    verifiedLiveMessage?: string;\r\n  } = {\r\n    inputTextAriaLabel: '',\r\n    verifiedIconAriaLabel: '',\r\n    verifyButtonAriaLabel: '',\r\n    clearButtonAriaLabel: '',\r\n    verifiedLiveMessage: '',\r\n  };\r\n\r\n  @Output() modelValueChange = new EventEmitter<string>();\r\n  @Output() blurEvent = new EventEmitter<string>();\r\n  @Output() focusEvent = new EventEmitter<void>();\r\n  @Output() verifyEvent = new EventEmitter<void>();\r\n\r\n  @ViewChild('inputRef') inputRef!: ElementRef<HTMLInputElement>;\r\n\r\n  inputControl!: FormControl;\r\n\r\n  ngOnInit(): void {\r\n    const validators = [];\r\n\r\n    if (this.ariaRequired || this.ariaRequired === null) {\r\n      validators.push(Validators.required);\r\n    }\r\n\r\n    if (this.maxlength && Number(this.maxlength) > 0) {\r\n      validators.push(Validators.maxLength(Number(this.maxlength)));\r\n    }\r\n\r\n    this.inputControl = new FormControl(this.modelValue, validators);\r\n  }\r\n\r\n  get shouldShowClearButton(): boolean {\r\n    return this.clearButton && this.inputControl.value?.length > 0;\r\n  }\r\n\r\n  get liveMessage(): string {\r\n    return this.verifySuccess && this.a11yMessages.verifiedLiveMessage\r\n      ? `${this.a11yMessages.verifiedLiveMessage} ${this.label}`\r\n      : '';\r\n  }\r\n\r\n  onInput(event: Event): void {\r\n    const value = (event.target as HTMLInputElement).value;\r\n    this.inputControl.setValue(value);\r\n    this.modelValueChange.emit(value);\r\n  }\r\n\r\n  onBlur(): void {\r\n    this.blurEvent.emit(this.inputControl.value);\r\n  }\r\n\r\n  onFocus(): void {\r\n    this.focusEvent.emit();\r\n  }\r\n\r\n  onEnter(event: KeyboardEvent): void {\r\n    if (event.key === 'Enter') {\r\n      this.blurEvent.emit(this.inputControl.value);\r\n    }\r\n  }\r\n\r\n  onClickClearButton(): void {\r\n    this.inputControl.setValue('');\r\n    this.modelValueChange.emit('');\r\n    setTimeout(() => {\r\n      this.inputRef?.nativeElement?.focus();\r\n    });\r\n  }\r\n\r\n  onClickVerifyButton(): void {\r\n    this.verifyEvent.emit();\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".jui-form-input {\r\n  display: flex;\r\n  flex-direction: column;\r\n\r\n  .form-label {\r\n    font-weight: 600;\r\n    margin-bottom: 0.5rem;\r\n  }\r\n\r\n  .field-tooltip-wrapper {\r\n    position: relative;\r\n  }\r\n\r\n  .input-wrapper {\r\n    display: flex;\r\n    align-items: center;\r\n    position: relative;\r\n\r\n    .form-input {\r\n      flex: 1;\r\n      padding: 10px;\r\n      font-size: 14px;\r\n      border: 1px solid #ccc;\r\n      border-radius: 4px;\r\n      outline: none;\r\n      transition: border 0.2s;\r\n\r\n      &:focus {\r\n        border-color: #007bff;\r\n      }\r\n\r\n      &:disabled {\r\n        background-color: #f5f5f5;\r\n        cursor: not-allowed;\r\n      }\r\n    }\r\n\r\n    .clear-button {\r\n      margin-left: -36px;\r\n      background: transparent;\r\n      border: none;\r\n      cursor: pointer;\r\n\r\n      .clear-button-icon {\r\n        display: inline-block;\r\n        width: 16px;\r\n        height: 16px;\r\n        position: relative;\r\n        cursor: pointer;\r\n      }\r\n\r\n      .clear-button-icon::before,\r\n      .clear-button-icon::after {\r\n        content: \"\";\r\n        position: absolute;\r\n        top: 7px;\r\n        left: 0;\r\n        width: 100%;\r\n        height: 2px;\r\n        background-color: #000;\r\n      }\r\n\r\n      .clear-button-icon::before {\r\n        transform: rotate(45deg);\r\n      }\r\n\r\n      .clear-button-icon::after {\r\n        transform: rotate(-45deg);\r\n      }\r\n    }\r\n\r\n    .verify-section {\r\n      display: flex;\r\n      align-items: center;\r\n      gap: 6px;\r\n      margin-left: 0.5rem;\r\n\r\n      .spinner-20 {\r\n        font-size: 16px;\r\n      }\r\n\r\n      .valid-icon {\r\n        color: green;\r\n        font-size: 18px;\r\n      }\r\n\r\n      .validation-button {\r\n        border: none;\r\n        background: none;\r\n        cursor: pointer;\r\n      }\r\n    }\r\n  }\r\n\r\n  .error-icon {\r\n    margin-top: 4px;\r\n    color: red;\r\n    font-size: 16px;\r\n  }\r\n\r\n  .visually-hidden {\r\n    position: absolute;\r\n    left: -10000px;\r\n    top: auto;\r\n    width: 1px;\r\n    height: 1px;\r\n    overflow: hidden;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./jui-form-input.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "accessors": {
+                "shouldShowClearButton": {
+                    "name": "shouldShowClearButton",
+                    "getSignature": {
+                        "name": "shouldShowClearButton",
+                        "type": "boolean",
+                        "returnType": "boolean",
+                        "line": 78
+                    }
+                },
+                "liveMessage": {
+                    "name": "liveMessage",
+                    "getSignature": {
+                        "name": "liveMessage",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 82
+                    }
+                }
+            },
+            "templateData": "<div class=\"jui-form-input form input-field-container\">\r\n  <label\r\n    *ngIf=\"label\"\r\n    [attr.for]=\"id\"\r\n    [ngClass]=\"labelClassName\"\r\n    class=\"form-label\"\r\n  >\r\n    {{ label }}\r\n  </label>\r\n\r\n  <div class=\"field-tooltip-wrapper\">\r\n    <div class=\"input-wrapper form-input-wrapper\">\r\n      <input\r\n        #inputRef\r\n        [id]=\"id\"\r\n        [attr.name]=\"name\"\r\n        [attr.type]=\"type\"\r\n        [attr.aria-required]=\"ariaRequired ?? true\"\r\n        [attr.aria-label]=\"a11yMessages.inputTextAriaLabel || label\"\r\n        [attr.placeholder]=\"placeholder\"\r\n        [disabled]=\"disabled\"\r\n        [attr.maxlength]=\"maxlength\"\r\n        [formControl]=\"inputControl\"\r\n        autocomplete=\"off\"\r\n        spellcheck=\"false\"\r\n        class=\"form-input\"\r\n        [ngClass]=\"inputClassName\"\r\n        [attr.aria-invalid]=\"inputControl.invalid\"\r\n        (input)=\"onInput($event)\"\r\n        (blur)=\"onBlur()\"\r\n        (focus)=\"onFocus()\"\r\n        (keydown.enter)=\"onEnter($event)\"\r\n      />\r\n\r\n      <button\r\n        *ngIf=\"shouldShowClearButton\"\r\n        class=\"lg clear-button\"\r\n        type=\"button\"\r\n        tabindex=\"-1\"\r\n        [attr.aria-label]=\"a11yMessages.clearButtonAriaLabel\"\r\n        (click)=\"onClickClearButton()\"\r\n      >\r\n        <span class=\"clear-button-icon\"></span>\r\n      </button>\r\n\r\n      <div *ngIf=\"enableVerifyButton\" class=\"verify-section\">\r\n        <jui-loading-spinner\r\n          *ngIf=\"verifyInProgress\"\r\n          [isLoading]=\"verifyInProgress\"\r\n        ></jui-loading-spinner>\r\n\r\n        <span\r\n          *ngIf=\"!verifyInProgress && verifySuccess\"\r\n          class=\"valid-icon icon-checkcircle sf-symbol\"\r\n          role=\"img\"\r\n          [attr.aria-label]=\"a11yMessages.verifiedIconAriaLabel\"\r\n        >\r\n          ✔️\r\n        </span>\r\n\r\n        <button\r\n          *ngIf=\"!verifyInProgress && !verifySuccess\"\r\n          class=\"system-body validation-button\"\r\n          [attr.aria-label]=\"a11yMessages.verifyButtonAriaLabel\"\r\n          tabindex=\"-1\"\r\n          type=\"button\"\r\n          (click)=\"onClickVerifyButton()\"\r\n        >\r\n          <span class=\"input-icon emphasized rotate-right sf-symbol\">❌</span>\r\n        </button>\r\n\r\n        <span\r\n          class=\"visually-hidden\"\r\n          aria-live=\"polite\"\r\n          [attr.aria-label]=\"liveMessage\"\r\n        ></span>\r\n      </div>\r\n    </div>\r\n\r\n    <div\r\n      *ngIf=\"validate && inputControl.invalid && inputControl.touched\"\r\n      class=\"error-icon\"\r\n    >\r\n      ⚠️\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
             "name": "JuiIdleTimerComponent",
-            "id": "component-JuiIdleTimerComponent-354aedf092562e710c978cdabbed911af1d9bd28a092cfdfb481c08620f52147ae936b17e72f5959ae39cb4777ac2d40e1998cac2eb38c467cc0a496cab294b2",
+            "id": "component-JuiIdleTimerComponent-880a90d99418576bddeadc50c05930567cf8228ba42014a0e9812b4f2c306ae0887f3dddc10e3673e452145182029838cfa15f61d5b3a6b61de808cc1fc46e9c",
             "file": "src/app/lib/components/jui-idle-timer/jui-idle-timer.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -432,7 +1986,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 142,
+                    "line": 138,
                     "modifierKind": [
                         123
                     ]
@@ -457,7 +2011,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 166,
+                    "line": 162,
                     "modifierKind": [
                         123
                     ]
@@ -480,7 +2034,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 154,
+                    "line": 150,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -493,7 +2047,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 100,
+                    "line": 99,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -503,7 +2057,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 93,
+                    "line": 92,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -561,7 +2115,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 118,
+                    "line": 117,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -578,7 +2132,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 125,
+                    "line": 123,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -599,7 +2153,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 106,
+                    "line": 105,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -609,7 +2163,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 112,
+                    "line": 111,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -619,7 +2173,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 160,
+                    "line": 156,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -632,7 +2186,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 88,
+                    "line": 87,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -666,7 +2220,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 172,
+                    "line": 168,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -709,7 +2263,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  OnInit,\r\n  OnDestroy,\r\n  ChangeDetectionStrategy,\r\n  ChangeDetectorRef,\r\n} from '@angular/core';\r\nimport { JuiModalComponent } from '../jui-modal/jui-modal.component';\r\n\r\n@Component({\r\n  selector: 'jui-idle-timer',\r\n  standalone: true,\r\n  templateUrl: './jui-idle-timer.component.html',\r\n  imports: [JuiModalComponent],\r\n  styleUrls: ['./jui-idle-timer.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiIdleTimerComponent implements OnInit, OnDestroy {\r\n  @Input() a11yMessages = {\r\n    stopTimerButtonAriaLabel: 'Stop Timer',\r\n    resetTimerButtonAriaLabel: 'Reset Timer',\r\n  };\r\n  @Input() messages = {\r\n    stopTimerButtonLabel: 'Stop Timer',\r\n    resetTimerButtonLabel: 'Reset Timer',\r\n  };\r\n  @Input() inactivityDurationInMinutes = 0.1; // 6 seconds for testing\r\n  @Input() countDownTimerInMinutes = 0.05; // 3 seconds for testing\r\n  @Input() activityEvents: string[] = []; // Disable for testing\r\n  @Input() height = '20rem';\r\n  @Input() width = '50rem';\r\n  @Input() eventThrottleInMilliseconds = 500;\r\n  @Input() teleportTo = 'body';\r\n  @Input() appContentId = 'app';\r\n  @Input() ariaLabelledby = '';\r\n  @Input() modalClasses: string | string[] | Record<string, boolean> = '';\r\n\r\n  @Output() timerReset = new EventEmitter<void>();\r\n  @Output() timerStopped = new EventEmitter<void>();\r\n  @Output() timedOut = new EventEmitter<void>();\r\n\r\n  shouldShowWarningMessage = false;\r\n  timeLeft!: number;\r\n\r\n  private intervalId: any;\r\n  private readonly LOCAL_STORAGE_KEYS = {\r\n    RESET: 'jui-idle-timer-reset-timestamp',\r\n    TIMEOUT: 'jui-idle-timer-timeout-timestamp',\r\n    STOPPED: 'jui-idle-timer-stop-timestamp',\r\n  };\r\n\r\n  constructor(private cdr: ChangeDetectorRef) {}\r\n\r\n  ngOnInit(): void {\r\n    this.timeLeft = this.inactivityDurationInMinutes * 60;\r\n    this.startTimer();\r\n    this.addActivityListeners();\r\n    window.addEventListener('storage', this.onStorage);\r\n    localStorage.setItem(this.LOCAL_STORAGE_KEYS.RESET, `${Date.now()}`);\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.clearAll();\r\n  }\r\n\r\n  formattedTimer(secs: number): string {\r\n    const minutes = Math.floor(secs / 60)\r\n      .toString()\r\n      .padStart(2, '0');\r\n    const seconds = (secs % 60).toString().padStart(2, '0');\r\n    return `${minutes}:${seconds}`;\r\n  }\r\n\r\n  startTimer(): void {\r\n    const start = Date.now();\r\n    this.intervalId = setInterval(() => {\r\n      const passed = Math.floor((Date.now() - start) / 1000);\r\n      this.timeLeft = this.inactivityDurationInMinutes * 60 - passed;\r\n      console.log('[IdleTimer] Time left:', this.timeLeft);\r\n      this.onChangeTimeLeft(this.timeLeft);\r\n      this.cdr.markForCheck();\r\n    }, 1000);\r\n  }\r\n\r\n  resetTimer(): void {\r\n    this.clearTimer();\r\n    this.startTimer();\r\n  }\r\n\r\n  clearTimer(): void {\r\n    clearInterval(this.intervalId);\r\n    this.shouldShowWarningMessage = false;\r\n    this.timeLeft = this.inactivityDurationInMinutes * 60;\r\n    this.cdr.markForCheck();\r\n  }\r\n\r\n  clearAll(): void {\r\n    this.clearTimer();\r\n    this.removeActivityListeners();\r\n    window.removeEventListener('storage', this.onStorage);\r\n  }\r\n\r\n  onResetTimer(): void {\r\n    localStorage.setItem(this.LOCAL_STORAGE_KEYS.RESET, `${Date.now()}`);\r\n    this.timerReset.emit();\r\n    this.resetTimer();\r\n  }\r\n\r\n  onStopTimer(): void {\r\n    localStorage.setItem(this.LOCAL_STORAGE_KEYS.STOPPED, `${Date.now()}`);\r\n    this.timerStopped.emit();\r\n    this.clearAll();\r\n  }\r\n\r\n  onBackdropClick(): void {\r\n    console.log('[IdleTimer] Backdrop clicked');\r\n    this.onResetTimer();\r\n    this.shouldShowWarningMessage = false;\r\n    this.cdr.markForCheck();\r\n  }\r\n\r\n  onChangeTimeLeft(time: number): void {\r\n    if (\r\n      time <= this.countDownTimerInMinutes * 60 &&\r\n      !this.shouldShowWarningMessage\r\n    ) {\r\n      console.log('[IdleTimer] Showing modal...');\r\n      this.shouldShowWarningMessage = true;\r\n      this.cdr.markForCheck();\r\n    }\r\n    if (time <= 0) {\r\n      console.log('[IdleTimer] Timeout triggered.');\r\n      localStorage.setItem(this.LOCAL_STORAGE_KEYS.TIMEOUT, `${Date.now()}`);\r\n      this.timedOut.emit();\r\n      this.clearAll();\r\n    }\r\n  }\r\n\r\n  private onStorage = (event: StorageEvent): void => {\r\n    if (event.key === this.LOCAL_STORAGE_KEYS.RESET) {\r\n      this.resetTimer();\r\n    } else if (event.key === this.LOCAL_STORAGE_KEYS.TIMEOUT) {\r\n      this.timedOut.emit();\r\n      this.clearAll();\r\n    } else if (event.key === this.LOCAL_STORAGE_KEYS.STOPPED) {\r\n      this.timerStopped.emit();\r\n      this.clearAll();\r\n    }\r\n  };\r\n\r\n  private addActivityListeners(): void {\r\n    this.activityEvents.forEach((event) =>\r\n      window.addEventListener(event, this.throttledReset, true)\r\n    );\r\n  }\r\n\r\n  private removeActivityListeners(): void {\r\n    this.activityEvents.forEach((event) =>\r\n      window.removeEventListener(event, this.throttledReset, true)\r\n    );\r\n  }\r\n\r\n  private throttledReset = this.throttle(() => {\r\n    if (this.timeLeft > this.countDownTimerInMinutes * 60) {\r\n      this.onResetTimer();\r\n    }\r\n  }, this.eventThrottleInMilliseconds);\r\n\r\n  private throttle(func: () => void, limit: number): () => void {\r\n    let inThrottle: boolean;\r\n    return () => {\r\n      if (!inThrottle) {\r\n        func();\r\n        inThrottle = true;\r\n        setTimeout(() => (inThrottle = false), limit);\r\n      }\r\n    };\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  OnInit,\r\n  OnDestroy,\r\n  ChangeDetectionStrategy,\r\n  ChangeDetectorRef,\r\n} from '@angular/core';\r\nimport { JuiModalComponent } from '../jui-modal/jui-modal.component';\r\n\r\n@Component({\r\n  selector: 'jui-idle-timer',\r\n  standalone: true,\r\n  templateUrl: './jui-idle-timer.component.html',\r\n  imports: [JuiModalComponent],\r\n  styleUrls: ['./jui-idle-timer.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiIdleTimerComponent implements OnInit, OnDestroy {\r\n  @Input() a11yMessages = {\r\n    stopTimerButtonAriaLabel: 'Stop Timer',\r\n    resetTimerButtonAriaLabel: 'Reset Timer',\r\n  };\r\n  @Input() messages = {\r\n    stopTimerButtonLabel: 'Stop Timer',\r\n    resetTimerButtonLabel: 'Reset Timer',\r\n  };\r\n  @Input() inactivityDurationInMinutes = 0.1; // 6 seconds for testing\r\n  @Input() countDownTimerInMinutes = 0.05; // 3 seconds for testing\r\n  @Input() activityEvents: string[] = []; // Disable for testing\r\n  @Input() height = '20rem';\r\n  @Input() width = '50rem';\r\n  @Input() eventThrottleInMilliseconds = 500;\r\n  @Input() teleportTo = 'body';\r\n  @Input() appContentId = 'app';\r\n  @Input() ariaLabelledby = '';\r\n  @Input() modalClasses: string | string[] | Record<string, boolean> = '';\r\n\r\n  @Output() timerReset = new EventEmitter<void>();\r\n  @Output() timerStopped = new EventEmitter<void>();\r\n  @Output() timedOut = new EventEmitter<void>();\r\n\r\n  shouldShowWarningMessage = false;\r\n  timeLeft!: number;\r\n\r\n  private intervalId: any;\r\n  private readonly LOCAL_STORAGE_KEYS = {\r\n    RESET: 'jui-idle-timer-reset-timestamp',\r\n    TIMEOUT: 'jui-idle-timer-timeout-timestamp',\r\n    STOPPED: 'jui-idle-timer-stop-timestamp',\r\n  };\r\n\r\n  constructor(private cdr: ChangeDetectorRef) {}\r\n\r\n  ngOnInit(): void {\r\n    this.timeLeft = this.inactivityDurationInMinutes * 60;\r\n    this.startTimer();\r\n    this.addActivityListeners();\r\n    window.addEventListener('storage', this.onStorage);\r\n    localStorage.setItem(this.LOCAL_STORAGE_KEYS.RESET, `${Date.now()}`);\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.clearAll();\r\n  }\r\n\r\n  formattedTimer(secs: number): string {\r\n    const minutes = Math.floor(secs / 60)\r\n      .toString()\r\n      .padStart(2, '0');\r\n    const seconds = (secs % 60).toString().padStart(2, '0');\r\n    return `${minutes}:${seconds}`;\r\n  }\r\n\r\n  startTimer(): void {\r\n    const start = Date.now();\r\n    this.intervalId = setInterval(() => {\r\n      const passed = Math.floor((Date.now() - start) / 1000);\r\n      this.timeLeft = this.inactivityDurationInMinutes * 60 - passed;\r\n      this.onChangeTimeLeft(this.timeLeft);\r\n      this.cdr.markForCheck();\r\n    }, 1000);\r\n  }\r\n\r\n  resetTimer(): void {\r\n    this.clearTimer();\r\n    this.startTimer();\r\n  }\r\n\r\n  clearTimer(): void {\r\n    clearInterval(this.intervalId);\r\n    this.shouldShowWarningMessage = false;\r\n    this.timeLeft = this.inactivityDurationInMinutes * 60;\r\n    this.cdr.markForCheck();\r\n  }\r\n\r\n  clearAll(): void {\r\n    this.clearTimer();\r\n    this.removeActivityListeners();\r\n    window.removeEventListener('storage', this.onStorage);\r\n  }\r\n\r\n  onResetTimer(): void {\r\n    localStorage.setItem(this.LOCAL_STORAGE_KEYS.RESET, `${Date.now()}`);\r\n    this.timerReset.emit();\r\n    this.resetTimer();\r\n  }\r\n\r\n  onStopTimer(): void {\r\n    localStorage.setItem(this.LOCAL_STORAGE_KEYS.STOPPED, `${Date.now()}`);\r\n    this.timerStopped.emit();\r\n    this.clearAll();\r\n  }\r\n\r\n  onBackdropClick(): void {\r\n    this.onResetTimer();\r\n    this.shouldShowWarningMessage = false;\r\n    this.cdr.markForCheck();\r\n  }\r\n\r\n  onChangeTimeLeft(time: number): void {\r\n    if (\r\n      time <= this.countDownTimerInMinutes * 60 &&\r\n      !this.shouldShowWarningMessage\r\n    ) {\r\n      this.shouldShowWarningMessage = true;\r\n      this.cdr.markForCheck();\r\n    }\r\n    if (time <= 0) {\r\n      localStorage.setItem(this.LOCAL_STORAGE_KEYS.TIMEOUT, `${Date.now()}`);\r\n      this.timedOut.emit();\r\n      this.clearAll();\r\n    }\r\n  }\r\n\r\n  private onStorage = (event: StorageEvent): void => {\r\n    if (event.key === this.LOCAL_STORAGE_KEYS.RESET) {\r\n      this.resetTimer();\r\n    } else if (event.key === this.LOCAL_STORAGE_KEYS.TIMEOUT) {\r\n      this.timedOut.emit();\r\n      this.clearAll();\r\n    } else if (event.key === this.LOCAL_STORAGE_KEYS.STOPPED) {\r\n      this.timerStopped.emit();\r\n      this.clearAll();\r\n    }\r\n  };\r\n\r\n  private addActivityListeners(): void {\r\n    this.activityEvents.forEach((event) =>\r\n      window.addEventListener(event, this.throttledReset, true)\r\n    );\r\n  }\r\n\r\n  private removeActivityListeners(): void {\r\n    this.activityEvents.forEach((event) =>\r\n      window.removeEventListener(event, this.throttledReset, true)\r\n    );\r\n  }\r\n\r\n  private throttledReset = this.throttle(() => {\r\n    if (this.timeLeft > this.countDownTimerInMinutes * 60) {\r\n      this.onResetTimer();\r\n    }\r\n  }, this.eventThrottleInMilliseconds);\r\n\r\n  private throttle(func: () => void, limit: number): () => void {\r\n    let inThrottle: boolean;\r\n    return () => {\r\n      if (!inThrottle) {\r\n        func();\r\n        inThrottle = true;\r\n        setTimeout(() => (inThrottle = false), limit);\r\n      }\r\n    };\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -750,6 +2304,443 @@
                 "OnDestroy"
             ],
             "templateData": "<jui-modal\r\n  [modelValue]=\"shouldShowWarningMessage\"\r\n  (modelValueChange)=\"shouldShowWarningMessage = $event\"\r\n  [height]=\"height\"\r\n  [width]=\"width\"\r\n  [persistent]=\"false\"\r\n  [a11yMessage]=\"a11yMessages\"\r\n  [ariaLabelledby]=\"ariaLabelledby\"\r\n  [closeButton]=\"false\"\r\n  (backdropClick)=\"onBackdropClick()\"\r\n>\r\n  <div class=\"alert-content\">\r\n    <div class=\"countdown-timer\">\r\n      <span>\r\n        Your session will time out due to inactivity in\r\n        {{ formattedTimer(timeLeft) }}. Do you want to stay signed in?\r\n      </span>\r\n    </div>\r\n\r\n    <div class=\"button-group\">\r\n      <button\r\n        class=\"button stop-timer-button\"\r\n        [attr.aria-label]=\"a11yMessages.stopTimerButtonAriaLabel\"\r\n        (click)=\"onStopTimer()\"\r\n      >\r\n        {{ messages.stopTimerButtonLabel }}\r\n      </button>\r\n      <button\r\n        class=\"button button-primary reset-timer-button\"\r\n        [attr.aria-label]=\"a11yMessages.resetTimerButtonAriaLabel\"\r\n        (click)=\"onResetTimer()\"\r\n      >\r\n        {{ messages.resetTimerButtonLabel }}\r\n      </button>\r\n    </div>\r\n  </div>\r\n</jui-modal>\r\n"
+        },
+        {
+            "name": "JuiInputDropdownComponent",
+            "id": "component-JuiInputDropdownComponent-2202e12e8e2aa5f60d0cb674e197ec394dc6e4c9449e882d32edccd3e8f54c5ba4a45900a930402560c2471035c949f0b7a3287b4ab3b58b3ae0334f49a9bb7f",
+            "file": "src/app/lib/components/forms/jui-input-dropdown/jui-input-dropdown.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "jui-input-dropdown",
+            "styleUrls": [
+                "./jui-input-dropdown.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./jui-input-dropdown.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "a11yMessages",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "literal type",
+                    "decorators": []
+                },
+                {
+                    "name": "ariaRequired",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 39,
+                    "type": "literal type",
+                    "decorators": []
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 35,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "editOptionLabel",
+                    "defaultValue": "'Edit...'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 47,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "id",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "inputClassName",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 38,
+                    "type": "string[]",
+                    "decorators": []
+                },
+                {
+                    "name": "inputType",
+                    "defaultValue": "'text'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 36,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "kvpType",
+                    "defaultValue": "{ key: 'id', value: 'desc' }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 49,
+                    "type": "{ key: string; value: string; }",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "labelClassName",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "string[]",
+                    "decorators": []
+                },
+                {
+                    "name": "maxlength",
+                    "defaultValue": "512",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 48,
+                    "type": "number | string",
+                    "decorators": []
+                },
+                {
+                    "name": "modelValue",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "options",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 45,
+                    "type": "any[]",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "validate",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 46,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "enterDropdownEvent",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 53,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "enterInputFieldEvent",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 54,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "modelValueChange",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 51,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "updateEditModeEvent",
+                    "defaultValue": "new EventEmitter<boolean>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 52,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "EDIT_KEY",
+                    "defaultValue": "'EDIT'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 61,
+                    "modifierKind": [
+                        148
+                    ]
+                },
+                {
+                    "name": "editOptions",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 59
+                },
+                {
+                    "name": "inputFieldRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 56,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'inputField'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "isEditMode",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 58
+                },
+                {
+                    "name": "lastSavedValue",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 60
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 63,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onChangeEditMode",
+                    "args": [
+                        {
+                            "name": "isEdit",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 90,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "isEdit",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onDropdownEnter",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 102,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onDropdownOptionSelection",
+                    "args": [
+                        {
+                            "name": "selectedOption",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 95,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "selectedOption",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onFieldInput",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 85,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onFormInputFieldSubmit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 108,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onLeaveFormInputField",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 106,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "JuiDropdownComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "JuiFormInputComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  ViewChild,\r\n  ElementRef,\r\n  OnInit,\r\n  ChangeDetectorRef,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ReactiveFormsModule } from '@angular/forms';\r\nimport { JuiDropdownComponent } from '../jui-dropdown/jui-dropdown.component';\r\nimport { JuiFormInputComponent } from '../jui-form-input/jui-form-input.component';\r\n\r\n@Component({\r\n  selector: 'jui-input-dropdown',\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    ReactiveFormsModule,\r\n    JuiDropdownComponent,\r\n    JuiFormInputComponent,\r\n  ],\r\n  templateUrl: './jui-input-dropdown.component.html',\r\n  styleUrls: ['./jui-input-dropdown.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiInputDropdownComponent implements OnInit {\r\n  @Input() id = '';\r\n  @Input() modelValue = '';\r\n  @Input() label = '';\r\n  @Input() placeholder = '';\r\n  @Input() disabled = false;\r\n  @Input() inputType = 'text';\r\n  @Input() labelClassName: string[] = [];\r\n  @Input() inputClassName: string[] = [];\r\n  @Input() ariaRequired: { dropdown?: boolean; inputText?: boolean } = {};\r\n  @Input() a11yMessages: {\r\n    inputTextAriaLabel?: string;\r\n    dropdownAriaLabel?: string;\r\n    submitButtonAriaLabel?: string;\r\n  } = {};\r\n  @Input() options: any[] = [];\r\n  @Input() validate = false;\r\n  @Input() editOptionLabel = 'Edit...';\r\n  @Input() maxlength: number | string = 512;\r\n  @Input() kvpType = { key: 'id', value: 'desc' };\r\n\r\n  @Output() modelValueChange = new EventEmitter<string>();\r\n  @Output() updateEditModeEvent = new EventEmitter<boolean>();\r\n  @Output() enterDropdownEvent = new EventEmitter<void>();\r\n  @Output() enterInputFieldEvent = new EventEmitter<string>();\r\n\r\n  @ViewChild('inputField') inputFieldRef!: ElementRef;\r\n\r\n  isEditMode = false;\r\n  editOptions: any[] = [];\r\n  lastSavedValue = '';\r\n  readonly EDIT_KEY = 'EDIT';\r\n\r\n  ngOnInit(): void {\r\n    if (this.options?.length > 0) {\r\n      this.lastSavedValue = this.options[0][this.kvpType.value || ''];\r\n    }\r\n  }\r\n\r\n  get optionsList(): any[] {\r\n    const combinedOptions = [...this.options, ...this.editOptions];\r\n    const dedupedOptions = combinedOptions.filter(\r\n      (opt, index, self) =>\r\n        index ===\r\n        self.findIndex((o) => o[this.kvpType.key] === opt[this.kvpType.key])\r\n    );\r\n    return [\r\n      ...dedupedOptions,\r\n      {\r\n        [this.kvpType.key]: this.EDIT_KEY,\r\n        [this.kvpType.value]: this.editOptionLabel,\r\n      },\r\n    ];\r\n  }\r\n\r\n  onFieldInput(value: string): void {\r\n    this.modelValue = value;\r\n    this.modelValueChange.emit(value);\r\n  }\r\n\r\n  onChangeEditMode(isEdit: boolean): void {\r\n    this.isEditMode = isEdit;\r\n    this.updateEditModeEvent.emit(this.isEditMode);\r\n  }\r\n\r\n  onDropdownOptionSelection(selectedOption: any): void {\r\n    if (selectedOption[this.kvpType.key] === this.EDIT_KEY) {\r\n      this.onChangeEditMode(true);\r\n      this.modelValue = '';\r\n    }\r\n  }\r\n\r\n  onDropdownEnter(): void {\r\n    this.enterDropdownEvent.emit();\r\n  }\r\n\r\n  onLeaveFormInputField(): void {}\r\n\r\n  onFormInputFieldSubmit(): void {\r\n    this.editOptions.push({\r\n      [this.kvpType.key]: this.modelValue,\r\n      [this.kvpType.value]: this.modelValue,\r\n    });\r\n    this.onChangeEditMode(false);\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".jui-input-dropdown {\r\n  display: flex;\r\n  flex-direction: column;\r\n  gap: 8px;\r\n\r\n  .input-field-wrapper {\r\n    display: flex;\r\n    align-items: flex-end;\r\n    gap: 6px;\r\n\r\n    .submit-button {\r\n      padding: 0;\r\n      border: none;\r\n      background: none;\r\n      cursor: pointer;\r\n      display: flex;\r\n      align-items: center;\r\n\r\n      .sf-symbol {\r\n        font-size: 16px;\r\n        color: #007bff;\r\n      }\r\n\r\n      &:hover .sf-symbol {\r\n        color: #0056b3;\r\n      }\r\n    }\r\n  }\r\n\r\n  ::ng-deep jui-dropdown,\r\n  ::ng-deep jui-form-input {\r\n    width: 100%;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./jui-input-dropdown.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "accessors": {
+                "optionsList": {
+                    "name": "optionsList",
+                    "getSignature": {
+                        "name": "optionsList",
+                        "type": "[]",
+                        "returnType": "any[]",
+                        "line": 69
+                    }
+                }
+            },
+            "templateData": "<div class=\"jui-input-dropdown\">\r\n  <div *ngIf=\"isEditMode\" class=\"input-field-wrapper\" #inputField>\r\n    <jui-form-input\r\n      [id]=\"id\"\r\n      [modelValue]=\"modelValue\"\r\n      [ariaRequired]=\"ariaRequired.inputText\"\r\n      [a11yMessages]=\"{ inputTextAriaLabel: a11yMessages.inputTextAriaLabel }\"\r\n      [disabled]=\"disabled\"\r\n      [label]=\"label\"\r\n      [labelClassName]=\"labelClassName\"\r\n      [inputClassName]=\"inputClassName\"\r\n      [type]=\"inputType\"\r\n      [placeholder]=\"placeholder\"\r\n      [validate]=\"validate\"\r\n      [maxlength]=\"maxlength\"\r\n      (modelValueChange)=\"onFieldInput($event)\"\r\n      (enter)=\"onFormInputFieldSubmit()\"\r\n    ></jui-form-input>\r\n    <div class=\"submit-button\">\r\n      <button\r\n        class=\"submit-button\"\r\n        [attr.aria-label]=\"a11yMessages.submitButtonAriaLabel\"\r\n        tabindex=\"-1\"\r\n        (click)=\"onFormInputFieldSubmit()\"\r\n      >\r\n        <span class=\"sf-symbol md\" aria-hidden=\"true\">→</span>\r\n      </button>\r\n    </div>\r\n  </div>\r\n\r\n  <jui-dropdown\r\n    *ngIf=\"!isEditMode\"\r\n    #dropdown\r\n    [id]=\"id\"\r\n    [modelValue]=\"modelValue\"\r\n    [ariaRequired]=\"ariaRequired.dropdown\"\r\n    [a11yMessages]=\"{ ariaLabel: a11yMessages.dropdownAriaLabel }\"\r\n    [disabled]=\"disabled\"\r\n    [label]=\"label\"\r\n    [labelClassName]=\"labelClassName\"\r\n    [inputClassName]=\"inputClassName\"\r\n    [options]=\"optionsList\"\r\n    [kvpType]=\"kvpType\"\r\n    [validate]=\"validate\"\r\n    (modelValueChange)=\"onFieldInput($event)\"\r\n    (selectedOption)=\"onDropdownOptionSelection($event)\"\r\n    (clickEvent)=\"onDropdownEnter()\"\r\n  ></jui-dropdown>\r\n</div>\r\n"
         },
         {
             "name": "JuiLoadingSpinnerComponent",
@@ -1117,6 +3108,334 @@
                 "OnDestroy"
             ],
             "templateData": "<div\r\n  class=\"jui-modal-overlay\"\r\n  *ngIf=\"modelValue\"\r\n  #modal\r\n  (click)=\"onClickOutside($event)\"\r\n  role=\"dialog\"\r\n  aria-modal=\"true\"\r\n>\r\n  <div class=\"jui-modal-content\" [ngStyle]=\"{ width, height }\">\r\n    <button\r\n      *ngIf=\"closeButton\"\r\n      class=\"jui-modal-close\"\r\n      [attr.aria-label]=\"a11yMessage.closeButtonAriaLabel\"\r\n      (click)=\"close()\"\r\n    >\r\n      &times;\r\n    </button>\r\n    <ng-content></ng-content>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "JuiRadioButtonComponent",
+            "id": "component-JuiRadioButtonComponent-56d1150be06bd094a10e9525e6cd7057cc4ec335ca1854cdad7cdf2ea674f43453dfe79df9afbfcb5d5f5b698888a5963809aa613b859493167bf2b6636c2a59",
+            "file": "src/app/lib/components/forms/jui-radio-list/jui-radio-button/jui-radio-button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "jui-radio-button",
+            "styleUrls": [
+                "./jui-radio-button.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./jui-radio-button.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "checked",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "blurRadio",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "enterRadio",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "focusRadio",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "selectRadio",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 33,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onEnter",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onFocus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'jui-radio-button',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './jui-radio-button.component.html',\r\n  styleUrls: ['./jui-radio-button.component.scss'],\r\n})\r\nexport class JuiRadioButtonComponent {\r\n  @Input() value = '';\r\n  @Input() checked = false;\r\n  @Input() disabled = false;\r\n\r\n  @Output() selectRadio = new EventEmitter<string>();\r\n  @Output() enterRadio = new EventEmitter<string>();\r\n  @Output() focusRadio = new EventEmitter<string>();\r\n  @Output() blurRadio = new EventEmitter<string>();\r\n\r\n  onClick(): void {\r\n    if (!this.disabled) this.selectRadio.emit(this.value);\r\n  }\r\n\r\n  onEnter(): void {\r\n    if (!this.disabled) this.enterRadio.emit(this.value);\r\n  }\r\n\r\n  onFocus(): void {\r\n    if (!this.disabled) this.focusRadio.emit(this.value);\r\n  }\r\n\r\n  onBlur(): void {\r\n    if (!this.disabled) this.blurRadio.emit(this.value);\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".jui-radio-button {\r\n  display: flex;\r\n  align-items: center;\r\n  margin: 4px 0;\r\n\r\n  input {\r\n    margin-right: 8px;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./jui-radio-button.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<li class=\"jui-radio-button\">\r\n  <label>\r\n    <input\r\n      type=\"radio\"\r\n      [value]=\"value\"\r\n      [checked]=\"checked\"\r\n      [disabled]=\"disabled\"\r\n      (click)=\"onClick()\"\r\n      (keyup.enter)=\"onEnter()\"\r\n      (focus)=\"onFocus()\"\r\n      (blur)=\"onBlur()\"\r\n    />\r\n    <ng-content></ng-content>\r\n  </label>\r\n</li>\r\n"
+        },
+        {
+            "name": "JuiRadioListComponent",
+            "id": "component-JuiRadioListComponent-2d54a2283e82a2d19deecc0a4823ae78dfbe3ca4b563c9109519a43c0b9976dc0a4c9cfe50b36f3a6397303a5c6addf24005cefea0466809a4cc79d441976e70",
+            "file": "src/app/lib/components/forms/jui-radio-list/jui-radio-list.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "jui-radio-list",
+            "styleUrls": [
+                "./jui-radio-list.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./jui-radio-list.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "selectedValue",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "showValidationError",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "vertical",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "blur",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "enter",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "focus",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "selectedValueChange",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "radioButtons",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "QueryList<JuiRadioButtonComponent>",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 34,
+                    "decorators": [
+                        {
+                            "name": "ContentChildren",
+                            "stringifiedArguments": "JuiRadioButtonComponent"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngAfterContentInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onSelect",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 46,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "JuiRadioButtonComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ContentChildren,\r\n  QueryList,\r\n  AfterContentInit,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { JuiRadioButtonComponent } from './jui-radio-button/jui-radio-button.component';\r\n\r\n@Component({\r\n  selector: 'jui-radio-list',\r\n  standalone: true,\r\n  imports: [CommonModule, JuiRadioButtonComponent],\r\n  templateUrl: './jui-radio-list.component.html',\r\n  styleUrls: ['./jui-radio-list.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiRadioListComponent implements AfterContentInit {\r\n  @Input() selectedValue = '';\r\n  @Input() vertical = false;\r\n  @Input() showValidationError = false;\r\n\r\n  @Output() selectedValueChange = new EventEmitter<string>();\r\n  @Output() enter = new EventEmitter<string>();\r\n  @Output() focus = new EventEmitter<string>();\r\n  @Output() blur = new EventEmitter<string>();\r\n\r\n  @ContentChildren(JuiRadioButtonComponent)\r\n  \r\n  radioButtons!: QueryList<JuiRadioButtonComponent>;\r\n\r\n  ngAfterContentInit(): void {\r\n    this.radioButtons.forEach((rb) => {\r\n      rb.checked = rb.value === this.selectedValue;\r\n      rb.selectRadio.subscribe((value: string) => this.onSelect(value));\r\n      rb.enterRadio.subscribe((value: string) => this.enter.emit(value));\r\n      rb.focusRadio.subscribe((value: string) => this.focus.emit(value));\r\n      rb.blurRadio.subscribe((value: string) => this.blur.emit(value));\r\n    });\r\n  }\r\n\r\n  onSelect(value: string): void {\r\n    this.selectedValue = value;\r\n    this.selectedValueChange.emit(value);\r\n    this.radioButtons.forEach((rb) => (rb.checked = rb.value === value));\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".jui-radio-list {\r\n  .radio-group {\r\n    list-style: none;\r\n    margin: 0;\r\n    padding: 0;\r\n    display: flex;\r\n    flex-direction: row;\r\n\r\n    &.vertical {\r\n      flex-direction: column;\r\n    }\r\n  }\r\n\r\n  .validation-error-icon {\r\n    color: red;\r\n    font-weight: bold;\r\n    margin-top: 4px;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./jui-radio-list.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "AfterContentInit"
+            ],
+            "templateData": "<div class=\"jui-radio-list\">\r\n  <ul class=\"radio-group\" role=\"radiogroup\" [class.vertical]=\"vertical\">\r\n    <ng-content></ng-content>\r\n  </ul>\r\n  <div *ngIf=\"showValidationError\" class=\"validation-error-icon\">!</div>\r\n</div>\r\n"
         },
         {
             "name": "JuiSearchInputComponent",
@@ -1643,7 +3962,7 @@
         },
         {
             "name": "JuiTabsComponent",
-            "id": "component-JuiTabsComponent-7812d7d7a9d6723fe2e92455fb35c3a68e3072b5ddbc18e8fb118c90f063a4e293b8f5fdedb66b9a91674b4dc415303c691d56607cd9e391e1e9a9a34fe9d389",
+            "id": "component-JuiTabsComponent-8677a28f77c80ca45306cbf60cb4ae2b93277e454bc70744529fe14cdbff25aa5f4b3b02361dd3ca6e86712e132c78b83fe6bfdf6d8b0623b90ecea63b276710",
             "file": "src/app/lib/components/jui-tabs/jui-tabs.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1784,7 +4103,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 119,
+                    "line": 115,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1868,7 +4187,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 109,
+                    "line": 105,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1896,7 +4215,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 114,
+                    "line": 110,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1950,7 +4269,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 78,
+                    "line": 74,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2027,7 +4346,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 87,
+                    "line": 83,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2103,7 +4422,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  ViewChildren,\r\n  ElementRef,\r\n  QueryList,\r\n  AfterViewInit,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\ninterface A11yMessages {\r\n  tabsLabelledby?: string;\r\n}\r\n\r\ninterface TabItem {\r\n  tabId: string;\r\n  tabLabel: string;\r\n  a11yMessages?: { tabLabel?: string };\r\n}\r\n\r\n@Component({\r\n  selector: 'jui-tabs',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './jui-tabs.component.html',\r\n  styleUrls: ['./jui-tabs.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiTabsComponent implements AfterViewInit {\r\n  @Input() modelValue = '';\r\n  @Input() a11yMessages?: A11yMessages;\r\n  @Input() tabListData: TabItem[] = [];\r\n\r\n  @Output() modelValueChange = new EventEmitter<string>();\r\n\r\n  @ViewChildren('tabItem', { read: ElementRef })\r\n  tabItems!: QueryList<ElementRef>;\r\n\r\n  isMouseClicked = false;\r\n  currentFocusIndex = -1;\r\n\r\n  ngAfterViewInit() {\r\n    // Optional: Focus first selected tab if needed\r\n  }\r\n\r\n  isSelected(tabId: string): boolean {\r\n    return this.modelValue === tabId;\r\n  }\r\n\r\n  getTabIndex(tabId: string): number {\r\n    return this.modelValue === tabId ? 0 : -1;\r\n  }\r\n\r\n  onFocus(index: number): void {\r\n    this.currentFocusIndex = index;\r\n  }\r\n\r\n  onBlur(): void {\r\n    this.isMouseClicked = false;\r\n  }\r\n\r\n  onSelectTab(tabId: string): void {\r\n    this.modelValueChange.emit(tabId);\r\n  }\r\n\r\n  focusTab(index: number): void {\r\n    const el = this.tabItems.get(index);\r\n    el?.nativeElement?.focus();\r\n    console.log(\r\n      'Focus target:',\r\n      this.tabItems.map((t) => t.nativeElement)\r\n    );\r\n  }\r\n\r\n  onClickTabItem(tabId: string, index: number): void {\r\n    if (this.currentFocusIndex !== -1) {\r\n      this.tabItems.get(this.currentFocusIndex)?.nativeElement.blur();\r\n    }\r\n    this.isMouseClicked = true;\r\n    this.tabItems.get(index)?.nativeElement.focus();\r\n    this.onSelectTab(tabId);\r\n  }\r\n\r\n  onKeydown(event: KeyboardEvent, index: number, tabId: string): void {\r\n    switch (event.key) {\r\n      case 'ArrowRight':\r\n      case 'ArrowDown':\r\n        event.preventDefault();\r\n        this.focusTab((index + 1) % this.tabItems.length);\r\n        break;\r\n      case 'ArrowLeft':\r\n      case 'ArrowUp':\r\n        event.preventDefault();\r\n        this.focusTab(\r\n          (index - 1 + this.tabItems.length) % this.tabItems.length\r\n        );\r\n        break;\r\n      case 'Enter':\r\n      case ' ':\r\n        event.preventDefault();\r\n        this.onSelectTab(tabId);\r\n        break;\r\n    }\r\n  }\r\n\r\n  moveDown(index: number): void {\r\n    const next = (index + 1) % this.tabItems.length;\r\n    this.tabItems.get(next)?.nativeElement.focus();\r\n  }\r\n\r\n  moveUp(index: number): void {\r\n    const prev = (index - 1 + this.tabItems.length) % this.tabItems.length;\r\n    this.tabItems.get(prev)?.nativeElement.focus();\r\n  }\r\n\r\n  getAriaLabel(tab: TabItem): string {\r\n    return tab.a11yMessages?.tabLabel || tab.tabLabel;\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n  ViewChildren,\r\n  ElementRef,\r\n  QueryList,\r\n  AfterViewInit,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\ninterface A11yMessages {\r\n  tabsLabelledby?: string;\r\n}\r\n\r\ninterface TabItem {\r\n  tabId: string;\r\n  tabLabel: string;\r\n  a11yMessages?: { tabLabel?: string };\r\n}\r\n\r\n@Component({\r\n  selector: 'jui-tabs',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './jui-tabs.component.html',\r\n  styleUrls: ['./jui-tabs.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiTabsComponent implements AfterViewInit {\r\n  @Input() modelValue = '';\r\n  @Input() a11yMessages?: A11yMessages;\r\n  @Input() tabListData: TabItem[] = [];\r\n\r\n  @Output() modelValueChange = new EventEmitter<string>();\r\n\r\n  @ViewChildren('tabItem', { read: ElementRef })\r\n  tabItems!: QueryList<ElementRef>;\r\n\r\n  isMouseClicked = false;\r\n  currentFocusIndex = -1;\r\n\r\n  ngAfterViewInit() {\r\n    // Optional: Focus first selected tab if needed\r\n  }\r\n\r\n  isSelected(tabId: string): boolean {\r\n    return this.modelValue === tabId;\r\n  }\r\n\r\n  getTabIndex(tabId: string): number {\r\n    return this.modelValue === tabId ? 0 : -1;\r\n  }\r\n\r\n  onFocus(index: number): void {\r\n    this.currentFocusIndex = index;\r\n  }\r\n\r\n  onBlur(): void {\r\n    this.isMouseClicked = false;\r\n  }\r\n\r\n  onSelectTab(tabId: string): void {\r\n    this.modelValueChange.emit(tabId);\r\n  }\r\n\r\n  focusTab(index: number): void {\r\n    const el = this.tabItems.get(index);\r\n    el?.nativeElement?.focus();\r\n  }\r\n\r\n  onClickTabItem(tabId: string, index: number): void {\r\n    if (this.currentFocusIndex !== -1) {\r\n      this.tabItems.get(this.currentFocusIndex)?.nativeElement.blur();\r\n    }\r\n    this.isMouseClicked = true;\r\n    this.tabItems.get(index)?.nativeElement.focus();\r\n    this.onSelectTab(tabId);\r\n  }\r\n\r\n  onKeydown(event: KeyboardEvent, index: number, tabId: string): void {\r\n    switch (event.key) {\r\n      case 'ArrowRight':\r\n      case 'ArrowDown':\r\n        event.preventDefault();\r\n        this.focusTab((index + 1) % this.tabItems.length);\r\n        break;\r\n      case 'ArrowLeft':\r\n      case 'ArrowUp':\r\n        event.preventDefault();\r\n        this.focusTab(\r\n          (index - 1 + this.tabItems.length) % this.tabItems.length\r\n        );\r\n        break;\r\n      case 'Enter':\r\n      case ' ':\r\n        event.preventDefault();\r\n        this.onSelectTab(tabId);\r\n        break;\r\n    }\r\n  }\r\n\r\n  moveDown(index: number): void {\r\n    const next = (index + 1) % this.tabItems.length;\r\n    this.tabItems.get(next)?.nativeElement.focus();\r\n  }\r\n\r\n  moveUp(index: number): void {\r\n    const prev = (index - 1 + this.tabItems.length) % this.tabItems.length;\r\n    this.tabItems.get(prev)?.nativeElement.focus();\r\n  }\r\n\r\n  getAriaLabel(tab: TabItem): string {\r\n    return tab.a11yMessages?.tabLabel || tab.tabLabel;\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2404,6 +4723,69 @@
                 "name": "appConfig",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/forms/jui-action-dropdown/jui-action-dropdown.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "JuiActionDropdownComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/27",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/forms/jui-comment-input/jui-comment-input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "JuiCommentInputComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/26",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/forms/jui-dropdown/jui-dropdown.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "JuiDropdownComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/28",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/forms/jui-form-input/jui-form-input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "JuiFormInputComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/32",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/forms/jui-input-dropdown/jui-input-dropdown.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "JuiInputDropdownComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/32",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/forms/jui-radio-list/jui-radio-button/jui-radio-button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "JuiRadioButtonComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/lib/components/forms/jui-radio-list/jui-radio-list.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "JuiRadioListComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
                 "status": "low"
             },
             {
