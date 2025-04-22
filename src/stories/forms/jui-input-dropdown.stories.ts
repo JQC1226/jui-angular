@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { JuiInputDropdownComponent } from '../../app/lib/components/forms/jui-input-dropdown/jui-input-dropdown.component';
 
 export default {
-  title: 'JUI/InputDropdown',
+  title: 'FORMS/InputDropdown',
   component: JuiInputDropdownComponent,
   decorators: [
     moduleMetadata({
