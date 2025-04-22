@@ -1,0 +1,38 @@
+.jui-action-dropdown {
+  display: inline-block;
+  position: relative;
+
+  select.md {
+    font-size: 14px;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+  }
+
+  .sf-symbol {
+    font-family: "SF Pro Symbols";
+  }
+
+  .action-header {
+    display: flex;
+    align-items: center;
+
+    .title.lg {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .dropdown-arrow-icon {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .disabled-all {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .a11y.vo-input {
+    position: absolute;
+    left: -9999px;
+  }
+}

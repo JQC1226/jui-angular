@@ -1,0 +1,74 @@
+<div
+  [class.disabled-all]="dropdownDisabled"
+  [class.action-button-with-title]="title"
+  class="jui-action-dropdown"
+>
+  <ng-content></ng-content>
+
+  <ng-container *ngIf="!title">
+    <span aria-hidden="true" [ngClass]="iconClasses">􀍠</span>
+  </ng-container>
+
+  <ng-container *ngIf="title">
+    <span class="action-header">
+      <span class="title lg" aria-hidden="true">{{ title }}</span>
+      <span class="sf-symbol dropdown-arrow-icon" aria-hidden="true"></span>
+    </span>
+  </ng-container>
+
+  <select
+    #selectElement
+    [id]="id"
+    [title]="title"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-describedby]="a11yMessages.dropdownDescribedby"
+    aria-roledescription="Menu"
+    [disabled]="dropdownDisabled"
+    [ngClass]="inputClasses"
+    [(ngModel)]="selectedIndex"
+    (input)="selectAction($event)"
+    (blur)="onBlur()"
+    (change)="resetSelection()"
+    (keydown.space.enter)="(true)"
+    (click)="(true)"
+    class="md"
+  >
+    <ng-container *ngFor="let group of allOptions; index as i">
+      <ng-container *ngIf="group[optionKeys.group]; else flatOptions">
+        <optgroup
+          [label]="group[optionKeys.group]"
+          class="muted"
+          [attr.key]="group[optionKeys.group] + i"
+        >
+          <option
+            *ngFor="let option of group[optionKeys.options]; index as j"
+            [value]="option | json"
+            [disabled]="option.disabled"
+            class="copy"
+            [attr.key]="option[optionKeys.optionName] + j"
+          >
+            {{ option[optionKeys.optionName] }}
+          </option>
+        </optgroup>
+      </ng-container>
+      <ng-template #flatOptions>
+        <option
+          *ngFor="let option of group[optionKeys.options]; index as j"
+          [value]="option | json"
+          [disabled]="option.disabled"
+          [attr.key]="option[optionKeys.optionName] + j"
+        >
+          {{ option[optionKeys.optionName] }}
+        </option>
+      </ng-template>
+    </ng-container>
+  </select>
+
+  <span
+    *ngIf="autoFocusOnSelect"
+    #focusHiddenInput
+    class="a11y vo-input"
+    aria-hidden="true"
+    tabindex="-1"
+  ></span>
+</div>
