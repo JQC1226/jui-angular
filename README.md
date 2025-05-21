@@ -1,59 +1,115 @@
-# AngularUi
+# JUI — Angular UI Component Library
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
+**JUI ** is a clean, SCSS-based Angular component library built with **standalone components**, focused on reusability, accessibility, and developer experience. It provides composable UI blocks that integrate seamlessly into Angular apps and are documented in a live, interactive Storybook.
 
-## Development server
+> Built with Angular 19, SCSS, and accessible-first design principles.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## Features
+
+- **Angular 19 Standalone Components** — no need for NgModules
+- **SCSS-based styling** — easy to customize and override
+- **WCAG-compliant accessibility** — semantic HTML, ARIA attributes, focus management
+- **Component isolation** — each component is fully self-contained
+- **Testable architecture** — compatible with Jest, Karma, Jasmine
+- **Keyboard-friendly** — designed with full keyboard accessibility in mind
+- **Interactive Storybook** — visual documentation and live examples
+
+---
+
+## Live Storybook
+
+Explore all components interactively:
+
+🔗 [story book demo](https://jui-angular.vercel.app/?path=/docs/configure-your-project--docs)
+
+---
+
+## Components
+
+### Form Inputs
+
+| Component      | Imports As                          |
+| -------------- | ----------------------------------- |
+| Form Input     | `JuiFormInput`, `FormInput`         |
+| Comment Input  | `JuiCommentInput`, `CommentInput`   |
+| Dropdown       | `JuiDropdown`, `Dropdown`           |
+| Input Dropdown | `JuiInputDropdown`, `InputDropdown` |
+| Radio List     | `JuiRadioList`, `RadioList`         |
+| Search Input   | `JuiSearchInput`, `SearchInput`     |
+
+### Layout & Behavior
+
+| Component       | Imports As                            |
+| --------------- | ------------------------------------- |
+| Button          | `JuiButton`, `Button`                 |
+| Tabs            | `JuiTabs`, `Tabs`                     |
+| Tooltip         | `JuiTooltip`, `Tooltip`               |
+| Modal           | `JuiModal`, `Modal`                   |
+| Switch          | `JuiSwitch`, `Switch`                 |
+| Idle Timer      | `JuiIdleTimer`, `IdleTimer`           |
+| Loading Spinner | `JuiLoadingSpinner`, `LoadingSpinner` |
+| Action Dropdown | `JuiActionDropdown`, `ActionDropdown` |
+
+---
+
+## Accessibility (WCAG 2.1)
+
+All components are designed with accessibility in mind:
+
+- **Semantic HTML** (`<button>`, `<label>`, `<input>`, etc.)
+- **ARIA attributes** for custom elements (e.g., dropdown, tabs, modals)
+- **Screen reader compatibility**
+- **Focus management** on dialogs and dropdowns
+- **Color contrast** respects WCAG AA standards (customizable via SCSS)
+
+---
+
+## Keyboard Support
+
+| Component      | Keyboard Controls                         |
+| -------------- | ----------------------------------------- |
+| **Tabs**       | `← →` to switch tabs, `Tab` to move focus |
+| **Dropdown**   | `↓ ↑` to navigate, `Enter` to select      |
+| **Modal**      | `Esc` to close, `Tab` to cycle focus      |
+| **Tooltip**    | `Focus` triggers tooltip on keyboard      |
+| **Radio List** | `↑ ↓` or `Tab` to select                  |
+
+Focus is **trapped in modals** and restored on close for better user experience and accessibility.
+
+---
+
+## Testing
+
+The library is compatible with:
+
+- **Jasmine/Karma** (Angular default)
+- **Jest** (with `jest-preset-angular`)
+- **Storybook Test Runner** for interactive visual tests
+
+Each component is structured for easy unit testing and can be mounted independently in test environments.
+
+---
+
+## SCSS Theming
+
+All styles are written in SCSS and organized per component for easy customization. You can:
+
+- Customize variables if defined via SCSS maps
+- Apply global design tokens through shared partials
+
+---
+
+## Usage Example
+
+```ts
+import { Button } from "src/app/lib/components/jui-button/jui-button.component";
+
+@Component({
+  standalone: true,
+  imports: [Button],
+  template: `<button (click)="save()">Save</button>`,
+})
+export class SaveComponent {}
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

@@ -33,7 +33,6 @@ export class JuiIdleTimerComponent implements OnInit, OnDestroy {
   @Input() height = '20rem';
   @Input() width = '50rem';
   @Input() eventThrottleInMilliseconds = 500;
-  @Input() teleportTo = 'body';
   @Input() appContentId = 'app';
   @Input() ariaLabelledby = '';
   @Input() modalClasses: string | string[] | Record<string, boolean> = '';

@@ -982,7 +982,7 @@
         },
         {
             "name": "JuiDropdownComponent",
-            "id": "component-JuiDropdownComponent-522496aa79faf91c49420ea31b3121a9e0de8187b4f80fecf49bb5de669285ad23f340abc16ea2513806b3d9f6437cf31120d84bf5edc34fd7c109170a8ba27f",
+            "id": "component-JuiDropdownComponent-a00685240c79d691d9529d5ec88b6b66650ceaad2ccd3a395ad01a86e36d157c4a4c09d630bda59dcdbddaf7648c1e1fe6a09f28d4e7ddce1835429520a5e9f4",
             "file": "src/app/lib/components/forms/jui-dropdown/jui-dropdown.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1006,7 +1006,7 @@
                     "defaultValue": "{ ariaLabel: '' }",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 35,
+                    "line": 34,
                     "type": "literal type",
                     "decorators": []
                 },
@@ -1014,7 +1014,7 @@
                     "name": "ariaRequired",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 34,
+                    "line": 33,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1023,7 +1023,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 30,
+                    "line": 29,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1032,7 +1032,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 24,
+                    "line": 23,
                     "type": "string",
                     "decorators": []
                 },
@@ -1041,7 +1041,7 @@
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 32,
+                    "line": 31,
                     "type": "string[]",
                     "decorators": []
                 },
@@ -1050,7 +1050,7 @@
                     "defaultValue": "{ key: 'id', value: 'desc' }",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
+                    "line": 28,
                     "type": "{ key: string; value: string; }",
                     "decorators": []
                 },
@@ -1059,7 +1059,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 26,
+                    "line": 25,
                     "type": "string",
                     "decorators": []
                 },
@@ -1068,7 +1068,7 @@
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 31,
+                    "line": 30,
                     "type": "string[]",
                     "decorators": []
                 },
@@ -1077,7 +1077,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 25,
+                    "line": 24,
                     "type": "string",
                     "decorators": []
                 },
@@ -1086,7 +1086,7 @@
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 28,
+                    "line": 27,
                     "type": "any[]",
                     "decorators": []
                 },
@@ -1095,7 +1095,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 27,
+                    "line": 26,
                     "type": "string",
                     "decorators": []
                 },
@@ -1104,7 +1104,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 33,
+                    "line": 32,
                     "type": "boolean",
                     "decorators": []
                 }
@@ -1115,7 +1115,7 @@
                     "defaultValue": "new EventEmitter<void>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 39,
+                    "line": 38,
                     "type": "EventEmitter"
                 },
                 {
@@ -1123,7 +1123,7 @@
                     "defaultValue": "new EventEmitter<void>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 41,
+                    "line": 40,
                     "type": "EventEmitter"
                 },
                 {
@@ -1131,7 +1131,7 @@
                     "defaultValue": "new EventEmitter<void>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 40,
+                    "line": 39,
                     "type": "EventEmitter"
                 },
                 {
@@ -1139,7 +1139,7 @@
                     "defaultValue": "new EventEmitter<string>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 37,
+                    "line": 36,
                     "type": "EventEmitter"
                 },
                 {
@@ -1147,7 +1147,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 38,
+                    "line": 37,
                     "type": "EventEmitter"
                 }
             ],
@@ -1160,7 +1160,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 45
+                    "line": 44
                 },
                 {
                     "name": "selectRef",
@@ -1170,7 +1170,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 43,
+                    "line": 42,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -1189,7 +1189,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 47,
+                    "line": 46,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1199,7 +1199,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 85,
+                    "line": 69,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1209,7 +1209,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 94,
+                    "line": 78,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1226,7 +1226,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 98,
+                    "line": 82,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1247,46 +1247,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 90,
+                    "line": 74,
                     "deprecated": false,
                     "deprecationMessage": ""
-                },
-                {
-                    "name": "onKeyDown",
-                    "args": [
-                        {
-                            "name": "event",
-                            "type": "KeyboardEvent",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 70,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "decorators": [
-                        {
-                            "name": "HostListener",
-                            "stringifiedArguments": "'keydown', ['$event']"
-                        }
-                    ],
-                    "modifierKind": [
-                        170
-                    ],
-                    "jsdoctags": [
-                        {
-                            "name": "event",
-                            "type": "KeyboardEvent",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
                 },
                 {
                     "name": "onSelect",
@@ -1320,25 +1283,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
-            "hostListeners": [
-                {
-                    "name": "keydown",
-                    "args": [
-                        {
-                            "name": "event",
-                            "type": "KeyboardEvent",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "argsDecorator": [
-                        "$event"
-                    ],
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 70
-                }
-            ],
+            "hostListeners": [],
             "standalone": true,
             "imports": [
                 {
@@ -1353,7 +1298,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  OnInit,\r\n  ChangeDetectionStrategy,\r\n  ViewChild,\r\n  ElementRef,\r\n  HostListener,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'jui-dropdown',\r\n  standalone: true,\r\n  imports: [CommonModule, ReactiveFormsModule],\r\n  templateUrl: './jui-dropdown.component.html',\r\n  styleUrls: ['./jui-dropdown.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiDropdownComponent implements OnInit {\r\n  @Input() id = '';\r\n  @Input() modelValue = '';\r\n  @Input() label = '';\r\n  @Input() title = '';\r\n  @Input() options: any[] = [];\r\n  @Input() kvpType = { key: 'id', value: 'desc' };\r\n  @Input() disabled = false;\r\n  @Input() labelClassName: string[] = [];\r\n  @Input() inputClassName: string[] = [];\r\n  @Input() validate = false;\r\n  @Input() ariaRequired?: boolean;\r\n  @Input() a11yMessages: { ariaLabel?: string } = { ariaLabel: '' };\r\n\r\n  @Output() modelValueChange = new EventEmitter<string>();\r\n  @Output() selectedOption = new EventEmitter<any>();\r\n  @Output() blurEvent = new EventEmitter<void>();\r\n  @Output() focusEvent = new EventEmitter<void>();\r\n  @Output() clickEvent = new EventEmitter<void>();\r\n\r\n  @ViewChild('selectRef') selectRef!: ElementRef<HTMLSelectElement>;\r\n\r\n  control!: FormControl;\r\n\r\n  ngOnInit(): void {\r\n    const validators = [];\r\n    if (this.ariaRequired || this.ariaRequired === null) {\r\n      validators.push(Validators.required);\r\n    }\r\n    this.control = new FormControl(this.modelValue, validators);\r\n  }\r\n\r\n  get invalid(): boolean {\r\n    return this.control.invalid && this.control.touched;\r\n  }\r\n\r\n  onSelect(event: Event): void {\r\n    const value = (event.target as HTMLSelectElement).value;\r\n    this.control.setValue(value);\r\n    this.modelValueChange.emit(value);\r\n    const selected = this.options.find(\r\n      (opt) => opt[this.kvpType.key] === value\r\n    );\r\n    this.selectedOption.emit(selected);\r\n  }\r\n\r\n  @HostListener('keydown', ['$event'])\r\n  onKeyDown(event: KeyboardEvent): void {\r\n    const char = event.key.toLowerCase();\r\n    if (char.length === 1 && /^[a-z0-9]$/i.test(char)) {\r\n      const index = this.options.findIndex((option) =>\r\n        option[this.kvpType.value].toLowerCase().startsWith(char)\r\n      );\r\n      if (index !== -1) {\r\n        const matchedOption = this.options[index];\r\n        this.control.setValue(matchedOption[this.kvpType.key]);\r\n        this.modelValueChange.emit(matchedOption[this.kvpType.key]);\r\n        this.selectedOption.emit(matchedOption);\r\n      }\r\n    }\r\n  }\r\n\r\n  onBlur(): void {\r\n    this.control.markAsTouched();\r\n    this.blurEvent.emit();\r\n  }\r\n\r\n  onFocus(): void {\r\n    this.focusEvent.emit();\r\n  }\r\n\r\n  onClick(): void {\r\n    this.clickEvent.emit();\r\n  }\r\n\r\n  onEnter(event: KeyboardEvent): void {\r\n    if (event.key === 'Enter') {\r\n      this.blurEvent.emit();\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  OnInit,\r\n  ChangeDetectionStrategy,\r\n  ViewChild,\r\n  ElementRef,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'jui-dropdown',\r\n  standalone: true,\r\n  imports: [CommonModule, ReactiveFormsModule],\r\n  templateUrl: './jui-dropdown.component.html',\r\n  styleUrls: ['./jui-dropdown.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class JuiDropdownComponent implements OnInit {\r\n  @Input() id = '';\r\n  @Input() modelValue = '';\r\n  @Input() label = '';\r\n  @Input() title = '';\r\n  @Input() options: any[] = [];\r\n  @Input() kvpType = { key: 'id', value: 'desc' };\r\n  @Input() disabled = false;\r\n  @Input() labelClassName: string[] = [];\r\n  @Input() inputClassName: string[] = [];\r\n  @Input() validate = false;\r\n  @Input() ariaRequired?: boolean;\r\n  @Input() a11yMessages: { ariaLabel?: string } = { ariaLabel: '' };\r\n\r\n  @Output() modelValueChange = new EventEmitter<string>();\r\n  @Output() selectedOption = new EventEmitter<any>();\r\n  @Output() blurEvent = new EventEmitter<void>();\r\n  @Output() focusEvent = new EventEmitter<void>();\r\n  @Output() clickEvent = new EventEmitter<void>();\r\n\r\n  @ViewChild('selectRef') selectRef!: ElementRef<HTMLSelectElement>;\r\n\r\n  control!: FormControl;\r\n\r\n  ngOnInit(): void {\r\n    const validators = [];\r\n    if (this.ariaRequired || this.ariaRequired === null) {\r\n      validators.push(Validators.required);\r\n    }\r\n    this.control = new FormControl(this.modelValue, validators);\r\n  }\r\n\r\n  get invalid(): boolean {\r\n    return this.control.invalid && this.control.touched;\r\n  }\r\n\r\n  \r\n  onSelect(event: Event): void {\r\n    const value = (event.target as HTMLSelectElement).value;\r\n    this.control.setValue(value);\r\n    this.modelValueChange.emit(value);\r\n    const selected = this.options.find(\r\n      (opt) => opt[this.kvpType.key] === value\r\n    );\r\n    this.selectedOption.emit(selected);\r\n  }\r\n\r\n  onBlur(): void {\r\n    this.control.markAsTouched();\r\n    this.blurEvent.emit();\r\n  }\r\n\r\n  onFocus(): void {\r\n    this.focusEvent.emit();\r\n  }\r\n\r\n  onClick(): void {\r\n    this.clickEvent.emit();\r\n  }\r\n\r\n  onEnter(event: KeyboardEvent): void {\r\n    if (event.key === 'Enter') {\r\n      this.blurEvent.emit();\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1373,11 +1318,11 @@
                         "name": "invalid",
                         "type": "boolean",
                         "returnType": "boolean",
-                        "line": 55
+                        "line": 54
                     }
                 }
             },
-            "templateData": "<div class=\"jui-dropdown form input-field-container\">\r\n  <label *ngIf=\"label\" [for]=\"id\" class=\"form-label\" [ngClass]=\"labelClassName\">\r\n    {{ label }}\r\n  </label>\r\n\r\n  <div [ngClass]=\"inputClassName\" class=\"field-tooltip-wrapper\">\r\n    <div class=\"form-input-wrapper\" [class.disabled-all]=\"disabled\">\r\n      <span *ngIf=\"title\" class=\"dropdown-title\">\r\n        <span class=\"title\" aria-hidden=\"true\">{{ title }}</span>\r\n      </span>\r\n\r\n      <select\r\n        #selectRef\r\n        [id]=\"id\"\r\n        class=\"dropdown form-input\"\r\n        [class.hide-select]=\"title\"\r\n        [formControl]=\"control\"\r\n        [attr.aria-required]=\"ariaRequired ?? true\"\r\n        [attr.aria-label]=\"a11yMessages.ariaLabel || label\"\r\n        [attr.aria-invalid]=\"invalid\"\r\n        [disabled]=\"disabled\"\r\n        (change)=\"onSelect($event)\"\r\n        (focus)=\"onFocus()\"\r\n        (blur)=\"onBlur()\"\r\n        (click)=\"onClick()\"\r\n        (keydown.enter)=\"onEnter($event)\"\r\n      >\r\n        <option\r\n          *ngFor=\"let opt of options; let i = index\"\r\n          [value]=\"opt[kvpType.key]\"\r\n          [disabled]=\"opt.disabled\"\r\n          [attr.lang]=\"opt.lang\"\r\n        >\r\n          {{ opt[kvpType.value] }}\r\n        </option>\r\n      </select>\r\n\r\n      <span class=\"dropdown-arrow-icon\" aria-hidden=\"true\">▼</span>\r\n    </div>\r\n\r\n    <div *ngIf=\"validate && invalid\" class=\"error-icon\" aria-hidden=\"true\">\r\n      ⚠️\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"jui-dropdown form input-field-container\">\r\n  <label *ngIf=\"label\" [for]=\"id\" class=\"form-label\" [ngClass]=\"labelClassName\">\r\n    {{ label }}\r\n  </label>\r\n\r\n  <div [ngClass]=\"inputClassName\" class=\"field-tooltip-wrapper\">\r\n    <div class=\"form-input-wrapper\" [class.disabled-all]=\"disabled\">\r\n      <span *ngIf=\"title\" class=\"dropdown-title\">\r\n        <span class=\"title\" aria-hidden=\"true\">{{ title }}</span>\r\n      </span>\r\n\r\n      <select\r\n        #selectRef\r\n        [id]=\"id\"\r\n        class=\"dropdown form-input\"\r\n        [class.hide-select]=\"title\"\r\n        [formControl]=\"control\"\r\n        [attr.aria-required]=\"ariaRequired ?? true\"\r\n        [attr.aria-label]=\"a11yMessages.ariaLabel || label\"\r\n        [attr.aria-invalid]=\"invalid\"\r\n        [disabled]=\"disabled\"\r\n        (change)=\"onSelect($event)\"\r\n        (focus)=\"onFocus()\"\r\n        (blur)=\"onBlur()\"\r\n        (click)=\"onClick()\"\r\n        (keydown.enter)=\"onEnter($event)\"\r\n      >\r\n        <option\r\n          *ngFor=\"let opt of options; let i = index\"\r\n          [value]=\"opt[kvpType.key]\"\r\n          [disabled]=\"opt.disabled\"\r\n          [attr.lang]=\"opt.lang\"\r\n          \r\n        >\r\n          {{ opt[kvpType.value] }}\r\n        </option>\r\n      </select>\r\n\r\n      <span class=\"dropdown-arrow-icon\" aria-hidden=\"true\">▼</span>\r\n    </div>\r\n\r\n    <div *ngIf=\"validate && invalid\" class=\"error-icon\" aria-hidden=\"true\">\r\n      ⚠️\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "JuiFormInputComponent",
@@ -4749,7 +4694,7 @@
                 "linktype": "component",
                 "name": "JuiDropdownComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/28",
+                "coverageCount": "0/26",
                 "status": "low"
             },
             {
